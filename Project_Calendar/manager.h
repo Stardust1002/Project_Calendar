@@ -4,7 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <QObject>
+#include <QDate>
 #include <QDebug>
+#include "time.h"
+#include "evenement.h"
+
 using namespace std;
 template<class T> class Manager;
 template<class T>class Handler{
@@ -16,13 +20,14 @@ public:
 };
 template<class T> class Manager
 {
+private:
     friend class Handler<T>;
-    vector<T*> tab;
     static Handler<T> handler;
     Manager(){}
     Manager& operator=(const Manager&);
     virtual ~Manager();
-
+protected:
+    vector<T*> tab;
 public:
    // virtual void deleteItem(T* t);
     unsigned int getSize() const {return tab.size();}
@@ -72,21 +77,38 @@ template <class T> T* Manager<T>::getItem(const QString& id)const{
 }
 
 
-
-#endif // MANAGER_H
-
 class TacheManager: private Manager<Tache>{
-   private:
-
    public:
-    ajouterTacheUnitaire(const QString& id, const QString& titre, const Horaire& duree,
-                         const QString& preemptive, const QDate& date_dispo, const QDate& date_echeance){
+   void  ajouterTacheUnitaire(QString id, QString titre, TIME::Duree duree,
+                          bool preemptive, QDate date_dispo, QDate date_echeance){
     TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, date_dispo, date_echeance);
     addItem(t);
     }
-    ajouterTacheComposite(const QString& id, const QString& titre, vector<Tache> liste){
+   void ajouterTacheComposite(const QString& id, const QString& titre, vector<Tache*> liste){
     TacheComposite* t = new TacheComposite(id, titre, liste);
     addItem(t);
     }
+    void supprimerTache(QString id);
+};
+class ProjectManager: private Manager<Projet>{
+   public:
+   void  ajouterProjet(QString id, QString titre,
+                         QDate date_dispo){
+    Projet* t = new Projet(id, titre, date_dispo);
+    addItem(t);
+    }
+    void supprimerProjet(QString id);
 
 };
+class PrecedenceManager: private Manager<Precedence>{
+   public:
+   void  ajouterPrecedence(Tache* t1, Tache* t2){
+    Precedence* t = new Precedence(t1,t2);
+    addItem(t);
+    }
+    void supprimerPrecedence(QString id);
+
+};
+
+#endif // MANAGER_H
+

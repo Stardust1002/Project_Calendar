@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    manager.cpp
+    manager.cpp \
+    timing.cpp \
+    evenement.cpp
 
 HEADERS  += mainwindow.h \
-    manager.h
+    manager.h \
+    evenement.h \
+    timing.h
 
 FORMS    += mainwindow.ui
