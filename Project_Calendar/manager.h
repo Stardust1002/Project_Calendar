@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <QObject>
-#include <QDate>
+#include <QDateTime>
 #include <QDebug>
 #include "time.h"
 #include "evenement.h"
@@ -80,20 +80,31 @@ template <class T> T* Manager<T>::getItem(const QString& id)const{
 class TacheManager: private Manager<Tache>{
    public:
    void  ajouterTacheUnitaire(QString id, QString titre, TIME::Duree duree,
-                          bool preemptive, QDate date_dispo, QDate date_echeance){
-    TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, date_dispo, date_echeance);
-    addItem(t);
+                          bool preemptive, QString dispo, QString echeance){
+       QString format = "dd:MM:yyyy:HH:mm";
+      QDateTime date_dispo = QDateTime::fromString(dispo,format);
+      QDateTime date_echeance = QDateTime::fromString(echeance,format);
+        TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, date_dispo, date_echeance);
+        addItem(t);
     }
-   void ajouterTacheComposite(const QString& id, const QString& titre, vector<Tache*> liste){
-    TacheComposite* t = new TacheComposite(id, titre, liste);
-    addItem(t);
+   void ajouterTacheComposite(const QString& id, const QString& titre, vector<Tache*> liste, QString dispo = "00:00:0000:00:00", QString echeance = "00:00:0000:00:00"){
+       QString format = "dd:MM:yyyy:HH:mm";
+       QDateTime date_dispo = QDateTime::fromString(dispo,format);
+       QDateTime date_echeance = QDateTime::fromString(echeance,format);
+       TacheComposite* t = new TacheComposite(id, titre, liste, date_dispo, date_echeance);
+        addItem(t);
     }
     void supprimerTache(QString id);
 };
+
+
+
 class ProjectManager: private Manager<Projet>{
    public:
    void  ajouterProjet(QString id, QString titre,
-                         QDate date_dispo){
+                         QString dispo){
+       QString format = "dd:MM:yyyy:HH:mm";
+       QDateTime date_dispo = QDateTime::fromString(dispo,format);
     Projet* t = new Projet(id, titre, date_dispo);
     addItem(t);
     }
