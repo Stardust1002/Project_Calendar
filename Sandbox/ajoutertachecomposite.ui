@@ -6,23 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>548</width>
-    <height>536</height>
+    <width>703</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="6" column="0" colspan="5">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4">
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>Taches du Projet</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Identificateur:</string>
      </property>
     </widget>
-   </item>
-   <item row="0" column="1" colspan="2">
-    <widget class="QLineEdit" name="identificateur"/>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
@@ -31,98 +42,15 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1" colspan="3">
-    <widget class="QTextEdit" name="titre">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>140</height>
-      </size>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Date de disponibilité</string>
+      <string>Date de disponibilité:</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QDateTimeEdit" name="dispo">
-     <property name="calendarPopup">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="labelech">
-     <property name="text">
-      <string>Date d'échéance</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QDateTimeEdit" name="echeance"/>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Liste des taches</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2" colspan="2">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Taches composantes</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2">
+   <item row="5" column="2" colspan="2">
     <widget class="QListWidget" name="liste">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="dragDropOverwriteMode">
-      <bool>true</bool>
-     </property>
-     <property name="dragDropMode">
-      <enum>QAbstractItemView::DragDrop</enum>
-     </property>
-     <property name="defaultDropAction">
-      <enum>Qt::MoveAction</enum>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>Antoine</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Camille</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>NA17</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>LO21</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="4" column="2" colspan="2">
-    <widget class="QListWidget" name="composants">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -144,20 +72,231 @@
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
+     <item>
+      <property name="text">
+       <string>Connexion du GUI aux Controleurs</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Création du GUI</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Implémentation du moteur</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Modelisation UML</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Rendu Projet</string>
+      </property>
+     </item>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="3" column="2" colspan="2">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>&lt;--------- Liste de toutes les taches --------&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="2">
     <widget class="QPushButton" name="annuler">
      <property name="text">
       <string>Annuler</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="2" colspan="2">
+   <item row="8" column="0" colspan="3">
+    <widget class="QListWidget" name="composants">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragDrop</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2" colspan="3">
     <widget class="QPushButton" name="pushButton">
      <property name="text">
       <string>Créer !</string>
      </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QComboBox" name="projet">
+     <item>
+      <property name="text">
+       <string>LO21</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QLineEdit" name="identificateur"/>
+   </item>
+   <item row="1" column="1" colspan="4">
+    <widget class="QTextEdit" name="titre">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="QListWidget" name="succ">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragDrop</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QDateTimeEdit" name="dispo">
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QLabel" name="labelech">
+     <property name="text">
+      <string>Date d'échéance:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>Projet:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QListWidget" name="pred">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragDrop</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QDateTimeEdit" name="echeance">
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Taches composantes</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>Successeurs</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>Prédécesseurs</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2" colspan="2">
+    <widget class="QLabel" name="label_10">
+     <property name="text">
+      <string>&lt;--------------------------------------------------</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3" colspan="2">
+    <widget class="QListWidget" name="liste_taches_projet">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragDrop</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>Hello World</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Yo Bitches</string>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>

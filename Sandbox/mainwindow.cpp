@@ -63,13 +63,56 @@ void MainWindow::on_actionComposite_triggered()
 
 void MainWindow::on_actionProgrammer_une_Tache_triggered()
 {
-    programmationTache* programmation = new programmationTache(this);
+    programmationTache* programmation = new programmationTache(0,this);
     programmation->show();
 
 }
 
 void MainWindow::on_actionProgrammer_une_Activit_triggered()
 {
-    programmationActivite* programmation = new programmationActivite(this);
+    programmationActivite* programmation = new programmationActivite(this); //Faire surcharge pour modifier activité
     programmation->show();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    programmationTache* programmation = new programmationTache(0,this);
+    programmation->show();
+
+}
+
+void MainWindow::on_calendarWidget_clicked(const QDate &date)
+{
+    int jour = date.dayOfWeek();
+    int mois = date.month();
+    int annee = date.year();
+    int semaine = date.weekNumber(&annee);
+    ui->tableWidget->selectColumn(jour-1);
+    //Créer une méthode qui charge les données de la semaine avec le numéro de semaine et l'année !
+
+    qDebug() << "Jour" << jour << "de la" << semaine << "ième semaine de" << annee;
+}
+
+void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
+{
+    qDebug() << "Evenement: " << item->text();
+
+    //AFFICHAGE de l'évènement dans le cadre du bord droit
+    //Récupérer toutes les informations d'un évènement suivant un identificateur
+    ui->groupBox->setEnabled(true);
+    ui->identificateur->setText(item->text());
+
+
+
+}
+
+
+void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
+{
+    on_actionUnitaire_triggered();
+}
+
+void MainWindow::on_voir_clicked()
+{
+    on_actionUnitaire_triggered();
 }

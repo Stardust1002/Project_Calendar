@@ -19,6 +19,9 @@ public:
 private slots:
     void on_programmer_clicked();
 
+
+    void on_deprogrammer_clicked();
+
 private:
     Ui::programmationActivite *ui;
 };

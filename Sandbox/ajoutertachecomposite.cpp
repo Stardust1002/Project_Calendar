@@ -15,6 +15,7 @@ ajouterTacheComposite::ajouterTacheComposite(Tache* tache, QWidget *parent) :
     if(tache != 0){
         ui->identificateur->setText(tache->getId());
         ui->titre->setText(tache->getTitre());
+        //recherche du projet
         //dispo->setDateTime(tache->getDateDisponibilite());
         //echeance->setDateTime(tache->getDateDisponibilite());
 

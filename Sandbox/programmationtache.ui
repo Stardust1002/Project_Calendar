@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label_projj">
@@ -27,18 +27,39 @@
       <widget class="QComboBox" name="projet"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>Tache (non programmée):</string>
+        <string>Statut de la tache:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
+      <widget class="QComboBox" name="statut">
+       <item>
+        <property name="text">
+         <string>Non-Programmée</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Programmée</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Tache:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
       <widget class="QComboBox" name="tache"/>
      </item>
     </layout>
    </item>
-   <item>
+   <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
@@ -119,7 +140,7 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
       <string>Predecesseur Direct:</string>
@@ -142,7 +163,7 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
       <string>Successeur Direct:</string>
@@ -163,13 +184,9 @@
        </widget>
       </item>
      </layout>
-     <zorder>label_6</zorder>
-     <zorder>groupBox_3</zorder>
-     <zorder>groupBox_3</zorder>
-     <zorder>succ</zorder>
     </widget>
    </item>
-   <item>
+   <item row="4" column="0">
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="0">
       <widget class="QLabel" name="label_5">
@@ -179,16 +196,27 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QDateTimeEdit" name="programmation"/>
+      <widget class="QDateTimeEdit" name="programmation">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
-   <item>
+   <item row="5" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="annuler">
        <property name="text">
         <string>Annuler</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deprog">
+       <property name="text">
+        <string>Déprogrammer</string>
        </property>
       </widget>
      </item>
@@ -202,18 +230,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>projet</zorder>
-  <zorder>label_projj</zorder>
-  <zorder>label</zorder>
-  <zorder>tache</zorder>
-  <zorder>groupBox</zorder>
-  <zorder>groupBox_3</zorder>
-  <zorder>programmation</zorder>
-  <zorder>label_5</zorder>
-  <zorder>groupBox_2</zorder>
-  <zorder>label_7</zorder>
-  <zorder>annuler</zorder>
-  <zorder>programmer</zorder>
  </widget>
  <resources/>
  <connections/>

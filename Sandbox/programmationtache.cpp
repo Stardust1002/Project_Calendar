@@ -1,7 +1,7 @@
 #include "programmationtache.h"
 #include "ui_programmationtache.h"
 
-programmationTache::programmationTache(QWidget *parent) :
+programmationTache::programmationTache(Tache* tache, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::programmationTache)
 {
@@ -42,4 +42,18 @@ void programmationTache::on_programmer_clicked()
     else
         ouvrirWarning("Des informations sont manquantes !","Erreur");
 
+}
+
+void programmationTache::on_deprog_clicked()
+{
+    if(ui->statut->currentText() == "Programmée" && !ui->tache->currentText().isEmpty()) //faire un operateur d'addition pour comparer fin+durée et comparer avec pred et succ
+    {
+        if(ouvrirQuestion("Êtes-vous sûr de vouloir la déprogrammer ?","Attention") == QMessageBox::Yes){
+            // DEPROGRAMMATION TACHE
+            ouvrirInformation("Tâche déprogrammée avec succès !\n");
+            this->~programmationTache();
+        }
+    }
+    else
+        ouvrirWarning("La tâche n'est pas programmée ou non-selectionnée !","Erreur");
 }

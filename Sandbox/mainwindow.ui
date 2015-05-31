@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1139</width>
-    <height>396</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,6 +33,9 @@
         </property>
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="showDropIndicator" stdset="0">
+         <bool>false</bool>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
@@ -102,6 +105,12 @@
             <height>200</height>
            </size>
           </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
           <property name="gridVisible">
            <bool>true</bool>
           </property>
@@ -109,8 +118,14 @@
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="title">
            <string>Evènement</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
           </property>
           <layout class="QFormLayout" name="formLayout">
            <item row="0" column="0">
@@ -121,65 +136,65 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="identificateur">
              <property name="text">
-              <string>Rendu du Projet de NA17</string>
+              <string>/</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="3" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
               <string>Titre:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="label_6">
+           <item row="7" column="1">
+            <widget class="QPushButton" name="voir">
              <property name="text">
-              <string>Soutenance et Rendu</string>
+              <string>Voir </string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="7" column="0">
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Déprogrammer</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QTextEdit" name="textEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>Date:</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>15/06/2015</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Horaire</string>
+              <string>Durée</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="label_8">
+           <item row="1" column="1">
+            <widget class="QLabel" name="date">
              <property name="text">
-              <string>10:00 - 12:00</string>
+              <string>/</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
-            <widget class="QPushButton" name="pushButton">
+           <item row="2" column="1">
+            <widget class="QLabel" name="duree">
              <property name="text">
-              <string>Voir </string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="pushButton_2">
-             <property name="text">
-              <string>Déprogrammer</string>
+              <string>/</string>
              </property>
             </widget>
            </item>
