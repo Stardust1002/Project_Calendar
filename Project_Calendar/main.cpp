@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    Manager<int>& m = Manager<int>::getInstance();
+   TacheManager &TM = TacheManager::getInstance();
 
     w.show();
 

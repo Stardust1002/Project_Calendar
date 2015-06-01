@@ -16,9 +16,6 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QCalendarWidget" name="calendarWidget"/>
-    </item>
-    <item>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QToolButton" name="toolButton">
@@ -26,6 +23,9 @@
          <string>...</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QCalendarWidget" name="calendarWidget"/>
       </item>
       <item>
        <widget class="QLabel" name="label">
