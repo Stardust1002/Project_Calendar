@@ -1,66 +1,103 @@
 #ifndef EVENEMENT_H
 #define EVENEMENT_H
 
+#include <QDate>
 #include <QDateTime>
 #include <QObject>
 #include "timing.h"
+#include <QDebug>
+
+template <class T, class U>class Manager;
+class TacheManager;
+class ProgrammationManager;
+class ProjetManager;
+class PrecedenceManager;
+
 using namespace std;
 
 class Evenement
 {
+    QTime duree;
 protected:
- TIME::Duree duree;
- Evenement(TIME::Duree d):duree(d){}
+    Evenement(const QTime& d):duree(d){}
+    virtual ~Evenement()=0{}
 public:
- TIME::Duree getDuree()const{return duree;}
+    const QTime& getDuree()const{return duree;}
+    virtual void setDuree(const QTime& d){duree=d;}
 };
-class Tache{
-protected:
 
+class Tache{
     friend class TacheManager;
+    friend class Manager<Tache,TacheManager>;
+protected:
     QString identificateur;
     QString titre;
     QDateTime date_echeance;
     QDateTime date_dispo;
-    Tache(QString id, QString title, QDateTime dispo, QDateTime echeance): identificateur(id), titre(title), date_dispo(dispo), date_echeance(echeance){}
-
+    Tache(const QString& id, const QString& title, const QDateTime& dispo, const QDateTime& echeance): identificateur(id), titre(title), date_dispo(dispo), date_echeance(echeance){}
+    Tache(const Tache& t){*this = (t);}
+    const Tache& operator=(const Tache& t);
+    virtual ~Tache()=0{qDebug()<<"Destruction tache \n";}
 public:
-    QDateTime getDisponibilite() const{return date_dispo;}
-    virtual QDateTime getEcheance() const  = 0;
-    QString getTitre()const{return titre;}
-    QString getId()const{return identificateur;}
+    const QDateTime& getDisponibilite() const{return date_dispo;}
+    const QDateTime& getEcheance() const{return date_echeance;}
+    const QString& getTitre()const{return titre;}
+    const QString& getId()const{return identificateur;}
 
+    void setId(const QString& i){identificateur = i;}
+    void setTitre(const QString& t){titre = t;}
+    void setDisponibilite(const QString& d);
+    void setEcheance(const QString& e);
+    virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
+    virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
 };
 
 class TacheComposite:public Tache{
-private:
+    typedef vector<Tache *>::iterator iterator;
     friend class TacheManager;
+    friend class Manager<Tache,TacheManager>;
+
     vector<Tache*> tab;
+
     TacheComposite(const TacheComposite&);
     TacheComposite& operator=(const TacheComposite&);
     ~TacheComposite();
-    TacheComposite(QString id, QString title, vector<Tache*> t, QDateTime date_dispo, QDateTime date_echeance);
+    TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance);
 
 public:
     size_t getSize(){return tab.size();}
-    QDateTime getEcheance()const{return this->date_echeance;}
+
+    iterator begin(){return tab.begin();}
+    iterator end(){return tab.end();}
+
+    void push_back(Tache &t){tab.push_back(&t);}
+    void pop_back(){tab.pop_back();}
+    iterator erase(iterator position){return tab.erase(position);}
+
+    void setDisponibiliteDT(const QDateTime& dispo)override;
+    void setEcheanceDT(const QDateTime& echeance)override;
 };
 
 class TacheUnitaire:public Tache, public Evenement{
 private:
     friend class TacheManager;
-    friend class TacheComposite;
+    friend class Manager<Tache,TacheManager>;
+
     bool preemptive;
     TacheUnitaire(const Tache&);
     TacheUnitaire& operator=(const TacheUnitaire&);
-    TacheUnitaire(QString id, QString t, TIME::Duree duree, bool pre, QDateTime dispo, QDateTime echeance):
+    TacheUnitaire(const QString& id, const QString& t, const QTime& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
         Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
-    ~TacheUnitaire(){}
+    ~TacheUnitaire(){qDebug()<<"Destruction tache unitaire\n";}
 public:
-   QDateTime getEcheance()const{return this->date_echeance;}
+   const QDateTime& getEcheance()const{return this->date_echeance;}
+   void setDuree(const QTime& d){
+       if(!preemptive && d>QTime(12,00))
+           throw "Error : Durée d'une Tâche non preemptive supérieur à 12H impossible";
+       Evenement::setDuree(d);
+   }
 
 };
-
 
 class Activite:public Evenement{
     friend class ActiviteManager;
@@ -68,47 +105,50 @@ class Activite:public Evenement{
     QString identificateur;
     QString titre;
     TypeActivite type;
-    TIME::Duree duree;
-    Activite(QString id, QString t, TypeActivite ty, TIME::Duree d):Evenement(d), identificateur(id),
+    Activite(const QString& id, const QString& t, TypeActivite ty, const QTime& d):Evenement(d), identificateur(id),
         titre(t), type(ty){}
     ~Activite(){}
 public:
     QString getType(){return type;}
-    TIME::Duree getDuree(){return duree;}
     QString getTitre(){return titre;}
 
 };
 
 class Programmation{
     friend class ProgrammationManager;
+    friend class Manager<Programmation,ProgrammationManager>;
+
     Evenement* const evenement;
     QDateTime date;
-    TIME::Horaire horaire;
-    Programmation(Evenement* const e, QDateTime d, TIME::Horaire h):date(d), horaire(h), evenement(e){}
+    QTime duree;
+    Programmation(Evenement* const e, const QDateTime& d, const QTime& du):date(d), duree(du), evenement(e){}
     ~Programmation(){}
 public:
     Evenement* const getEvenement()const{return evenement;}
-    QDateTime getDate()const {return date;}
-    TIME::Horaire getHoraire(){return horaire;}
+    const QDateTime& getDate()const {return date;}
+    const QTime& getDuree(){return duree;}
 
 };
 
 class Projet{
-    friend class ProjectManager;
+    typedef vector<Tache*>::iterator iterator;
+    typedef vector<Tache*>::const_iterator const_iterator;
+    friend class ProjetManager;
+    friend class Manager<Projet,ProjetManager>;
     QString identificateur;
     QString titre;
     vector<Tache*> tab;
     QDateTime date_dispo;
     //Projet(QString id, QString t, QDateTime d, vector<Tache*> t);
-   Projet(QString id, QString t, QDateTime d):identificateur(id), titre(t), date_dispo(d){  }
+   Projet(const QString& id, const QString& t, const QDateTime& d):identificateur(id), titre(t), date_dispo(d){  }
     ~Projet(){tab.clear();}
 
 public:
     size_t getSize() const{return tab.size();}
-    QDateTime getDisponibilite()const{return date_dispo;}
-    QDateTime getEcheance()const;
-    QString getTitre()const{return titre;}
-    QString getId()const{return identificateur;}
+    const QDateTime& getDisponibilite()const{return date_dispo;}
+    const QDateTime& getEcheance()const;
+    const QString& getTitre()const{return titre;}
+    const QString& getId()const{return identificateur;}
     void ajouterTache(Tache* t);
     //void ajouterTache(const QString& id);
     void retirerTache(Tache* t);
@@ -117,9 +157,10 @@ public:
 
 class Precedence{
     friend class PrecedenceManager;
+    friend class Manager<Precedence,PrecedenceManager>;
     Tache* pred;
     Tache* succ;
-    Precedence(Tache* t1, Tache* t2):pred(t1), succ(t2){}
+    Precedence(Tache& t1, Tache& t2):pred(&t1), succ(&t2){}
     ~Precedence(){}
 public:
     Tache* const getSuccesseur(){return succ;}

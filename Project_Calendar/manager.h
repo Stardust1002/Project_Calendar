@@ -6,107 +6,96 @@
 #include <QObject>
 #include <QDateTime>
 #include <QDebug>
-#include "time.h"
 #include "evenement.h"
 
 using namespace std;
 
 template<class T, class U> class Manager{
-    typedef typename vector<T*>::iterator iterator;
-
 private:
-    Manager& operator=(const Manager&);
     struct Handler{
         U* instance;
         Handler():instance(nullptr){}
         virtual ~Handler(){U::freeInstance();}
     };
-
+    Manager& operator=(const Manager&);
 protected:    
     vector<T*> tab;
     static Handler handler;
     Manager(){}
     ~Manager();
-
 public:
    // virtual void deleteItem(T* t);
+    typedef typename vector<T*>::iterator iterator;
     unsigned int getSize() const {return tab.size();}
-    T* getItem(const QString&) const;
+    T& getItem(const QString& id) const;
     static U& getInstance();
     static void freeInstance();
-    void addItem(T* t){tab.push_back(t);}
+    void addItem(T& t){tab.push_back(&t);}
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
 };
 
-template <class T, class U>
-typename Manager<T,U>::Handler Manager<T,U>::handler;
+template <class T, class U> typename Manager<T,U>::Handler Manager<T,U>::handler;
 
-template<class T, class U>
-U& Manager<T,U>::getInstance(){
+template<class T, class U> U& Manager<T,U>::getInstance(){
     if(handler.instance == 0)
         handler.instance = new U();
     return *handler.instance;
 }
 
-template<class T, class U>
-void Manager<T,U>::freeInstance(){
+template<class T, class U> void Manager<T,U>::freeInstance(){
     delete handler.instance;
     handler.instance = 0;
 }
 
 template <class T, class U> Manager<T,U>::~Manager(){
+    qDebug()<<"Destruction TacheManager \n";
     if(!tab.empty()){
-    for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
-        delete &(*it);
-    tab.clear();}
+        qDebug()<<"Tab non empty \n";
+        qDebug()<<"\nTaille : "<<tab.size();
+        for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
+            delete *it;
+        tab.clear();
+    }
+    qDebug()<<"Fin de Destruction TacheManager \n";
 }
-template <class T,class U> T* Manager<T,U>::getItem(const QString& id)const{
+template <class T,class U> T& Manager<T,U>::getItem(const QString& id)const{
     for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
-        if(*it.getId() == id)return &(*it);
+        if(*it.getId() == id)
+            return *it;
     throw "Exception: pas d'Item correspondant";
     return 0;
 }
 
-class TacheManager: public Manager<Tache, TacheManager>{
+class TacheManager: public Manager<Tache,TacheManager>{
 public:
-   void  ajouterTacheUnitaire(QString id, QString titre, TIME::Duree duree,
-                          bool preemptive, QString dispo, QString echeance){
-       QString format = "dd:MM:yyyy:HH:mm";
-      QDateTime date_dispo = QDateTime::fromString(dispo,format);
-      QDateTime date_echeance = QDateTime::fromString(echeance,format);
-        TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, date_dispo, date_echeance);
-        addItem(t);
-    }
-   void ajouterTacheComposite(const QString& id, const QString& titre, vector<Tache*> liste, QString dispo = "00:00:0000:00:00", QString echeance = "00:00:0000:00:00"){
-       QString format = "dd:MM:yyyy:HH:mm";
-       QDateTime date_dispo = QDateTime::fromString(dispo,format);
-       QDateTime date_echeance = QDateTime::fromString(echeance,format);
-       TacheComposite* t = new TacheComposite(id, titre, liste, date_dispo, date_echeance);
-        addItem(t);
-    }
-    void supprimerTache(QString id);
+    TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
+                              bool preemptive, const QString& dispo, const QString& echeance);
+    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
+                               const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
+    void supprimerTache(const QString& id);
+    void supprimerTache(iterator it);
 };
 
-class ProjectManager: public Manager<Projet,ProjectManager>{
+class ProjetManager: public Manager<Projet,ProjetManager>{
 public:
-   void  ajouterProjet(QString id, QString titre,
-                         QString dispo){
+    void ajouterProjet(const QString& id, const QString& titre, const QString& dispo){
        QString format = "dd:MM:yyyy:HH:mm";
        QDateTime date_dispo = QDateTime::fromString(dispo,format);
     Projet* t = new Projet(id, titre, date_dispo);
-    addItem(t);
+    addItem(*t);
     }
     void supprimerProjet(QString id);
 
 };
+
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
    public:
-   void  ajouterPrecedence(Tache* t1, Tache* t2){
+   void  ajouterPrecedence(Tache& t1, Tache& t2){
     Precedence* t = new Precedence(t1,t2);
-    addItem(t);
+    addItem(*t);
     }
-    void supprimerPrecedence(QString id);
+    void supprimerPrecedence(const QString& id);
 };
 
 #endif // MANAGER_H
