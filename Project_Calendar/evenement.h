@@ -87,7 +87,7 @@ private:
     TacheUnitaire(const Tache&);
     TacheUnitaire& operator=(const TacheUnitaire&);
     TacheUnitaire(const QString& id, const QString& t, const QTime& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
-        Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
+                Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
     ~TacheUnitaire(){qDebug()<<"Destruction tache unitaire\n";}
 public:
    const QDateTime& getEcheance()const{return this->date_echeance;}

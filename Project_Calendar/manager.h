@@ -89,8 +89,8 @@ class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                               bool preemptive, const QString& dispo, const QString& echeance);
-    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
-                               const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
+    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "01:01:0001:00:00",
+                               const QString& echeance = "01:01:3000:00:00",vector<Tache*> liste = vector<Tache*>());
 };
 
 class ProjetManager: public Manager<Projet,ProjetManager>{

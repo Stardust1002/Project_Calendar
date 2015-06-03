@@ -20,7 +20,6 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
 TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QString& titre, const QString& dispo, const QString& echeance, vector<Tache*> liste){
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime date_dispo = QDateTime::fromString(dispo,format);
-    qDebug()<<dispo<<"\t"<<date_dispo;
     if(!date_dispo.isValid())
         throw "Format DateTime de la disponibilite invalide";
     QDateTime date_echeance = QDateTime::fromString(echeance,format);

@@ -12,11 +12,6 @@ int main(int argc, char *argv[])
     TacheManager &TM = TacheManager::getInstance();
     //TacheManager::freeInstance();
 
-    QString format = "dd:MM:yyyy:HH:mm";
-    QDateTime test = QDateTime::fromString("21:10:1994:25:00",format);
-    qDebug()<<test;
-    qDebug()<<test.isValid();
-
     TacheUnitaire *tu[3];
 
     tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
@@ -27,13 +22,9 @@ int main(int argc, char *argv[])
     tc.push_back(*tu[1]);
     tc.push_back(*tu[2]);
 
-    format = "dd:MM:yyyy:HH:mm";
+    /*format = "dd:MM:yyyy:HH:mm";
     QDateTime date_dispo = QDateTime::fromString("21:10:1994:23:00",format);
-    qDebug()<<date_dispo;
-
-    format = "dd:MM:yyyy:HH:mm";
-    QDateTime dispo = QDateTime::fromString("21:10:1994:23:00",format);
-    qDebug()<<dispo;
+    qDebug()<<date_dispo;*/
 
     //tc.setDisponibilite("21:10:1994:23:00");
 
