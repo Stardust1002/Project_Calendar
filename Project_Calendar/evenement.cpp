@@ -10,9 +10,12 @@ const Tache& Tache::operator=(const Tache& t){
     return *this;
 }
 
+
 void Tache::setDisponibilite(const QString& d){
+    qDebug()<<d;
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime dispo = QDateTime::fromString(d,format);
+    qDebug()<<dispo;
     setDisponibiliteDT(dispo);
 }
 void Tache::setEcheance(const QString& e){
@@ -24,7 +27,7 @@ void Tache::setEcheance(const QString& e){
 TacheComposite::~TacheComposite(){
     qDebug()<<"Destruction tache composite\n";
     for(iterator it = this->tab.begin(); it != this->tab.end(); ++it)
-        TacheManager::getInstance().supprimerTache(it);
+        TacheManager::getInstance().supprimerTache(**it);
     this->tab.clear();
 }
 /*Projet::Projet(QString id, QString t, QDateTime d, vector<Tache*> t):identificateur(id), titre(t), date_dispo(d){
@@ -41,9 +44,11 @@ TacheComposite::TacheComposite(const QString& id, const QString& title, vector<T
 void TacheComposite::setDisponibiliteDT(const QDateTime& dispo){
     iterator it = tab.begin();
     const QDateTime* minDispo = &(*it)->getDisponibilite();
+    it++;
     for(;it != tab.end();it++)
         if((*it)->getDisponibilite() < *minDispo)
             minDispo = &(*it)->getDisponibilite();
+    qDebug()<<"minDispo : "<<*minDispo<<"\tdispo : "<<dispo;
     if(*minDispo < dispo)
         throw "error : Tache Composite possédant une tache disponible avant elle même";
     Tache::setDisponibiliteDT(dispo);

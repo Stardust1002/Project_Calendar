@@ -22,7 +22,15 @@ int main(int argc, char *argv[])
     tc.push_back(*tu[1]);
     tc.push_back(*tu[2]);
 
-    tc.setDisponibilite("21:10:1994:99:00");
+    QString format = "dd:MM:yyyy:HH:mm";
+    QDateTime date_dispo = QDateTime::fromString("21:10:1994:23:00",format);
+    qDebug()<<date_dispo;
+
+    format = "dd:MM:yyyy:HH:mm";
+    QDateTime dispo = QDateTime::fromString("21:10:1994:23:00",format);
+    qDebug()<<dispo;
+
+    tc.setDisponibilite("21:10:1994:23:00");
 
     TM.supprimerTache("C1");
 

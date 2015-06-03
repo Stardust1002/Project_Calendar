@@ -74,6 +74,7 @@ public:
     TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
                                const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
     void supprimerTache(const QString& id);
+    void supprimerTache(Tache& tache);
     void supprimerTache(iterator it);
 };
 

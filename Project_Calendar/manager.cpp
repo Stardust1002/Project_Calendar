@@ -22,15 +22,21 @@ TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QSt
     return *t;
  }
 
+
+
 void TacheManager::supprimerTache(const QString& id){
-    for(vector<Tache*>::iterator it = this->tab.begin(); it != this->tab.end(); ++it){
-        if((*it)->getId() == id)
-            supprimerTache(it);
-    }
+    iterator it;
+    for(it = this->tab.begin(); it != this->tab.end() && (*it)->getId() != id ; ++it);
+    supprimerTache(it);
+}
+
+void TacheManager::supprimerTache(Tache& tache){
+    supprimerTache(tache.getId());
 }
 
 void TacheManager::supprimerTache(iterator it){
-    delete *it;
+    Tache* pt = *it;
     tab.erase(it);
+    delete pt;
     qDebug()<<"\nTaille : "<<tab.size();
 }
