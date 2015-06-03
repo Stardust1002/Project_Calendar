@@ -16,21 +16,10 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
     addItem(*t);
     return *t;
 }
-TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QString& titre, const QTime& duree,
-                          bool preemptive,const QDateTime& dispo, const QDateTime& echeance){
-    if(!dispo.isValid())
-        throw "Format DateTime de la disponibilite invalide";
-    if(!echeance.isValid())
-        throw "Format DateTime de l'échéance invalide";
-    TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, dispo, echeance);
-    addItem(*t);
-    return *t;
-}
 
 TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QString& titre, const QString& dispo, const QString& echeance, vector<Tache*> liste){
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime date_dispo = QDateTime::fromString(dispo,format);
-    qDebug()<<dispo<<"\t"<<date_dispo;
     if(!date_dispo.isValid())
         throw "Format DateTime de la disponibilite invalide";
     QDateTime date_echeance = QDateTime::fromString(echeance,format);
@@ -40,12 +29,5 @@ TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QSt
     addItem(*t);
     return *t;
  }
-TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QString& titre, const QDateTime& dispo, const QDateTime& echeance, vector<Tache*> liste){
-    if(!dispo.isValid())
-        throw "Format DateTime de la disponibilite invalide";
-    if(!echeance.isValid())
-        throw "Format DateTime de l'échéance invalide";
-    TacheComposite* t = new TacheComposite(id, titre, liste, dispo, echeance);
-    addItem(*t);
-    return *t;
- }
+
+

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>vueGlobale</class>
+ <widget class="QDialog" name="vueGlobale">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>691</width>
+    <height>481</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Vue Globale</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTreeWidget" name="treeWidget">
+     <property name="autoExpandDelay">
+      <number>-1</number>
+     </property>
+     <property name="indentation">
+      <number>40</number>
+     </property>
+     <property name="rootIsDecorated">
+      <bool>true</bool>
+     </property>
+     <property name="uniformRowHeights">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="animated">
+      <bool>true</bool>
+     </property>
+     <property name="allColumnsShowFocus">
+      <bool>false</bool>
+     </property>
+     <attribute name="headerCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="headerDefaultSectionSize">
+      <number>350</number>
+     </attribute>
+     <attribute name="headerHighlightSections">
+      <bool>true</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Projets</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Identificateur</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Programmation</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Durée</string>
+      </property>
+     </column>
+     <item>
+      <property name="text">
+       <string>NA17</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>LO21</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <item>
+       <property name="text">
+        <string>Taches Unitaires</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Programmées</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Tache Unitaire 1</string>
+         </property>
+         <property name="text">
+          <string>Rendu Projet</string>
+         </property>
+         <property name="text">
+          <string>10/06/2015 10:00</string>
+         </property>
+         <property name="text">
+          <string>00:20</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Predecesseurs</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Tache Unitaire 2</string>
+           </property>
+           <property name="text">
+            <string>Connexion au GUI</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+         </item>
+        </item>
+       </item>
+       <item>
+        <property name="text">
+         <string>Non-Programmées</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Tache Unitaire 2</string>
+         </property>
+         <property name="text">
+          <string>Connexion au GUI</string>
+         </property>
+         <property name="text">
+          <string>Pré-emptive</string>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+         <item>
+          <property name="text">
+           <string>Predecesseurs</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1ère Programmation</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+        </item>
+       </item>
+      </item>
+      <item>
+       <property name="text">
+        <string>Taches Composites</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>TC1</string>
+        </property>
+        <property name="text">
+         <string>Project Calendar</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <item>
+         <property name="text">
+          <string>Taches composantes</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Tache Unitaire 2</string>
+          </property>
+          <property name="text">
+           <string>Connexion au GUI</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tache Unitaire 1</string>
+          </property>
+          <property name="text">
+           <string>Rendu Projet</string>
+          </property>
+          <property name="text">
+           <string>10/06/2015 10:00</string>
+          </property>
+          <property name="text">
+           <string>00:20</string>
+          </property>
+         </item>
+        </item>
+        <item>
+         <property name="text">
+          <string>Predecesseurs</string>
+         </property>
+        </item>
+       </item>
+      </item>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

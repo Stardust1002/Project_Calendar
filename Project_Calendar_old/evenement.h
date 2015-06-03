@@ -24,7 +24,6 @@ protected:
 public:
     const QTime& getDuree()const{return duree;}
     virtual void setDuree(const QTime& d){duree=d;}
-    virtual QString whoAmI()const = 0;
 };
 
 class Tache{
@@ -49,15 +48,12 @@ public:
     void setTitre(const QString& t){titre = t;}
     void setDisponibilite(const QString& d);
     void setEcheance(const QString& e);
-
     virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
     virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
-    virtual bool isPreemptive() const = 0;
-    virtual void afficher()const;
-
 };
 
 class TacheComposite:public Tache{
+    typedef vector<Tache *>::iterator iterator;
     friend class TacheManager;
     friend class Manager<Tache,TacheManager>;
 
@@ -69,7 +65,6 @@ class TacheComposite:public Tache{
     TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance);
 
 public:
-    typedef vector<Tache *>::iterator iterator;
     size_t getSize(){return tab.size();}
 
     iterator begin(){return tab.begin();}
@@ -81,11 +76,6 @@ public:
 
     void setDisponibiliteDT(const QDateTime& dispo)override;
     void setEcheanceDT(const QDateTime& echeance)override;
-    bool isPreemptive( )const override{return false;}
-    void afficher();
-    QString whoAmI()const{return "tache_composite";}
-
-
 };
 
 class TacheUnitaire:public Tache, public Evenement{
@@ -97,7 +87,7 @@ private:
     TacheUnitaire(const Tache&);
     TacheUnitaire& operator=(const TacheUnitaire&);
     TacheUnitaire(const QString& id, const QString& t, const QTime& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
-        Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
+                Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
     ~TacheUnitaire(){qDebug()<<"Destruction tache unitaire\n";}
 public:
    const QDateTime& getEcheance()const{return this->date_echeance;}
@@ -106,10 +96,7 @@ public:
            throw "Error : Durée d'une Tâche non preemptive supérieur à 12H impossible";
        Evenement::setDuree(d);
    }
-   bool isPreemptive()const override{return preemptive;}
-   void setPreemptive(const bool& b){preemptive = b;}
-   QString whoAmI()const{return "tache_unitaire";}
-   void afficher()const;
+
 };
 
 class Activite:public Evenement{
@@ -124,8 +111,6 @@ class Activite:public Evenement{
 public:
     QString getType(){return type;}
     QString getTitre(){return titre;}
-    QString whoAmI()const{return "activite";}
-
 
 };
 

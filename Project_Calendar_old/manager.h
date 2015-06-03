@@ -29,7 +29,7 @@ public:
 
     typedef typename vector<T*>::iterator iterator;
     unsigned int getSize() const {return tab.size();}
-    T* getItem(const QString& id);
+    T& getItem(const QString& id) const;
     void deleteItem(T& t);
     void deleteItem(const QString& id);
     void deleteItem(iterator it);
@@ -63,11 +63,12 @@ template <class T, class U> Manager<T,U>::~Manager(){
     }
     qDebug()<<"Fin de Destruction TacheManager \n";
 }
-template <class T,class U> T* Manager<T,U>::getItem(const QString& id){
+template <class T,class U> T& Manager<T,U>::getItem(const QString& id)const{
     for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
-        if((*it)->getId() == id)
+        if(*it.getId() == id)
             return *it;
-    return nullptr;
+    throw "Exception: pas d'Item correspondant";
+    return 0;
 }
 
 template <class T, class U> void Manager<T,U>::deleteItem(T& item){
@@ -88,13 +89,8 @@ class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                               bool preemptive, const QString& dispo, const QString& echeance);
-    TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QTime& duree,
-                              bool preemptive,const QDateTime& dispo, const QDateTime& echeance);
-    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
-                               const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
-    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QDateTime& dispo,
-                               const QDateTime& echeance,vector<Tache*> liste = vector<Tache*>());
-
+    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "01:01:0001:00:00",
+                               const QString& echeance = "01:01:3000:00:00",vector<Tache*> liste = vector<Tache*>());
 };
 
 class ProjetManager: public Manager<Projet,ProjetManager>{

@@ -1,6 +1,7 @@
 #include "evenement.h"
 #include "manager.h"
 
+
 const Tache& Tache::operator=(const Tache& t){
     identificateur = t.getId();
     titre = t.getTitre();
@@ -27,27 +28,6 @@ void Tache::setEcheance(const QString& e){
     setEcheanceDT(echeance);
 }
 
-void Tache::afficher()const{
-    qDebug() << "ID: " << getId() <<
-              "\nTitre: " << getTitre();
-    qDebug() << "Date de disponibilité: " << getDisponibilite().toString();
-  qDebug() << "Date d'echeance: " << getEcheance().toString();
-}
-
-void TacheUnitaire::afficher()const{
-    qDebug() << "\nTache Unitaire:";
-    Tache::afficher();
-    qDebug() << "Duree: " << getDuree();
-    if(isPreemptive())qDebug()<< "Preemptive: oui\n";
-    else qDebug()<< "Preemptive: non\n";
-}
-
-void TacheComposite::afficher(){
-    qDebug() << "\nTache Composite:";
-    Tache::afficher();
-    for(TacheComposite::iterator it = this->begin(); it != this->end(); ++it)
-        (*it)->afficher();
-}
 TacheComposite::~TacheComposite(){
     qDebug()<<"Destruction tache composite\n";
     for(iterator it = this->tab.begin(); it != this->tab.end(); ++it)
