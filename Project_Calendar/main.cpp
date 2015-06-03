@@ -19,9 +19,9 @@ int main(int argc, char *argv[])
 
     TacheUnitaire *tu[3];
 
-    tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:23:99");
-    tu[1] = &TM.ajouterTacheUnitaire("2","Test2","01:00",0,"20:10:1994:00:00","20:10:1994:23:99");
-    tu[2] = &TM.ajouterTacheUnitaire("3","Test3","01:00",0,"20:10:1994:00:00","20:10:1994:23:99");
+    tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
+    tu[1] = &TM.ajouterTacheUnitaire("2","Test2","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
+    tu[2] = &TM.ajouterTacheUnitaire("3","Test3","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
     TacheComposite& tc = TM.ajouterTacheComposite("C1","composite");
     tc.push_back(*tu[0]);
     tc.push_back(*tu[1]);
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
     QDateTime dispo = QDateTime::fromString("21:10:1994:23:00",format);
     qDebug()<<dispo;
 
-    tc.setDisponibilite("21:10:1994:23:00");
+    //tc.setDisponibilite("21:10:1994:23:00");
 
-    TM.supprimerTache("C1");
+    TM.deleteItem("C1");
 
     qDebug()<<"Jusqu'ici tout va bien";
 

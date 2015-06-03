@@ -21,16 +21,20 @@ private:
 protected:    
     vector<T*> tab;
     static Handler handler;
+    void addItem(T& t){tab.push_back(&t);}
+
     Manager(){}
     ~Manager();
 public:
-   // virtual void deleteItem(T* t);
+
     typedef typename vector<T*>::iterator iterator;
     unsigned int getSize() const {return tab.size();}
     T& getItem(const QString& id) const;
+    void deleteItem(T& t);
+    void deleteItem(const QString& id);
+    void deleteItem(iterator it);
     static U& getInstance();
     static void freeInstance();
-    void addItem(T& t){tab.push_back(&t);}
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
 };
@@ -67,15 +71,26 @@ template <class T,class U> T& Manager<T,U>::getItem(const QString& id)const{
     return 0;
 }
 
+template <class T, class U> void Manager<T,U>::deleteItem(T& item){
+    deleteItem(item.getId());
+}
+template <class T, class U> void Manager<T,U>::deleteItem(const QString& id){
+    iterator it;
+    for(it = this->tab.begin(); it != this->tab.end() && (*it)->getId() != id ; ++it);
+    deleteItem(it);
+}
+template <class T, class U> void Manager<T,U>::deleteItem(iterator it){
+    T* pt = *it;
+    tab.erase(it);
+    delete pt;
+}
+
 class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                               bool preemptive, const QString& dispo, const QString& echeance);
     TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
                                const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
-    void supprimerTache(const QString& id);
-    void supprimerTache(Tache& tache);
-    void supprimerTache(iterator it);
 };
 
 class ProjetManager: public Manager<Projet,ProjetManager>{

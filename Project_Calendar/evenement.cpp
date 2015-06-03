@@ -31,7 +31,7 @@ void Tache::setEcheance(const QString& e){
 TacheComposite::~TacheComposite(){
     qDebug()<<"Destruction tache composite\n";
     for(iterator it = this->tab.begin(); it != this->tab.end(); ++it)
-        TacheManager::getInstance().supprimerTache(**it);
+        TacheManager::getInstance().deleteItem(**it);
     this->tab.clear();
 }
 /*Projet::Projet(QString id, QString t, QDateTime d, vector<Tache*> t):identificateur(id), titre(t), date_dispo(d){
