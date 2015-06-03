@@ -15,12 +15,16 @@ void Tache::setDisponibilite(const QString& d){
     qDebug()<<d;
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime dispo = QDateTime::fromString(d,format);
+    if(!dispo.isValid())
+        throw "Format DateTime de la disponibilite invalide";
     qDebug()<<dispo;
     setDisponibiliteDT(dispo);
 }
 void Tache::setEcheance(const QString& e){
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime echeance = QDateTime::fromString(e,format);
+    if(!echeance.isValid())
+        throw "Format DateTime de l'échéance invalide";
     setEcheanceDT(echeance);
 }
 
