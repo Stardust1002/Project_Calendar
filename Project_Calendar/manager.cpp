@@ -50,12 +50,31 @@ TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QSt
     return *t;
  }
 
+Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QString& d){
+    QString format = "HH:mm";
+    QTime duree = QTime::fromString(d,format);
+    Activite* activite = new Activite(id,t,ty,duree);
+         addItem(*activite);
+        return *activite;
+}
+
 Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QTime &d){
         Activite* activite = new Activite(id,t,ty,d);
          addItem(*activite);
         return *activite;
 }
 
-
+Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, const QString& dispo){
+   QString format = "dd:MM:yyyy:HH:mm";
+   QDateTime date_dispo = QDateTime::fromString(dispo,format);
+    Projet* t = new Projet(id, titre, date_dispo);
+    addItem(*t);
+    return *t;
+}
+Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, const QDateTime& dispo){
+    Projet* t = new Projet(id,titre,dispo);
+    addItem(*t);
+    return *t;
+}
 
 

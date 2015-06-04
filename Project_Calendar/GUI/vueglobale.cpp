@@ -35,7 +35,7 @@ void vueGlobale::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
     }
     else if(column == 0 && !item->text(column).isEmpty()){
         //Recherche du projet correspondant, et le modifier
-        ajouterProjet* projet = new ajouterProjet(this);
+        ajouterProjet* projet = new ajouterProjet(0, this);
        projet->show();
     }
 }

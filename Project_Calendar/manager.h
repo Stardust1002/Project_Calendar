@@ -101,12 +101,8 @@ public:
 
 class ProjetManager: public Manager<Projet,ProjetManager>{
 public:
-    void ajouterProjet(const QString& id, const QString& titre, const QString& dispo){
-       QString format = "dd:MM:yyyy:HH:mm";
-       QDateTime date_dispo = QDateTime::fromString(dispo,format);
-    Projet* t = new Projet(id, titre, date_dispo);
-    addItem(*t);
-    }
+    Projet& ajouterProjet(const QString& id, const QString& titre, const QString& dispo);
+    Projet& ajouterProjet(const QString& id, const QString& titre, const QDateTime& dispo);
     void supprimerProjet(QString id);
 
 };
@@ -123,6 +119,7 @@ class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
 class ActiviteManager: public Manager<Activite,ActiviteManager>{
 public:
     Activite& ajouterActivite(const QString& id, const QString& t, const Activite::TypeActivite& ty, const QTime& d);
+    Activite& ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QString &d);
 };
 #endif // MANAGER_H
 

@@ -3,6 +3,7 @@
 tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(tacheToEdit), QDialog(parent)
 {
     TacheManager& TM = TacheManager::getInstance();
+    ProjetManager& PM = ProjetManager::getInstance();
     setWindowTitle("Création d'une Tache");
 
    hlayout_1 = new QHBoxLayout;
@@ -112,13 +113,15 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
         dispo->setDateTime(tache->getDisponibilite());
         echeance->setDateTime(tache->getEcheance());
         duree->setTime(tache->getDuree());
+        projet->addItem(tache->getProjet()->getId());
     }else
     projet->addItem("Sélectionner");
 
-    projet->addItem("NA17");
-    projet->addItem("LO21");
-    projet->addItem("IA02");
 
+    for(ProjetManager::iterator it = PM.begin(); it != PM.end(); ++it){
+        if(*it != tache->getProjet())
+            projet->addItem((*it)->getId());
+    }
     this->setLayout(vlayout);
     QObject::connect(save, SIGNAL(clicked()), this, SLOT(sauver()));
     QObject::connect(cancel, SIGNAL(clicked()), this, SLOT(close()));

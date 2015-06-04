@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
     w.show();
 
     TacheManager &TM = TacheManager::getInstance();
+    ProjetManager &PM = ProjetManager::getInstance();
+    ActiviteManager &AM = ActiviteManager::getInstance();
+
     //TacheManager::freeInstance();
 
     QString format = "dd:MM:yyyy:HH:mm";
@@ -24,6 +27,12 @@ int main(int argc, char *argv[])
     tu[1] = &TM.ajouterTacheUnitaire("2","Test2","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
     tu[2] = &TM.ajouterTacheUnitaire("3","Test3","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
     tu[3] = &TM.ajouterTacheUnitaire("SOPRA STERIA","Test4","02:00",0,"20:10:2015:00:00","20:10:2015:23:59");
+
+    Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
+    p.afficher();
+
+    Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
+    act.afficher();
 
     //TacheComposite& tc = TM.ajouterTacheComposite("C1","composite");
     //tc.push_back(*tu[0]);

@@ -1,0 +1,24 @@
+Suppression de Tache Unitaire:
+-> Toujours possible
+- DEBUT
+	- Enlever son éventuelle programmation
+	- Enlever le pointeur en provenance de Projet
+	- Enlever toutes les précédences qui pointent vers cette tache
+	- Enlever tous les pointeurs en provenance de taches composites
+	--- SI tache composite DEVIENT vide ALORS
+	------- Supprimer Tache Composite
+	- Supprimer la tâche
+- FIN.
+
+Modification de Tache Unitaire:
+-> Si programmée: modification de la durée, de la date de disponibilité et d'échéance impossibles.
+-> Sinon: tout est autorisé 
+
+Modification de TacheComposite:
+-> Ne peut pas être vide sinon suppression
+-> 
+
+
+Modification de Projet:
+-> Si le projet contient au moins une tache, on ne peut plus avancer sa date de disponibilité, uniquement la reculer.
+-> Sinon tout est possible

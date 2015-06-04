@@ -47,9 +47,9 @@ void MainWindow::on_actionUnitaire_triggered(TacheUnitaire* t)
 }
 
 
-void MainWindow::on_actionCr_er_un_Projet_triggered()
+void MainWindow::on_actionCr_er_un_Projet_triggered(Projet* p)
 {
-    ajouterProjet* projet = new ajouterProjet(this);
+    ajouterProjet* projet = new ajouterProjet(p, this);
     projet->show();
 }
 

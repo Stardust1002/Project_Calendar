@@ -31,7 +31,7 @@ private slots:
 
     void on_actionUnitaire_triggered(TacheUnitaire *t = 0);
 
-    void on_actionCr_er_un_Projet_triggered();
+    void on_actionCr_er_un_Projet_triggered(Projet *p = 0);
 
     void on_actionComposite_triggered();
 

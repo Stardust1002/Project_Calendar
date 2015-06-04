@@ -14,7 +14,7 @@ class ProjetManager;
 class PrecedenceManager;
 
 using namespace std;
-
+class Projet;
 class Evenement
 {
     QTime duree;
@@ -40,11 +40,11 @@ protected:
     const Tache& operator=(const Tache& t);
     virtual ~Tache()=0{qDebug()<<"Destruction tache \n";}
 public:
+    Projet* getProjet()const;
     const QDateTime& getDisponibilite() const{return date_dispo;}
     const QDateTime& getEcheance() const{return date_echeance;}
     const QString& getTitre()const{return titre;}
     const QString& getId()const{return identificateur;}
-
     void setId(const QString& i){identificateur = i;}
     void setTitre(const QString& t){titre = t;}
     void setDisponibilite(const QString& d);
@@ -170,13 +170,18 @@ class Projet{
 public:
     size_t getSize() const{return tab.size();}
     const QDateTime& getDisponibilite()const{return date_dispo;}
-    const QDateTime& getEcheance()const;
+    QDateTime getEcheance();
     const QString& getTitre()const{return titre;}
     const QString& getId()const{return identificateur;}
+    bool possede(const Tache& t);
+    void setId(const QString& i){identificateur = i;}
+    void setTitre(const QString& t){titre = t;}
+    void setDisponibilite(const QDateTime& t){date_dispo = t;}
     void ajouterTache(Tache* t);
-    //void ajouterTache(const QString& id);
+    void ajouterTache(const QString& id);
     void retirerTache(Tache* t);
-   // void retirerTache(const QString& id);
+    void retirerTache(const QString& id);
+    virtual void afficher();
 };
 
 class Precedence{

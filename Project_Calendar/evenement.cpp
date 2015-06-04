@@ -34,6 +34,14 @@ void Tache::afficher()const{
   qDebug() << "Date d'echeance: " << getEcheance().toString();
 }
 
+Projet* Tache::getProjet()const{
+    ProjetManager& PM = ProjetManager::getInstance();
+    ProjetManager::iterator it = PM.begin();
+    while(it != PM.end() && !(*it)->possede(*this))++it;
+    if(it == PM.end())return nullptr;
+    return *it;
+    }
+
 void TacheUnitaire::afficher()const{
     qDebug() << "\nTache Unitaire:";
     Tache::afficher();
@@ -94,18 +102,20 @@ void TacheComposite::setEcheanceDT(const QDateTime& echeance){
 /* ----------- PROJET ------------ */
 /* ------------------------------- */
 
-const QDateTime& Projet::getEcheance()const{
-    const_iterator it = tab.begin();
-    const QDateTime* maxEcheance = &(*it)->getEcheance();
+ QDateTime Projet::getEcheance(){
+    if(tab.size() == 0)return QDateTime::fromString("01:01:1970 00:00", "dd:MM:yyyy HH:mm");
+    vector<Tache*>::iterator it = tab.begin();
+    QDateTime maxEcheance = (*it)->getEcheance();
     ++it;
     for(;it != tab.end(); ++it){
-        if((*it)->getEcheance() > *maxEcheance)
-            maxEcheance = &(*it)->getEcheance();
+        if((*it)->getEcheance() > maxEcheance)
+            maxEcheance = (*it)->getEcheance();
     }
-    return *maxEcheance;
+    return maxEcheance;
 }
 void Projet::ajouterTache(Tache* t){
-    if(t != 0)tab.push_back(t);
+    TacheManager& TM = TacheManager::getInstance();
+    if(t != 0 && TM.getItem(t->getId()))tab.push_back(t);
     else throw "Olalala: Tache inexistante";
 }
 void Projet::retirerTache(Tache* t){
@@ -117,9 +127,33 @@ void Projet::retirerTache(Tache* t){
         }
     throw "Olalala: Tache inexistante";
 }
-//void Projet::ajouterTache(const QString& id){};
-//void Projet::retirerTache(const QString& id){};
-//Tache* const rechercherTache(const QString& id){} //à faire une fois les façades mises d'iterator au point
+void Projet::ajouterTache(const QString& id){
+  TacheManager& TM = TacheManager::getInstance();
+  ajouterTache(TM.getItem(id));
+}
+
+void Projet::retirerTache(const QString& id){
+      TacheManager& TM = TacheManager::getInstance();
+      retirerTache(TM.getItem(id));
+}
+
+void Projet::afficher(){
+    qDebug() << "Projet:\nId: " << getId();
+    qDebug() << "Titre: " << getTitre();
+    qDebug() << "Disponibilité: "<< getDisponibilite();
+    qDebug() << "Echeance: " << getEcheance();
+    qDebug() << "Nombre de tâches: " << getSize();
+
+    for(vector<Tache*>::iterator it = tab.begin(); it != tab.end(); ++it)
+        (*it)->afficher();
+}
+
+bool Projet::possede(const Tache &t){
+   vector<Tache*>::iterator it = tab.begin();
+   while(it != tab.end() && *it != &t)++it;
+   if(it == tab.end())return false;
+   return true;
+}
 
 /* ------------------------------- */
 /* ---------- ACTIVITE ----------- */
@@ -134,5 +168,6 @@ void Activite::afficher()const{
         qDebug() << "Type: Réunion";
     qDebug() << "Durée: " << getDuree();
 }
+
 
 

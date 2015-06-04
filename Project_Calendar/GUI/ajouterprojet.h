@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "fonctions.h"
+#include "../evenement.h"
+#include "../manager.h"
 
 namespace Ui {
 class ajouterProjet;
@@ -13,7 +15,7 @@ class ajouterProjet : public QDialog
     Q_OBJECT
 
 public:
-    explicit ajouterProjet(QWidget *parent = 0);
+    explicit ajouterProjet(Projet *projet = 0, QWidget *parent = 0);
     ~ajouterProjet();
 
 private slots:
@@ -21,6 +23,7 @@ private slots:
 
 private:
     Ui::ajouterProjet *ui;
+    Projet* projet;
 };
 
 #endif // AJOUTERPROJET_H
