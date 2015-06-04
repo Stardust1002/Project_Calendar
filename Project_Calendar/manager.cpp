@@ -49,3 +49,13 @@ TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QSt
     addItem(*t);
     return *t;
  }
+
+Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QTime &d){
+        Activite* activite = new Activite(id,t,ty,d);
+         addItem(*activite);
+        return *activite;
+}
+
+
+
+

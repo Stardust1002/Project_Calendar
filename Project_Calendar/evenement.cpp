@@ -1,5 +1,8 @@
 #include "evenement.h"
 #include "manager.h"
+/* ------------------------------- */
+/* ----------- TACHE ------------ */
+/* ------------------------------- */
 
 const Tache& Tache::operator=(const Tache& t){
     identificateur = t.getId();
@@ -8,8 +11,6 @@ const Tache& Tache::operator=(const Tache& t){
     date_dispo = t.getDisponibilite();
     return *this;
 }
-
-
 void Tache::setDisponibilite(const QString& d){
     qDebug()<<d;
     QString format = "dd:MM:yyyy:HH:mm";
@@ -26,7 +27,6 @@ void Tache::setEcheance(const QString& e){
         throw "Format DateTime de l'échéance invalide";
     setEcheanceDT(echeance);
 }
-
 void Tache::afficher()const{
     qDebug() << "ID: " << getId() <<
               "\nTitre: " << getTitre();
@@ -89,6 +89,11 @@ void TacheComposite::setEcheanceDT(const QDateTime& echeance){
     Tache::setEcheanceDT(echeance);
 }
 
+
+/* ------------------------------- */
+/* ----------- PROJET ------------ */
+/* ------------------------------- */
+
 const QDateTime& Projet::getEcheance()const{
     const_iterator it = tab.begin();
     const QDateTime* maxEcheance = &(*it)->getEcheance();
@@ -103,7 +108,6 @@ void Projet::ajouterTache(Tache* t){
     if(t != 0)tab.push_back(t);
     else throw "Olalala: Tache inexistante";
 }
-
 void Projet::retirerTache(Tache* t){
     if(t == 0) throw "Olalala: Tache inexistance";
     for(vector<Tache*>::iterator it = tab.begin(); it != tab.end(); ++it)
@@ -116,4 +120,19 @@ void Projet::retirerTache(Tache* t){
 //void Projet::ajouterTache(const QString& id){};
 //void Projet::retirerTache(const QString& id){};
 //Tache* const rechercherTache(const QString& id){} //à faire une fois les façades mises d'iterator au point
+
+/* ------------------------------- */
+/* ---------- ACTIVITE ----------- */
+/* ------------------------------- */
+
+void Activite::afficher()const{
+    qDebug() << "Activite: \nIdentificateur: " << getId();
+    qDebug() << "Titre: " << getTitre();
+    if(getType() == Activite::RDV)
+        qDebug() << "Type: Rendez-vous";
+    else
+        qDebug() << "Type: Réunion";
+    qDebug() << "Durée: " << getDuree();
+}
+
 

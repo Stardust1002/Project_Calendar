@@ -74,8 +74,10 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
     hlayout_6->addWidget(pred);
     hlayout_6->addWidget(liste_taches);
 
-    for(TacheManager::iterator it = TM.begin(); it != TM.end(); ++it)
-        liste_taches->addItem((*it)->getId());
+    for(TacheManager::iterator it = TM.begin(); it != TM.end(); ++it){
+        if(*it != tacheToEdit)
+            liste_taches->addItem((*it)->getId());
+    }
 
 
 
@@ -137,12 +139,17 @@ void tacheEditeur::sauver()
         TacheManager& TM = TacheManager::getInstance();
         if(tache == 0){
         //AJOUT DE LA TACHE
+        if(TM.getItem(id->text()) != nullptr){
+            ouvrirWarning("Attention une tâche possède déjà cet identificateur,\nVeuillez en changer!");
+            return;
+        }
         TacheUnitaire& t = TM.ajouterTacheUnitaire(id->text(),titre->toPlainText(),duree->time(),pre->isChecked(),dispo->dateTime(),echeance->dateTime());
         ouvrirInformation("Tache créée avec succès !\nN'oubliez pas de la programmer !","Félicitations");
         t.afficher();
+        close();
         }
         else{
-        if(ouvrirQuestion("Êtes-vous sûr de vouloir modifier cette tâche ?")){
+        if(ouvrirQuestion("Êtes-vous sûr de vouloir modifier cette tâche ?") == QMessageBox::Yes){
             //MODIFICATION DE LA TACHE
         tache->setDisponibiliteDT(dispo->dateTime());
         tache->setDuree(duree->time());
@@ -151,9 +158,8 @@ void tacheEditeur::sauver()
         tache->setId(id->text());
         tache->setPreemptive(pre->isChecked());
         ouvrirInformation("Tâche modifiée avec succès!");
-
+        close();
         }}
-        delete this;
     }
     else
         ouvrirWarning("Des informations sont manquantes ou érronées !","Erreur");

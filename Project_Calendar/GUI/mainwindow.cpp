@@ -34,21 +34,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_newActivity_triggered()
+void MainWindow::on_newActivity_triggered(Activite* a)
 {
-    ajouterActivite* activite = new ajouterActivite(this);
+    ajouterActivite* activite = new ajouterActivite(a, this);
     activite->show();
 }
 
 void MainWindow::on_actionUnitaire_triggered(TacheUnitaire* t)
 {
     tacheEditeur* tache = new tacheEditeur(t, this);
-    tache->show();
-}
-
-void MainWindow::on_actionUnitaire_triggered()
-{
-    tacheEditeur* tache = new tacheEditeur(0, this);
     tache->show();
 }
 
@@ -104,19 +98,44 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 
     //AFFICHAGE de l'évènement dans le cadre du bord droit
     //Récupérer toutes les informations d'un évènement suivant un identificateur
-    //checker programmation manager
+    //checker programmation manager pour récuperer l'evenement et demander son type avec whoAmI
 
     //Si tache unitaire
-    TacheManager& TM = TacheManager::getInstance();
-    TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
-    if(t!=nullptr){
-        t->afficher();
-        ui->groupBox->setEnabled(true);
-        ui->identificateur->setText(t->getId());
-        ui->titre->setText(t->getTitre());
-        ui->duree->setText(t->getDuree().toString());
+//    TacheManager& TM = TacheManager::getInstance();
+//    TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
+//    if(t==nullptr)return;
+//        t->afficher();
+//        ui->groupBox->setEnabled(true);
+//        ui->identificateur->setText(t->getId());
+//        ui->titre->setText(t->getTitre());
+//        ui->duree->setText(t->getDuree().toString());
 
+//
+    //Si evenement
+
+      TacheManager& TM = TacheManager::getInstance();
+      TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
+      if(t!=nullptr){
+          t->afficher();
+                  t->afficher();
+                  ui->groupBox->setEnabled(true);
+                  ui->identificateur->setText(t->getId());
+                  ui->titre->setText(t->getTitre());
+                  ui->duree->setText(t->getDuree().toString());
+                  ui->type->setText(t->whoAmI());
+      }
+      else{
+      ActiviteManager& AM = ActiviteManager::getInstance();
+      Activite* a = AM.getItem(item->text());
+      if(a == nullptr)return;
+      a->afficher();
+      ui->groupBox->setEnabled(true);
+      ui->identificateur->setText(a->getId());
+      ui->titre->setText(a->getTitre());
+      ui->duree->setText(a->getDuree().toString());
+      ui->type->setText(a->getTypeToString());
     }
+
 }
 
 
@@ -127,7 +146,14 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
     if(t!=nullptr){
         t->afficher();
         on_actionUnitaire_triggered(t);
-    }// GERER SI ACTIVITE ET NON TACHE!!!!!!!!!!!!
+    }
+    else{
+    ActiviteManager& AM = ActiviteManager::getInstance();
+    Activite* a = AM.getItem(item->text());
+    if(a == nullptr)return;
+    a->afficher();
+    on_newActivity_triggered(a);
+    }
 }
 
 void MainWindow::on_voir_clicked()

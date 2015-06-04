@@ -58,7 +58,7 @@
        <widget class="QComboBox" name="type">
         <item>
          <property name="text">
-          <string>RDV</string>
+          <string>Rendez-vous</string>
          </property>
         </item>
         <item>

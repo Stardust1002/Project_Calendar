@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "fonctions.h"
+#include "../evenement.h"
+#include "../manager.h"
 
 namespace Ui {
 class ajouterActivite;
@@ -13,13 +15,14 @@ class ajouterActivite : public QDialog
     Q_OBJECT
 
 public:
-    explicit ajouterActivite(QWidget *parent = 0);
+    explicit ajouterActivite(Activite* activite = 0, QWidget *parent = 0);
     ~ajouterActivite();
 
 private slots:
     void on_pushButton_clicked();
 
 private:
+    Activite* activite;
     Ui::ajouterActivite *ui;
 };
 

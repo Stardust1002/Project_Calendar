@@ -170,31 +170,45 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
               <string>Titre:</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0" colspan="2">
+           <item row="5" column="0" colspan="2">
             <widget class="QTextEdit" name="titre">
              <property name="enabled">
               <bool>false</bool>
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <widget class="QPushButton" name="pushButton_2">
              <property name="text">
               <string>Programmation</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="6" column="1">
             <widget class="QPushButton" name="voir">
              <property name="text">
               <string>+ d'Informations</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="type">
+             <property name="text">
+              <string>/</string>
              </property>
             </widget>
            </item>

@@ -60,6 +60,10 @@ void ajouterTacheComposite::on_pushButton_clicked()
             //AJOUT DE LA TACHE COMPOSITE
             vector<Tache*> Liste;
             TacheManager& TM = TacheManager::getInstance();
+            if(TM.getItem(ui->identificateur->text()) != nullptr){
+                ouvrirWarning("Attention une tâche possède déjà cet identificateur,\nVeuillez en changer!");
+                return;
+            }
 
            for(int i = 0; i < ui->composants->count(); i++) //generation à la volée de la liste des composants, pointeurs de tache.
                  Liste.push_back(TM.getItem(ui->composants->item(i)->text()));

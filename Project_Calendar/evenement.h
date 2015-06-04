@@ -113,18 +113,27 @@ public:
 };
 
 class Activite:public Evenement{
-    friend class ActiviteManager;
+public:
     enum TypeActivite{RDV,REUNION};
+private:
+    friend class ActiviteManager;
     QString identificateur;
     QString titre;
     TypeActivite type;
     Activite(const QString& id, const QString& t, TypeActivite ty, const QTime& d):Evenement(d), identificateur(id),
         titre(t), type(ty){}
-    ~Activite(){}
 public:
-    QString getType(){return type;}
-    QString getTitre(){return titre;}
+    QString getId()const{return identificateur;}
+    const TypeActivite& getType()const{return type;}
+    QString getTypeToString()const{if(type == RDV)return "Rendez-vous";else return "Réunion";}
+    QString getTitre()const{return titre;}
     QString whoAmI()const{return "activite";}
+    void setId(const QString& i){identificateur = i;}
+    void setTitre(const QString& t){titre = t;}
+    void setType(const TypeActivite& t){type = t;}
+    void setTypeFromString(const QString& t){if(t == "Rendez-vous")type = RDV;else type=REUNION;}
+    void setDuree(const QTime& t){Evenement::setDuree(t);}
+    virtual void afficher()const;
 
 
 };

@@ -84,6 +84,8 @@ template <class T, class U> void Manager<T,U>::deleteItem(iterator it){
     delete pt;
 }
 
+
+
 class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
@@ -118,5 +120,9 @@ class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
     void supprimerPrecedence(const QString& id);
 };
 
+class ActiviteManager: public Manager<Activite,ActiviteManager>{
+public:
+    Activite& ajouterActivite(const QString& id, const QString& t, const Activite::TypeActivite& ty, const QTime& d);
+};
 #endif // MANAGER_H
 

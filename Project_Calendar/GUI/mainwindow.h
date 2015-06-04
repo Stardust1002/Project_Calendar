@@ -27,10 +27,9 @@ public:
 
 private slots:
 
-    void on_newActivity_triggered();
+    void on_newActivity_triggered(Activite *a = 0);
 
-    void on_actionUnitaire_triggered();
-    void on_actionUnitaire_triggered(TacheUnitaire *t);
+    void on_actionUnitaire_triggered(TacheUnitaire *t = 0);
 
     void on_actionCr_er_un_Projet_triggered();
 
