@@ -22,3 +22,11 @@ Modification de TacheComposite:
 Modification de Projet:
 -> Si le projet contient au moins une tache, on ne peut plus avancer sa date de disponibilité, uniquement la reculer.
 -> Sinon tout est possible
+
+
+
+Ajout d'une précédence de T1 sur T2 (T1 précédente de T2)
+-> Si T1 déja précédente : rejeter l'ajout
+-> Si T1 précédente de précédence de T2 : rejeter l'ajout
+-> Si des précédents de T1 (et les précédents des précédents...En récursif) sont précédents de T2
+		: Enlever ces précédences pour mettre T1 précédent de T2 à la place
