@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     tu[3] = &TM.ajouterTacheUnitaire("SOPRA STERIA","Test4","02:00",0,"20:10:2015:00:00","20:10:2015:23:59");
 
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
+    p.ajouterTache("SOPRA STERIA");
     p.afficher();
 
     Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");

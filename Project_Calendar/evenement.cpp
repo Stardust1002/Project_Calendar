@@ -38,9 +38,25 @@ Projet* Tache::getProjet()const{
     ProjetManager& PM = ProjetManager::getInstance();
     ProjetManager::iterator it = PM.begin();
     while(it != PM.end() && !(*it)->possede(*this))++it;
-    if(it == PM.end())return nullptr;
+    if(it == PM.end())return static_cast<Projet*>(nullptr);
     return *it;
     }
+void Tache::setProjet(Projet& p){
+
+    if(p.getDisponibilite() <= getDisponibilite()){
+    Projet* old = getProjet();
+    if(old != nullptr)old->retirerTache(this); //on retire la tache de son ancien projet
+    p.ajouterTache(this); //on la rajoute dans le nouveau projet
+    }
+    else
+        ouvrirWarning("Attention, la date de disponibilité de la tache est inférieure à celle du projet !\nAucun projet n'a donc été affecté/réaffecté","Erreur");
+}
+
+void Tache::setProjet(const QString& id){
+    ProjetManager& PM = ProjetManager::getInstance();
+    Projet* p = PM.getItem(id);
+    setProjet(*p);
+}
 
 void TacheUnitaire::afficher()const{
     qDebug() << "\nTache Unitaire:";

@@ -147,8 +147,11 @@ void tacheEditeur::sauver()
             return;
         }
         TacheUnitaire& t = TM.ajouterTacheUnitaire(id->text(),titre->toPlainText(),duree->time(),pre->isChecked(),dispo->dateTime(),echeance->dateTime());
+        if(projet->currentText() != "Sélectionner") //AJOUT DE LA TACHE DANS LE PROJET
+              t.setProjet(projet->currentText());
+
         ouvrirInformation("Tache créée avec succès !\nN'oubliez pas de la programmer !","Félicitations");
-        t.afficher();
+        //t.afficher();
         close();
         }
         else{
@@ -160,6 +163,8 @@ void tacheEditeur::sauver()
         tache->setEcheanceDT(echeance->dateTime());
         tache->setId(id->text());
         tache->setPreemptive(pre->isChecked());
+        if(tache->getProjet()->getId() != projet->currentText())
+            tache->setProjet(projet->currentText());
         ouvrirInformation("Tâche modifiée avec succès!");
         close();
         }}

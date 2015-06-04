@@ -6,6 +6,7 @@
 #include <QObject>
 #include "timing.h"
 #include <QDebug>
+#include "GUI/fonctions.h"
 
 template <class T, class U>class Manager;
 class TacheManager;
@@ -40,7 +41,7 @@ protected:
     const Tache& operator=(const Tache& t);
     virtual ~Tache()=0{qDebug()<<"Destruction tache \n";}
 public:
-    Projet* getProjet()const;
+    Projet *getProjet()const;
     const QDateTime& getDisponibilite() const{return date_dispo;}
     const QDateTime& getEcheance() const{return date_echeance;}
     const QString& getTitre()const{return titre;}
@@ -49,11 +50,15 @@ public:
     void setTitre(const QString& t){titre = t;}
     void setDisponibilite(const QString& d);
     void setEcheance(const QString& e);
+    void setProjet(Projet& p);
+    void setProjet(const QString& id);
 
     virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
     virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
     virtual bool isPreemptive() const = 0;
     virtual void afficher()const;
+    virtual QString whoAmI()const = 0;
+
 
 };
 

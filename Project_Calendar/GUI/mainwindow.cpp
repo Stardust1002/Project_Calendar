@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setModel(model);
 */
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    QTableWidgetItem* w = new QTableWidgetItem(QString("CHICAGO INTERVIEW"));
+    QTableWidgetItem* w = new QTableWidgetItem(QString("Se branler"));
     ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, LUNDI, w);
     ui->tableWidget->item(0,0)->setBackgroundColor(QColor("YELLOW"));
 
