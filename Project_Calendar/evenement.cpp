@@ -69,7 +69,7 @@ void TacheUnitaire::afficher()const{
 void TacheComposite::afficher(){
     qDebug() << "\nTache Composite:";
     Tache::afficher();
-    for(TacheComposite::iterator it = this->begin(); it != this->end(); ++it)
+    for(iterator it = this->begin(); it != this->end(); ++it)
         (*it)->afficher();
 }
 TacheComposite::~TacheComposite(){
@@ -85,7 +85,7 @@ TacheComposite::~TacheComposite(){
 }
 */
 TacheComposite::TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance):Tache(id, title,date_dispo,date_echeance){
-    for(vector<Tache*>::iterator it = t.begin(); it != t.end(); ++it)
+    for(iterator it = t.begin(); it != t.end(); ++it)
         tab.push_back(*it);
 }
 
@@ -120,7 +120,7 @@ void TacheComposite::setEcheanceDT(const QDateTime& echeance){
 
  QDateTime Projet::getEcheance(){
     if(tab.size() == 0)return QDateTime::fromString("01:01:1970 00:00", "dd:MM:yyyy HH:mm");
-    vector<Tache*>::iterator it = tab.begin();
+    iterator it = tab.begin();
     QDateTime maxEcheance = (*it)->getEcheance();
     ++it;
     for(;it != tab.end(); ++it){
@@ -136,7 +136,7 @@ void Projet::ajouterTache(Tache* t){
 }
 void Projet::retirerTache(Tache* t){
     if(t == 0) throw "Olalala: Tache inexistance";
-    for(vector<Tache*>::iterator it = tab.begin(); it != tab.end(); ++it)
+    for(iterator it = tab.begin(); it != tab.end(); ++it)
         if(*it == t){
             tab.erase(it);
             return;
@@ -160,12 +160,12 @@ void Projet::afficher(){
     qDebug() << "Echeance: " << getEcheance();
     qDebug() << "Nombre de tâches: " << getSize();
 
-    for(vector<Tache*>::iterator it = tab.begin(); it != tab.end(); ++it)
+    for(iterator it = tab.begin(); it != tab.end(); ++it)
         (*it)->afficher();
 }
 
 bool Projet::possede(const Tache &t){
-   vector<Tache*>::iterator it = tab.begin();
+   iterator it = tab.begin();
    while(it != tab.end() && *it != &t)++it;
    if(it == tab.end())return false;
    return true;

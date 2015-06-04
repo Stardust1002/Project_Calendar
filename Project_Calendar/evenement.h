@@ -74,11 +74,22 @@ class TacheComposite:public Tache{
     TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance);
 
 public:
-    typedef vector<Tache *>::iterator iterator;
     size_t getSize(){return tab.size();}
 
+    class iterator : public vector<Tache*>::iterator{
+    public:
+        iterator():vector<Tache*>::iterator(){}
+        iterator(vector<Tache*>::iterator it):vector<Tache*>::iterator(it){}
+    };
+    class const_iterator : public vector<Tache*>::const_iterator{
+    public:
+        const_iterator():vector<Tache*>::const_iterator(){}
+        const_iterator(vector<Tache*>::const_iterator it):vector<Tache*>::const_iterator(it){}
+    };
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
+    const_iterator begin()const{return tab.begin();}
+    const_iterator end()const{return tab.end();}
 
     void push_back(Tache &t){tab.push_back(&t);}
     void pop_back(){tab.pop_back();}
@@ -160,8 +171,6 @@ public:
 };
 
 class Projet{
-    typedef vector<Tache*>::iterator iterator;
-    typedef vector<Tache*>::const_iterator const_iterator;
     friend class ProjetManager;
     friend class Manager<Projet,ProjetManager>;
     QString identificateur;
@@ -173,6 +182,18 @@ class Projet{
     ~Projet(){tab.clear();}
 
 public:
+    class iterator : public vector<Tache*>::iterator{
+    public:
+       iterator():vector<Tache*>::iterator(){}
+       iterator(vector<Tache*>::iterator it):vector<Tache*>::iterator(it){}
+   };
+    class const_iterator : public vector<Tache*>::const_iterator{
+    public:
+       const_iterator():vector<Tache*>::const_iterator(){}
+       const_iterator(vector<Tache*>::const_iterator it):vector<Tache*>::const_iterator(it){}
+   };
+    iterator begin(){return tab.begin();}
+    iterator end(){return tab.end();}
     size_t getSize() const{return tab.size();}
     const QDateTime& getDisponibilite()const{return date_dispo;}
     QDateTime getEcheance();
@@ -192,13 +213,13 @@ public:
 class Precedence{
     friend class PrecedenceManager;
     friend class Manager<Precedence,PrecedenceManager>;
-    Tache* pred;
-    Tache* succ;
-    Precedence(Tache& t1, Tache& t2):pred(&t1), succ(&t2){}
+    const Tache* pred;
+    const Tache* succ;
+    Precedence(const Tache& t1, const Tache& t2):pred(&t1), succ(&t2){}
     ~Precedence(){}
 public:
-    Tache* const getSuccesseur(){return succ;}
-    Tache* const getPredecesseur(){return pred;}
+    const Tache& getSuccesseur()const{return *succ;}
+    const Tache& getPredecesseur()const{return *pred;}
 };
 
 #endif // EVENEMENT_H

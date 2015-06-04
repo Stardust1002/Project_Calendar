@@ -54,19 +54,19 @@ Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, 
     QString format = "HH:mm";
     QTime duree = QTime::fromString(d,format);
     Activite* activite = new Activite(id,t,ty,duree);
-         addItem(*activite);
-        return *activite;
+    addItem(*activite);
+    return *activite;
 }
 
 Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QTime &d){
-        Activite* activite = new Activite(id,t,ty,d);
-         addItem(*activite);
-        return *activite;
+    Activite* activite = new Activite(id,t,ty,d);
+    addItem(*activite);
+    return *activite;
 }
 
 Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, const QString& dispo){
-   QString format = "dd:MM:yyyy:HH:mm";
-   QDateTime date_dispo = QDateTime::fromString(dispo,format);
+    QString format = "dd:MM:yyyy:HH:mm";
+    QDateTime date_dispo = QDateTime::fromString(dispo,format);
     Projet* t = new Projet(id, titre, date_dispo);
     addItem(*t);
     return *t;
@@ -75,6 +75,19 @@ Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, co
     Projet* t = new Projet(id,titre,dispo);
     addItem(*t);
     return *t;
+}
+
+bool PrecedenceManager::isPredecesseur(const Tache& t1, const Tache& t2)const{
+    /*for(const_iterator it = tab.begin(); it != tab.end() ; it++)
+        if(&(*it)->getSuccesseur() == &t2  && (&(*it)->getPredecesseur() == &t1 || isPredecesseur(t1,(*it)->getPredecesseur())))
+            return true;
+    if(typeid(t2) == typeid(TacheComposite)){
+        dynamic_cast<const TacheComposite&>(t2);
+        for(TacheComposite::const_iterator it = t2.begin(); it != t2.end() ; it++)
+            if(*it == &t1 || isPredecesseur(t1,**it))
+                return true;
+    }*/
+    return false;
 }
 
 

@@ -26,8 +26,17 @@ protected:
     Manager(){}
     ~Manager();
 public:
+    class iterator : public vector<T*>::iterator{
+    public:
+        iterator():vector<T*>::iterator(){}
+        iterator(typename vector<T*>::iterator it):vector<T*>::iterator(it){}
+    };
+    class const_iterator : public vector<T*>::const_iterator{
+    public:
+        const_iterator():vector<T*>::const_iterator(){}
+        const_iterator(typename vector<T*>::const_iterator it):vector<T*>::const_iterator(it){}
+    };
 
-    typedef typename vector<T*>::iterator iterator;
     unsigned int getSize() const {return tab.size();}
     T* getItem(const QString& id);
     void deleteItem(T& t);
@@ -35,8 +44,11 @@ public:
     void deleteItem(iterator it);
     static U& getInstance();
     static void freeInstance();
+
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
+    const_iterator begin()const{return tab.begin();}
+    const_iterator end()const{return tab.end();}
 };
 
 template <class T, class U> typename Manager<T,U>::Handler Manager<T,U>::handler;
@@ -57,14 +69,14 @@ template <class T, class U> Manager<T,U>::~Manager(){
     if(!tab.empty()){
         qDebug()<<"Tab non empty \n";
         qDebug()<<"\nTaille : "<<tab.size();
-        for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
+        for(iterator it = this->begin(); it != this->end(); ++it)
             delete *it;
         tab.clear();
     }
     qDebug()<<"Fin de Destruction TacheManager \n";
 }
 template <class T,class U> T* Manager<T,U>::getItem(const QString& id){
-    for(Manager<T,U>::iterator it = this->begin(); it != this->end(); ++it)
+    for(iterator it = this->begin(); it != this->end(); ++it)
         if((*it)->getId() == id)
             return *it;
     return nullptr;
@@ -83,8 +95,6 @@ template <class T, class U> void Manager<T,U>::deleteItem(iterator it){
     tab.erase(it);
     delete pt;
 }
-
-
 
 class TacheManager: public Manager<Tache,TacheManager>{
 public:
@@ -109,11 +119,12 @@ public:
 
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
    public:
-   void  ajouterPrecedence(Tache& t1, Tache& t2){
+   void  ajouterPrecedence(const Tache& t1,const Tache& t2){
     Precedence* t = new Precedence(t1,t2);
     addItem(*t);
     }
     void supprimerPrecedence(const QString& id);
+    bool isPredecesseur(const Tache& t1, const Tache& t2)const;
 };
 
 class ActiviteManager: public Manager<Activite,ActiviteManager>{
