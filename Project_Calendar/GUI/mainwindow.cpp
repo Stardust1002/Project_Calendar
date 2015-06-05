@@ -163,6 +163,6 @@ void MainWindow::on_voir_clicked()
 
 void MainWindow::on_actionVue_Globale_triggered()
 {
-    vueGlobale* vue = new vueGlobale;
+    vueGlobale* vue = new vueGlobale(this);
     vue->show();
 }

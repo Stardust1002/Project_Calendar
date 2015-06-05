@@ -101,8 +101,8 @@
          <widget class="QCalendarWidget" name="calendarWidget">
           <property name="maximumSize">
            <size>
-            <width>300</width>
-            <height>200</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="cursor">

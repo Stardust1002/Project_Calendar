@@ -113,7 +113,11 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
         dispo->setDateTime(tache->getDisponibilite());
         echeance->setDateTime(tache->getEcheance());
         duree->setTime(tache->getDuree());
-        projet->addItem(tache->getProjet()->getId());
+        Projet* tmp = tache->getProjet();
+        if(tmp != nullptr)
+            projet->addItem(tmp->getId());
+        else
+            projet->addItem("Sélectionner");
     }else
     projet->addItem("Sélectionner");
 
@@ -163,7 +167,10 @@ void tacheEditeur::sauver()
         tache->setEcheanceDT(echeance->dateTime());
         tache->setId(id->text());
         tache->setPreemptive(pre->isChecked());
-        if(tache->getProjet()->getId() != projet->currentText())
+
+        if(tache->getProjet() != nullptr && tache->getProjet()->getId() != projet->currentText())
+            tache->setProjet(projet->currentText());
+        else if(tache->getProjet() == nullptr && projet->currentText() != "Sélectionner")
             tache->setProjet(projet->currentText());
         ouvrirInformation("Tâche modifiée avec succès!");
         close();
