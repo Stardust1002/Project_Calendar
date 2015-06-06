@@ -86,13 +86,7 @@
     </widget>
    </item>
    <item row="0" column="4">
-    <widget class="QComboBox" name="projet">
-     <item>
-      <property name="text">
-       <string>LO21</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QComboBox" name="projet"/>
    </item>
    <item row="0" column="1" colspan="2">
     <widget class="QLineEdit" name="identificateur"/>

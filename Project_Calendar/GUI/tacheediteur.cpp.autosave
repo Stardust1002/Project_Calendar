@@ -198,7 +198,7 @@ void tacheEditeur::sauver()
 
         for(PrecedenceManager::const_iterator it = PrM.begin(); it != PrM.end(); ++it){ //suppression des precedences
            if(&((**it).getSuccesseur()) == tache)
-
+               PM.supprimerPrecedence();
                pred->addItem((**it).getPredecesseur().getId());
           }
         ouvrirInformation("Tâche modifiée avec succès!");

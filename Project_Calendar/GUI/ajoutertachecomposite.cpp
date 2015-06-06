@@ -7,6 +7,7 @@ ajouterTacheComposite::ajouterTacheComposite(TacheComposite* tache, QWidget *par
 {
     ui->setupUi(this);
     TacheManager& TM = TacheManager::getInstance();
+    ProjetManager& PM = ProjetManager::getInstance();
     setWindowTitle("Création d'une Tache Composite");
     ui->dispo->setDateTime(QDateTime::currentDateTime());
     ui->echeance->setDateTime(QDateTime::currentDateTime());
@@ -22,9 +23,15 @@ ajouterTacheComposite::ajouterTacheComposite(TacheComposite* tache, QWidget *par
         ui->echeance->setDateTime(tache->getEcheance());
         for(TacheComposite::iterator it = tache->begin(); it != tache->end(); ++it)
              ui->composants->addItem((*it)->getId());
-
-
+        ui->projet->setCurrentText(tache->getProjet()->getId());
     }
+
+    for(ProjetManager::iterator it = PM.begin(); it != PM.end(); ++it){
+        if(*it != tache->getProjet())
+            ui->projet->addItem((*it)->getId());
+    }
+
+
     for(TacheManager::iterator it = TM.begin(); it != TM.end(); ++it){
         if(*it != tache){ // Si tache = notre tache composite ALORS on ne l'affiche pas dans la liste des pred possibles.
             if(tache != 0){
@@ -76,4 +83,13 @@ void ajouterTacheComposite::on_pushButton_clicked()
     }
     else
         ouvrirWarning("Des informations sont manquantes !","Erreur");
+}
+
+void ajouterTacheComposite::on_projet_currentIndexChanged(const QString &projet)
+{
+    ui->liste_taches_projet->clear();
+    ProjetManager& PM = ProjetManager::getInstance();
+    Projet* p = PM.getItem(projet);
+    for(Projet::iterator it = p->begin(); it != p->end(); ++it)
+        ui->liste_taches_projet->addItem((*it)->getId());
 }
