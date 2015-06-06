@@ -2,11 +2,13 @@
 #define EVENEMENT_H
 
 #include <QDate>
+#include <QTime>
 #include <QDateTime>
 #include <QObject>
 #include "timing.h"
 #include <QDebug>
 #include "GUI/fonctions.h"
+#include "qtimespan.h"
 
 template <class T, class U>class Manager;
 class TacheManager;
@@ -16,16 +18,19 @@ class PrecedenceManager;
 
 using namespace std;
 class Projet;
+
+
 class Evenement
 {
-    QTime duree;
+    QTimeSpan duree;
 protected:
-    Evenement(const QTime& d):duree(d){}
+    Evenement(const QTimeSpan& d):duree(d){}
     virtual ~Evenement()=0{}
 public:
-    const QTime& getDuree()const{return duree;}
-    virtual void setDuree(const QTime& d){duree=d;}
+    const QTimeSpan& getDuree()const{return duree;}
+    virtual void setDuree(const QTimeSpan& d){duree=d;}
     virtual QString whoAmI()const = 0;
+    virtual bool isPreemptive() const = 0;
 };
 
 class Tache{
@@ -52,10 +57,8 @@ public:
     void setEcheance(const QString& e);
     void setProjet(Projet& p);
     void setProjet(const QString& id);
-
     virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
     virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
-    virtual bool isPreemptive() const = 0;
     virtual void afficher()const;
     virtual QString whoAmI()const = 0;
 
@@ -97,7 +100,7 @@ public:
 
     void setDisponibiliteDT(const QDateTime& dispo)override;
     void setEcheanceDT(const QDateTime& echeance)override;
-    bool isPreemptive( )const override{return false;}
+
     void afficher();
     QString whoAmI()const{return "tache_composite";}
 
@@ -112,13 +115,13 @@ private:
     bool preemptive;
     TacheUnitaire(const Tache&);
     TacheUnitaire& operator=(const TacheUnitaire&);
-    TacheUnitaire(const QString& id, const QString& t, const QTime& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
+    TacheUnitaire(const QString& id, const QString& t, const QTimeSpan& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
         Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
     ~TacheUnitaire(){qDebug()<<"Destruction tache unitaire\n";}
 public:
    const QDateTime& getEcheance()const{return this->date_echeance;}
-   void setDuree(const QTime& d){
-       if(!preemptive && d>QTime(12,00))
+   void setDuree(const QTimeSpan& d){
+       if(!preemptive && d>QTimeSpan(12,00))
            throw "Error : Durée d'une Tâche non preemptive supérieur à 12H impossible";
        Evenement::setDuree(d);
    }
@@ -136,7 +139,7 @@ private:
     QString identificateur;
     QString titre;
     TypeActivite type;
-    Activite(const QString& id, const QString& t, TypeActivite ty, const QTime& d):Evenement(d), identificateur(id),
+    Activite(const QString& id, const QString& t, TypeActivite ty, const QTimeSpan& d):Evenement(d), identificateur(id),
         titre(t), type(ty){}
 public:
     QString getId()const{return identificateur;}
@@ -144,11 +147,12 @@ public:
     QString getTypeToString()const{if(type == RDV)return "Rendez-vous";else return "Réunion";}
     QString getTitre()const{return titre;}
     QString whoAmI()const{return "activite";}
+    bool isPreemptive( )const override{return false;}
     void setId(const QString& i){identificateur = i;}
     void setTitre(const QString& t){titre = t;}
     void setType(const TypeActivite& t){type = t;}
     void setTypeFromString(const QString& t){if(t == "Rendez-vous")type = RDV;else type=REUNION;}
-    void setDuree(const QTime& t){Evenement::setDuree(t);}
+    //void setDuree(const QTimeSpan& t){Evenement::setDuree(t);}
     virtual void afficher()const;
 
 
@@ -158,15 +162,15 @@ class Programmation{
     friend class ProgrammationManager;
     friend class Manager<Programmation,ProgrammationManager>;
 
-    Evenement* const evenement;
+    Evenement& evenement;
     QDateTime date;
-    QTime duree;
-    Programmation(Evenement* const e, const QDateTime& d, const QTime& du):date(d), duree(du), evenement(e){}
+    QTimeSpan duree;
+    Programmation(Evenement& e, const QDateTime& d, const QTimeSpan& du):date(d), duree(du), evenement(e){}
     ~Programmation(){}
 public:
-    Evenement* const getEvenement()const{return evenement;}
+    Evenement& getEvenement()const{return evenement;}
     const QDateTime& getDate()const {return date;}
-    const QTime& getDuree(){return duree;}
+    const QTimeSpan& getDuree(){return duree;}
 
 };
 

@@ -5,8 +5,10 @@
 #include <vector>
 #include <QObject>
 #include <QDateTime>
+#include <QTime>
 #include <QDebug>
 #include "evenement.h"
+#include "qtimespan.h"
 
 using namespace std;
 
@@ -100,7 +102,7 @@ class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                               bool preemptive, const QString& dispo, const QString& echeance);
-    TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QTime& duree,
+    TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QTimeSpan& duree,
                               bool preemptive,const QDateTime& dispo, const QDateTime& echeance);
     TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
                                const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
@@ -118,7 +120,7 @@ public:
 };
 
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
-   public:
+public:
    void  ajouterPrecedence(const Tache& t1,const Tache& t2){
     Precedence* t = new Precedence(t1,t2);
     addItem(*t);
@@ -129,8 +131,18 @@ class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
 
 class ActiviteManager: public Manager<Activite,ActiviteManager>{
 public:
-    Activite& ajouterActivite(const QString& id, const QString& t, const Activite::TypeActivite& ty, const QTime& d);
+    Activite& ajouterActivite(const QString& id, const QString& t, const Activite::TypeActivite& ty, const QTimeSpan& d);
     Activite& ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QString &d);
+};
+
+class ProgrammationManager:public Manager<Programmation,ProgrammationManager>{
+public:
+    Programmation& ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree);
+    Programmation& ajouterProgrammation(Evenement& evenement,const QString& horaire,const QString& duree);
+    bool isProgrammee(const Evenement&)const;
+    bool isProgrammable(const Evenement& t, const QDateTime& horaire,const QTimeSpan& duree)const;
+    const QTimeSpan& dureeProgrammee(const Evenement& e)const;
+
 };
 #endif // MANAGER_H
 

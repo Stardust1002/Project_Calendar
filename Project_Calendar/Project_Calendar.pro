@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     GUI/vueglobale.cpp \
     evenement.cpp \
     manager.cpp \
-    timing.cpp
+    timing.cpp \
+    qtimespan.cpp
 
 HEADERS  += GUI/mainwindow.h \
     GUI/ajouteractivite.h \
@@ -37,7 +38,8 @@ HEADERS  += GUI/mainwindow.h \
     GUI/vueglobale.h \
     evenement.h \
     manager.h \
-    timing.h
+    timing.h \
+    qtimespan.h
 
 FORMS    += GUI/mainwindow.ui \
     GUI/ajouteractivite.ui \

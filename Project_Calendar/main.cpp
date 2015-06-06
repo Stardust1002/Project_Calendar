@@ -1,27 +1,42 @@
 #include "GUI/mainwindow.h"
 #include <QApplication>
+#include "qtimespan.h"
 #include "manager.h"
 #include "timing.h"
 #include <ostream>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    /*QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+    w.show();*/
 
-    TacheManager &TM = TacheManager::getInstance();
+    QTimeSpan duree(01,10);
+    qDebug()<<"ICI : "<<duree<<"\n";
+    QTimeSpan test(0,18);
+    qDebug()<<"ICI : "<<test+duree<<"\n";
+    qDebug()<<"ICI : "<<test<<"\n";
+
+    //qDebug()<<"ICI : "<<test+=duree<<"\n";
+    qDebug()<<"ICI : "<<test<<"\n";
+
+    /*duree += test;
+    qDebug()<<duree;*/
+
+
+
+    /*TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
-    ActiviteManager &AM = ActiviteManager::getInstance();
+    ActiviteManager &AM = ActiviteManager::getInstance();*/
 
     //TacheManager::freeInstance();
 
-    QString format = "dd:MM:yyyy:HH:mm";
+    /*QString format = "dd:MM:yyyy:HH:mm";
     QDateTime test = QDateTime::fromString("21:10:1994:25:00",format);
     qDebug()<<test;
-    qDebug()<<test.isValid();
+    qDebug()<<test.isValid();*/
 
-    TacheUnitaire *tu[4];
+    /*TacheUnitaire *tu[4];
 
     tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
     tu[1] = &TM.ajouterTacheUnitaire("2","Test2","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
@@ -30,10 +45,10 @@ int main(int argc, char *argv[])
 
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
     p.ajouterTache("SOPRA STERIA");
-    p.afficher();
+    p.afficher();*/
 
-    Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
-    act.afficher();
+    /*Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
+    act.afficher();*/
 
     //TacheComposite& tc = TM.ajouterTacheComposite("C1","composite");
     //tc.push_back(*tu[0]);
@@ -54,5 +69,5 @@ int main(int argc, char *argv[])
 
     qDebug()<<"Jusqu'ici tout va bien";
 
-    return a.exec();
+    //return a.exec();
 }
