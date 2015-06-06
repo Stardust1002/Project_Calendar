@@ -5,7 +5,6 @@
 #include <QTime>
 #include <QDateTime>
 #include <QObject>
-#include "timing.h"
 #include <QDebug>
 #include "GUI/fonctions.h"
 #include "qtimespan.h"
@@ -44,7 +43,7 @@ protected:
     Tache(const QString& id, const QString& title, const QDateTime& dispo, const QDateTime& echeance): identificateur(id), titre(title), date_dispo(dispo), date_echeance(echeance){}
     Tache(const Tache& t){*this = (t);}
     const Tache& operator=(const Tache& t);
-    virtual ~Tache()=0{qDebug()<<"Destruction tache \n";}
+    virtual ~Tache()=0{}
 public:
     Projet *getProjet()const;
     const QDateTime& getDisponibilite() const{return date_dispo;}
@@ -94,7 +93,9 @@ public:
     const_iterator begin()const{return tab.begin();}
     const_iterator end()const{return tab.end();}
 
-    void push_back(Tache &t){tab.push_back(&t);}
+    bool isComposee(const Tache& t)const;
+    bool isComposable(const Tache& t)const;
+    void push_back(Tache &t);
     void pop_back(){tab.pop_back();}
     iterator erase(iterator position){return tab.erase(position);}
 
@@ -117,7 +118,7 @@ private:
     TacheUnitaire& operator=(const TacheUnitaire&);
     TacheUnitaire(const QString& id, const QString& t, const QTimeSpan& duree, bool pre, const QDateTime& dispo, const QDateTime& echeance):
         Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
-    ~TacheUnitaire(){qDebug()<<"Destruction tache unitaire\n";}
+    ~TacheUnitaire(){}
 public:
    const QDateTime& getEcheance()const{return this->date_echeance;}
    void setDuree(const QTimeSpan& d){

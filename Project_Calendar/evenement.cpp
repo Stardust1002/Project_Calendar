@@ -76,7 +76,6 @@ void TacheComposite::afficher(){
         (*it)->afficher();
 }
 TacheComposite::~TacheComposite(){
-    qDebug()<<"Destruction tache composite\n";
     for(iterator it = this->tab.begin(); it != this->tab.end(); ++it)
         TacheManager::getInstance().deleteItem(**it);
     this->tab.clear();
@@ -90,6 +89,25 @@ TacheComposite::~TacheComposite(){
 TacheComposite::TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance):Tache(id, title,date_dispo,date_echeance){
     for(iterator it = t.begin(); it != t.end(); ++it)
         tab.push_back(*it);
+}
+
+bool TacheComposite::isComposee(const Tache& t)const{
+    for(const_iterator it = tab.begin(); it != tab.end() ; it++)
+        if(*it == &t)
+            return true;
+    return false;
+}
+
+bool TacheComposite::isComposable(const Tache& t)const{
+    if(isComposee(t) || t.getDisponibilite() < getDisponibilite() || t.getEcheance() > getEcheance() || PrecedenceManager::getInstance().isPredecesseur(t,*this))
+        return false;
+    return true;
+}
+
+void TacheComposite::push_back(Tache &t){
+    if(!isComposable(t))
+        throw "Error : Tache composite ne peut être composée de cette tâche";
+    tab.push_back(&t);
 }
 
 void TacheComposite::setDisponibiliteDT(const QDateTime& dispo){

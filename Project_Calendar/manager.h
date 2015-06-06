@@ -67,15 +67,11 @@ template<class T, class U> void Manager<T,U>::freeInstance(){
 }
 
 template <class T, class U> Manager<T,U>::~Manager(){
-    qDebug()<<"Destruction TacheManager \n";
     if(!tab.empty()){
-        qDebug()<<"Tab non empty \n";
-        qDebug()<<"\nTaille : "<<tab.size();
         for(iterator it = this->begin(); it != this->end(); ++it)
             delete *it;
         tab.clear();
     }
-    qDebug()<<"Fin de Destruction TacheManager \n";
 }
 template <class T,class U> T* Manager<T,U>::getItem(const QString& id){
     for(iterator it = this->begin(); it != this->end(); ++it)
@@ -104,8 +100,8 @@ public:
                               bool preemptive, const QString& dispo, const QString& echeance);
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QTimeSpan& duree,
                               bool preemptive,const QDateTime& dispo, const QDateTime& echeance);
-    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo = "00:00:0000:00:00",
-                               const QString& echeance = "00:00:0000:00:00",vector<Tache*> liste = vector<Tache*>());
+    TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QString& dispo,
+                               const QString& echeance,vector<Tache*> liste = vector<Tache*>());
     TacheComposite& ajouterTacheComposite(const QString& id, const QString& titre,const QDateTime& dispo,
                                const QDateTime& echeance,vector<Tache*> liste = vector<Tache*>());
 
@@ -121,10 +117,7 @@ public:
 
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
 public:
-   void  ajouterPrecedence(const Tache& t1,const Tache& t2){
-    Precedence* t = new Precedence(t1,t2);
-    addItem(*t);
-    }
+    Precedence&  ajouterPrecedence(const Tache& t1,const Tache& t2);
     void supprimerPrecedence(const QString& id);
     bool isPredecesseur(const Tache& t1, const Tache& t2)const;
 };
@@ -141,7 +134,7 @@ public:
     Programmation& ajouterProgrammation(Evenement& evenement,const QString& horaire,const QString& duree);
     bool isProgrammee(const Evenement&)const;
     bool isProgrammable(const Evenement& t, const QDateTime& horaire,const QTimeSpan& duree)const;
-    const QTimeSpan& dureeProgrammee(const Evenement& e)const;
+    QTimeSpan dureeProgrammee(const Evenement& e)const;
 
 };
 #endif // MANAGER_H

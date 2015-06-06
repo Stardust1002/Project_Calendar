@@ -7,67 +7,57 @@
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
-    w.show();*/
+    w.show();
 
-    QTimeSpan duree(01,10);
-    qDebug()<<"ICI : "<<duree<<"\n";
-    QTimeSpan test(0,18);
-    qDebug()<<"ICI : "<<test+duree<<"\n";
-    qDebug()<<"ICI : "<<test<<"\n";
-
-    //qDebug()<<"ICI : "<<test+=duree<<"\n";
-    qDebug()<<"ICI : "<<test<<"\n";
-
-    /*duree += test;
-    qDebug()<<duree;*/
-
-
-
-    /*TacheManager &TM = TacheManager::getInstance();
+    TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
-    ActiviteManager &AM = ActiviteManager::getInstance();*/
+    ActiviteManager &AM = ActiviteManager::getInstance();
+    ProgrammationManager &ProgM = ProgrammationManager::getInstance();
+    PrecedenceManager &PrecM = PrecedenceManager::getInstance();
 
-    //TacheManager::freeInstance();
+    TacheUnitaire *tu[4];
 
-    /*QString format = "dd:MM:yyyy:HH:mm";
-    QDateTime test = QDateTime::fromString("21:10:1994:25:00",format);
-    qDebug()<<test;
-    qDebug()<<test.isValid();*/
-
-    /*TacheUnitaire *tu[4];
-
-    tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
+    tu[0] = &TM.ajouterTacheUnitaire("1","Test1","01:00",0,"20:10:1994:00:00","20:10:1994:10:00");
     tu[1] = &TM.ajouterTacheUnitaire("2","Test2","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
     tu[2] = &TM.ajouterTacheUnitaire("3","Test3","01:00",0,"20:10:1994:00:00","20:10:1994:23:59");
-    tu[3] = &TM.ajouterTacheUnitaire("SOPRA STERIA","Test4","02:00",0,"20:10:2015:00:00","20:10:2015:23:59");
+    tu[3] = &TM.ajouterTacheUnitaire("SOPRA STERIA","Test4","02:00",0,"20:10:2002:00:00","20:10:2009:23:59");
+
+
+    TacheComposite& tc1 = TM.ajouterTacheComposite("C1","Frolux","06:06:1993:12:21","10:07:1995:01:59");
+    TacheComposite& tc2 = TM.ajouterTacheComposite("C2","Frolux","06:06:1993:12:21","10:07:2011:01:59");
+
+
+    tc1.push_back(*tu[0]);
+    tc2.push_back(*tu[2]);
+    tc2.push_back(*tu[3]);
+
+    PrecM.ajouterPrecedence(*tu[0],*tu[1]);
+    PrecM.ajouterPrecedence(*tu[1],*tu[3]);
 
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
     p.ajouterTache("SOPRA STERIA");
-    p.afficher();*/
 
-    /*Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
-    act.afficher();*/
 
-    //TacheComposite& tc = TM.ajouterTacheComposite("C1","composite");
-    //tc.push_back(*tu[0]);
-    //tc.push_back(*tu[1]);
-    //tc.push_back(*tu[2]);
 
-   // format = "dd:MM:yyyy:HH:mm";
-   // QDateTime date_dispo = QDateTime::fromString("21:10:1994:23:00",format);
-   // qDebug()<<date_dispo;
+    Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
+    act.afficher();
 
-   // format = "dd:MM:yyyy:HH:mm";
-   // QDateTime dispo = QDateTime::fromString("21:10:1994:23:00",format);
-  //  qDebug()<<dispo;
+
+
+
+    Programmation& prog = ProgM.ajouterProgrammation(act,"12:07:2022:12:36","02:12");
+    qDebug()<<prog.getDuree()<<ProgM.dureeProgrammee(act)<<ProgM.isProgrammee(act);
+
 
     //tc.setDisponibilite("21:10:1994:23:00");
+
+    p.afficher();
 
    // TM.deleteItem("C1");
 
     qDebug()<<"Jusqu'ici tout va bien";
 
-    //return a.exec();
+    return a.exec();
 }

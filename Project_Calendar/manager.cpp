@@ -8,18 +8,11 @@
 
 TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                           bool preemptive, const QString& dispo, const QString& echeance){
-    QString formatTime = "hh:mm";
-    QTimeSpan d = QTimeSpan::fromString(duree, formatTime);
-    QString formatDateTime = "dd:MM:yyyy:HH:mm";
-    QDateTime date_dispo = QDateTime::fromString(dispo,formatDateTime);
-    if(!date_dispo.isValid())
-        throw "Format DateTime de la disponibilite invalide";
-    QDateTime date_echeance = QDateTime::fromString(echeance,formatDateTime);
-    if(!date_echeance.isValid())
-        throw "Format DateTime de l'échéance invalide";
-    TacheUnitaire* t = new TacheUnitaire(id, titre, d, preemptive, date_dispo, date_echeance);
-    addItem(*t);
-    return *t;
+    QTimeSpan d = QTimeSpan::fromString(duree, "hh:mm");
+    QDateTime date_dispo = QDateTime::fromString(dispo,"dd:MM:yyyy:HH:mm");
+    QDateTime date_echeance = QDateTime::fromString(echeance,"dd:MM:yyyy:HH:mm");
+    return ajouterTacheUnitaire(id, titre, d, preemptive, date_dispo, date_echeance);
+
 }
 TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QString& titre, const QTimeSpan& duree,
                           bool preemptive,const QDateTime& dispo, const QDateTime& echeance){
@@ -27,6 +20,8 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
         throw "Format DateTime de la disponibilite invalide";
     if(!echeance.isValid())
         throw "Format DateTime de l'échéance invalide";
+    if(QTimeSpan(0,0).addSecs(dispo.secsTo(echeance)) < duree)
+        throw "Erreur : Durée de la tâche supérieur au temps disponible pour la réaliser";
     TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, dispo, echeance);
     addItem(*t);
     return *t;
@@ -35,20 +30,17 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
 TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QString& titre, const QString& dispo, const QString& echeance, vector<Tache*> liste){
     QString format = "dd:MM:yyyy:HH:mm";
     QDateTime date_dispo = QDateTime::fromString(dispo,format);
-    if(!date_dispo.isValid())
-        throw "Format DateTime de la disponibilite invalide";
     QDateTime date_echeance = QDateTime::fromString(echeance,format);
-    if(!date_echeance.isValid())
-        throw "Format DateTime de l'échéance invalide";
-    TacheComposite* t = new TacheComposite(id, titre, liste, date_dispo, date_echeance);
-    addItem(*t);
-    return *t;
+    return ajouterTacheComposite(id, titre, date_dispo, date_echeance,liste);
  }
 TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QString& titre, const QDateTime& dispo, const QDateTime& echeance, vector<Tache*> liste){
     if(!dispo.isValid())
         throw "Format DateTime de la disponibilite invalide";
     if(!echeance.isValid())
         throw "Format DateTime de l'échéance invalide";
+    for(iterator it = tab.begin() ; it != tab.end() ; it++)
+        if((*it)->getId() == id)
+            throw "Error : Identifiant déja utilisé";
     TacheComposite* t = new TacheComposite(id, titre, liste, dispo, echeance);
     addItem(*t);
     return *t;
@@ -96,6 +88,14 @@ Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, co
 /* ---------- PRECEDENCE MANAGER ----------- */
 /* ----------------------------------------- */
 
+Precedence&  PrecedenceManager::ajouterPrecedence(const Tache& t1,const Tache& t2){
+    if(isPredecesseur(t1,t2) || isPredecesseur(t2,t1))
+        throw "Error : Ajout de précédence impossible";
+     Precedence* t = new Precedence(t1,t2);
+     addItem(*t);
+     return *t;
+ }
+
 bool PrecedenceManager::isPredecesseur(const Tache& t1, const Tache& t2)const{
     for(const_iterator it = tab.begin(); it != tab.end() ; it++)
         if(&(*it)->getSuccesseur() == &t2  && (&(*it)->getPredecesseur() == &t1 || isPredecesseur(t1,(*it)->getPredecesseur())))
@@ -115,27 +115,28 @@ bool PrecedenceManager::isPredecesseur(const Tache& t1, const Tache& t2)const{
 /* -------------------------------------------- */
 
 Programmation& ProgrammationManager::ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree){
-    if(isProgrammable(evenement,horaire,duree) )
-        return Programmation(evenement,horaire,duree);
+    if(!isProgrammable(evenement,horaire,duree) )
+        throw "Error : Evenement non programmable";
+    Programmation *prog = new Programmation(evenement,horaire,duree);
+    addItem(*prog);
+    return *prog;
 }
 
 Programmation& ProgrammationManager::ajouterProgrammation(Evenement& evenement,const QString& d,const QString& du){
     QDateTime date = QDateTime::fromString(d,"dd:MM:yyyy:HH:mm");
     QTimeSpan duree = QTimeSpan::fromString(du,"HH:mm");
-
     return ajouterProgrammation(evenement,date,duree);
-
 }
 
-const QTimeSpan& ProgrammationManager::dureeProgrammee(const Evenement& e)const{
+QTimeSpan ProgrammationManager::dureeProgrammee(const Evenement& e)const{
     QTimeSpan duree;
-    /*bool Preemptive = e.isPreemptive();
+    bool Preemptive = e.isPreemptive();
     for(const_iterator it = tab.begin(); it!= tab.end() ; it++){
-        if(&(*it)->getEvenement() == &t && !Preemptive)
-            return (*it)->getDuree;
+        if(&(*it)->getEvenement() == &e && !Preemptive)
+            return (*it)->getDuree();
         else
             duree += (*it)->getEvenement().getDuree();
-    }*/
+    }
     return duree;
 }
 
@@ -146,7 +147,5 @@ bool ProgrammationManager::isProgrammee(const Evenement& e)const{
 }
 
 bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& horaire,const QTimeSpan& duree)const{
-    if(!isProgrammee(e))
-        ;
-    return false;
+    return true;
 }
