@@ -43,7 +43,7 @@ public:
     T* getItem(const QString& id);
     void deleteItem(T& t);
     void deleteItem(const QString& id);
-    void deleteItem(iterator it);
+    virtual void deleteItem(iterator it);
     static U& getInstance();
     static void freeInstance();
 
@@ -68,9 +68,9 @@ template<class T, class U> void Manager<T,U>::freeInstance(){
 
 template <class T, class U> Manager<T,U>::~Manager(){
     if(!tab.empty()){
-        for(iterator it = this->begin(); it != this->end(); ++it)
-            delete *it;
-        tab.clear();
+        while(!tab.empty()){
+            deleteItem(tab.begin());
+        }
     }
 }
 template <class T,class U> T* Manager<T,U>::getItem(const QString& id){
@@ -86,12 +86,26 @@ template <class T, class U> void Manager<T,U>::deleteItem(T& item){
 template <class T, class U> void Manager<T,U>::deleteItem(const QString& id){
     iterator it;
     for(it = this->tab.begin(); it != this->tab.end() && (*it)->getId() != id ; ++it);
-    deleteItem(it);
+    if(it != this->tab.end())
+        deleteItem(it);
 }
-template <class T, class U> void Manager<T,U>::deleteItem(iterator it){
-    T* pt = *it;
-    tab.erase(it);
+
+template <class T, class U> inline void Manager<T,U>::deleteItem(iterator toDelete){
+    T* pt = *toDelete;
+    iterator Next = tab.erase(toDelete);
     delete pt;
+}
+
+template <> inline void Manager<Tache,TacheManager>::deleteItem(iterator toDelete){
+    TacheComposite* tc;
+    if(tc = (*toDelete)->getComposite())
+        deleteItem(*tc);
+    else{
+        Tache* pt = *toDelete;
+        tab.erase(toDelete);
+        delete pt;
+    }
+
 }
 
 class TacheManager: public Manager<Tache,TacheManager>{

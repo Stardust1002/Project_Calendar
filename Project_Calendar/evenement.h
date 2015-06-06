@@ -15,6 +15,8 @@ class ProgrammationManager;
 class ProjetManager;
 class PrecedenceManager;
 
+class TacheComposite;
+
 using namespace std;
 class Projet;
 
@@ -56,6 +58,7 @@ public:
     void setEcheance(const QString& e);
     void setProjet(Projet& p);
     void setProjet(const QString& id);
+    TacheComposite* getComposite()const;
     virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
     virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
     virtual void afficher()const;
@@ -92,8 +95,6 @@ public:
     iterator end(){return tab.end();}
     const_iterator begin()const{return tab.begin();}
     const_iterator end()const{return tab.end();}
-
-    bool isComposee(const Tache& t)const;
     bool isComposable(const Tache& t)const;
     void push_back(Tache &t);
     void pop_back(){tab.pop_back();}
@@ -183,7 +184,7 @@ class Projet{
     vector<Tache*> tab;
     QDateTime date_dispo;
     //Projet(QString id, QString t, QDateTime d, vector<Tache*> t);
-   Projet(const QString& id, const QString& t, const QDateTime& d):identificateur(id), titre(t), date_dispo(d){  }
+    Projet(const QString& id, const QString& t, const QDateTime& d):identificateur(id), titre(t), date_dispo(d){  }
     ~Projet(){tab.clear();}
 
 public:

@@ -6,6 +6,8 @@
 /* ---------- TACHE MANAGER ----------- */
 /* ------------------------------------ */
 
+
+
 TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
                           bool preemptive, const QString& dispo, const QString& echeance){
     QTimeSpan d = QTimeSpan::fromString(duree, "hh:mm");
@@ -20,7 +22,7 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
         throw "Format DateTime de la disponibilite invalide";
     if(!echeance.isValid())
         throw "Format DateTime de l'échéance invalide";
-    if(QTimeSpan(0,0).addSecs(dispo.secsTo(echeance)) < duree)
+    if(dispo.date() == echeance.date() && QTimeSpan(0,0).addSecs(dispo.secsTo(echeance)) < duree)
         throw "Erreur : Durée de la tâche supérieur au temps disponible pour la réaliser";
     TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, dispo, echeance);
     addItem(*t);
@@ -100,7 +102,7 @@ bool PrecedenceManager::isPredecesseur(const Tache& t1, const Tache& t2)const{
     for(const_iterator it = tab.begin(); it != tab.end() ; it++)
         if(&(*it)->getSuccesseur() == &t2  && (&(*it)->getPredecesseur() == &t1 || isPredecesseur(t1,(*it)->getPredecesseur())))
             return true;
-    if(typeid(t2) == typeid(TacheComposite)){
+    if(typeid(t2) == typeid(const TacheComposite&)){
         const TacheComposite& tc2 = dynamic_cast<const TacheComposite&>(t2);
         for(TacheComposite::const_iterator it = tc2.begin(); it != tc2.end() ; it++)
             if(*it == &t1 || isPredecesseur(t1,**it))

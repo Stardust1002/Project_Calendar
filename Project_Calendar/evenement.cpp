@@ -61,6 +61,21 @@ void Tache::setProjet(const QString& id){
     setProjet(*p);
 }
 
+TacheComposite* Tache::getComposite()const{
+    TacheManager& TM = TacheManager::getInstance();
+    for(TacheManager::iterator it = TM.begin(); it != TM.end() ; it++){
+        if(typeid(**it) == typeid(TacheComposite)){
+            TacheComposite& tc = dynamic_cast<TacheComposite&>(**it);
+            for(TacheComposite::iterator itC = tc.begin(); itC != tc.end() ; itC++){
+                if(*itC == this)
+                    return &tc;
+            }
+        }
+
+    }
+    return NULL;
+}
+
 void TacheUnitaire::afficher()const{
     qDebug() << "\nTache Unitaire:";
     Tache::afficher();
@@ -76,8 +91,9 @@ void TacheComposite::afficher(){
         (*it)->afficher();
 }
 TacheComposite::~TacheComposite(){
-    for(iterator it = this->tab.begin(); it != this->tab.end(); ++it)
+    for(iterator it = this->tab.begin(); it != this->tab.end(); ++it){
         TacheManager::getInstance().deleteItem(**it);
+    }
     this->tab.clear();
 }
 /*Projet::Projet(QString id, QString t, QDateTime d, vector<Tache*> t):identificateur(id), titre(t), date_dispo(d){
@@ -91,15 +107,9 @@ TacheComposite::TacheComposite(const QString& id, const QString& title, vector<T
         tab.push_back(*it);
 }
 
-bool TacheComposite::isComposee(const Tache& t)const{
-    for(const_iterator it = tab.begin(); it != tab.end() ; it++)
-        if(*it == &t)
-            return true;
-    return false;
-}
 
 bool TacheComposite::isComposable(const Tache& t)const{
-    if(isComposee(t) || t.getDisponibilite() < getDisponibilite() || t.getEcheance() > getEcheance() || PrecedenceManager::getInstance().isPredecesseur(t,*this))
+    if(t.getComposite() || t.getDisponibilite() < getDisponibilite() || t.getEcheance() > getEcheance() || PrecedenceManager::getInstance().isPredecesseur(t,*this))
         return false;
     return true;
 }
