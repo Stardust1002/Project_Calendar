@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
 
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
     p.ajouterTache("SOPRA STERIA");
-
-
+    p.ajouterTache(tc1.getId());
+    p.ajouterTache(tc2.getId());
 
     Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
     act.afficher();

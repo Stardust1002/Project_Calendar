@@ -110,6 +110,15 @@ bool PrecedenceManager::isPredecesseur(const Tache& t1, const Tache& t2)const{
     }
     return false;
 }
+void PrecedenceManager::deleteItem(Precedence *p){
+    const_iterator it = tab.begin();
+    while(it != tab.end() && *it != p) ++it;
+     if(it != tab.end()){
+          tab.erase(it);
+          delete p;
+     }
+   }
+
 
 
 /* -------------------------------------------- */

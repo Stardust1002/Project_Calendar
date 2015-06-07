@@ -130,7 +130,11 @@ public:
 };
 
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
+//    void deleteItem(const QString& id);
+//    void deleteItem(iterator it);
 public:
+    void deleteItem(Precedence* t);
+
     Precedence&  ajouterPrecedence(const Tache& t1,const Tache& t2);
     void supprimerPrecedence(const QString& id);
     bool isPredecesseur(const Tache& t1, const Tache& t2)const;
