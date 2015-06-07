@@ -40,7 +40,7 @@ ajouterTacheComposite::ajouterTacheComposite(TacheComposite* tache, QWidget *par
             ui->projet->addItem((*it)->getId());
     }
 
-    // Liste des taches pred
+    // Liste des taches dans la colonne de droite "liste des taches" pour devenir précédente
     for(TacheManager::iterator it = TM.begin(); it != TM.end(); ++it){
         if(*it != tache){ // Si tache = notre tache composite ALORS on ne l'affiche pas dans la liste des pred possibles.
             if(tache != 0){

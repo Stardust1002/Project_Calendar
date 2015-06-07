@@ -101,6 +101,10 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
 
 
     if(tache != 0){
+        pre->setDisabled(true);
+        dispo->setDisabled(true);
+        echeance->setDisabled(true);
+        duree->setDisabled(true);
         id->setText(tache->getId());
         if(tache->isPreemptive())
                pre->setChecked(true);
@@ -109,8 +113,10 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
         echeance->setDateTime(tache->getEcheance());
         duree->setTime(tache->getDuree());
         Projet* tmp = tache->getProjet();
-        if(tmp != nullptr)
+        if(tmp != nullptr){
             projet->addItem(tmp->getId());
+            projet->setDisabled(true);
+        }
         else
             projet->addItem("Sélectionner");
 
@@ -183,28 +189,21 @@ void tacheEditeur::sauver()
         else{
         if(ouvrirQuestion("Êtes-vous sûr de vouloir modifier cette tâche ?") == QMessageBox::Yes){
             //MODIFICATION DE LA TACHE
-        tache->setDisponibiliteDT(dispo->dateTime());
-        tache->setDuree(duree->time());
         tache->setTitre(titre->toPlainText());
-        tache->setEcheanceDT(echeance->dateTime());
         tache->setId(id->text());
-        tache->setPreemptive(pre->isChecked());
 
-        if(tache->getProjet() != nullptr && tache->getProjet()->getId() != projet->currentText())
-            tache->setProjet(projet->currentText());
-        else if(tache->getProjet() == nullptr && projet->currentText() != "Sélectionner")
+        if(tache->getProjet() == nullptr && projet->currentText() != "Sélectionner")
             tache->setProjet(projet->currentText());
 
-//       vector<Precedence*> Liste = tache->getPrecedences();
-//       for(vector<Precedence*>::iterator it = Liste.begin(); it != Liste.end(); ++it)
-//           PrM.deleteItem(**it);
+       vector<Precedence*> Liste = tache->getPrecedences();
+       for(vector<Precedence*>::iterator it = Liste.begin(); it != Liste.end(); ++it)
+           PrM.deleteItem(*it);
 
-//       qDebug() << "ok............";
-//       for(int i = 0; i < pred->count(); ++i){
-//             qDebug() << "ajout:\n";
-//             if(pred->item(i)->text() != "")
-//                PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), *tache);
-//       }
+       for(int i = 0; i < pred->count(); ++i){
+             qDebug() << "ajout:\n";
+             if(!pred->item(i)->text().isEmpty())
+                PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), *tache);
+       }
 
 
         ouvrirInformation("Tâche modifiée avec succès!");
