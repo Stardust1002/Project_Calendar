@@ -34,6 +34,7 @@ public:
     vector<Programmation*> getProgrammations()const;
     virtual QString whoAmI()const = 0;
     virtual bool isPreemptive() const = 0;
+    virtual const QString getId() const = 0;
 };
 
 class Tache{
@@ -134,6 +135,7 @@ public:
    void setPreemptive(const bool& b){preemptive = b;}
    QString whoAmI()const{return "tache_unitaire";}
    void afficher()const;
+   const QString getId()const{ return Tache::getId();}
 };
 
 class Activite:public Evenement{
@@ -147,7 +149,7 @@ private:
     Activite(const QString& id, const QString& t, TypeActivite ty, const QTimeSpan& d):Evenement(d), identificateur(id),
         titre(t), type(ty){}
 public:
-    QString getId()const{return identificateur;}
+    const QString getId()const{return identificateur;}
     const TypeActivite& getType()const{return type;}
     QString getTypeToString()const{if(type == RDV)return "Rendez-vous";else return "Réunion";}
     QString getTitre()const{return titre;}

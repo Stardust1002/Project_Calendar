@@ -51,8 +51,11 @@ private slots:
 
     void on_actionVue_Globale_triggered();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QDate date_calendrier;
     enum JOUR{
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE
     };

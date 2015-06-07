@@ -98,6 +98,13 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Actualiser</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCalendarWidget" name="calendarWidget">
           <property name="maximumSize">
            <size>

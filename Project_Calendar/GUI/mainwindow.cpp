@@ -1,32 +1,24 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QMainWindow(parent), date_calendrier(QDate::currentDate()),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    on_calendarWidget_clicked(date_calendrier);
 
-    /*QStandardItemModel* model = new QStandardItemModel(2,3,this);
-    model->setHorizontalHeaderItem(0, new QStandardItem(QString("LUNDI")));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("MARDI")));
-    model->setHorizontalHeaderItem(2, new QStandardItem(QString("MERCREDI")));
-    model->setHorizontalHeaderItem(3, new QStandardItem(QString("JEUDI")));
-    model->setHorizontalHeaderItem(4, new QStandardItem(QString("VENDREDI")));
-    model->setHorizontalHeaderItem(5, new QStandardItem(QString("SAMEDI")));
-    model->setHorizontalHeaderItem(6, new QStandardItem(QString("DIMANCHE")));
-    ui->tableView->setModel(model);
-*/
-    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    QTableWidgetItem* w = new QTableWidgetItem(QString("Se branler"));
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, LUNDI, w);
-    ui->tableWidget->item(0,0)->setBackgroundColor(QColor("YELLOW"));
 
-    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    QTableWidgetItem* w2 = new QTableWidgetItem(QString("RENDU NA17"));
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, MARDI, w2);
+//    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+//    QTableWidgetItem* w = new QTableWidgetItem(QString("Se branler"));
+//    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, LUNDI, w);
+//    ui->tableWidget->item(0,0)->setBackgroundColor(QColor("YELLOW"));
 
-    QTableWidgetItem* w3 = new QTableWidgetItem(QString("SOPRA STERIA"));
-    ui->tableWidget->setItem(0, JEUDI, w3);
+//    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+//    QTableWidgetItem* w2 = new QTableWidgetItem(QString("RENDU NA17"));
+//    ui->tableWidget->setItem(0, MARDI, w2);
+
+//    QTableWidgetItem* w3 = new QTableWidgetItem(QString("SOPRA STERIA"));
+//    ui->tableWidget->setItem(0, MERCREDI, w3);
 }
 
 MainWindow::~MainWindow()
@@ -82,15 +74,30 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
+    date_calendrier = date;
+    ui->tableWidget->clearContents();
+    ui->tableWidget->setRowCount(0);
+    ProgrammationManager& ProM = ProgrammationManager::getInstance();
     int jour = date.dayOfWeek();
-    int mois = date.month();
-    int annee = date.year();
+    int annee;
     int semaine = date.weekNumber(&annee);
-    ui->tableWidget->selectColumn(jour-1);
-    //Créer une méthode qui charge les données de la semaine avec le numéro de semaine et l'année !
+    int max = 0;
+    vector<Programmation*> liste = ProM.getProgrammations(semaine,annee);
+    vector<int> jours(7,0);
+    for(vector<Programmation*>::iterator it = liste.begin(); it != liste.end(); ++it){
+        const QString& nom = (*it)->getEvenement().getId();
+        QDate& date = (*it)->getDate().date();
+        qDebug() << nom;
+        if(max == jours[date.dayOfWeek()-1])
+            ui->tableWidget->setRowCount(++max);
 
-    qDebug() << "Jour" << jour << "de la" << semaine << "ième semaine de" << annee;
+        ui->tableWidget->setItem(jours[date.dayOfWeek()-1]++,date.dayOfWeek()-1, new QTableWidgetItem(nom));
+    }
+
+    ui->tableWidget->selectColumn(jour-1);
 }
+
+
 
 void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 {
@@ -165,4 +172,9 @@ void MainWindow::on_actionVue_Globale_triggered()
 {
     vueGlobale* vue = new vueGlobale(this);
     vue->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    on_calendarWidget_clicked(date_calendrier);
 }
