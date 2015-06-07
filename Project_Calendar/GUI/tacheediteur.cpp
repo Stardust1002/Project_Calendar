@@ -126,7 +126,7 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
         for(TacheManager::const_iterator it = TM.begin(); it != TM.end(); ++it){
             if(*it != tacheToEdit)
                 liste_taches->addItem((*it)->getId());
-        }
+            }
 
          projet->addItem("Sélectionner");
          }
@@ -155,7 +155,7 @@ void tacheEditeur::sauver()
             ouvrirWarning("Une tâche non-préemptive doit durer moins de 12h !");
              return;}
         TacheManager& TM = TacheManager::getInstance();
-        PrecedenceManager& PM = PrecedenceManager::getInstance();
+        PrecedenceManager& PrM = PrecedenceManager::getInstance();
         if(tache == 0){
         //AJOUT DE LA TACHE
         if(TM.getItem(id->text()) != nullptr){
@@ -171,19 +171,18 @@ void tacheEditeur::sauver()
 
         for(int i = 0; i < pred->count(); ++i){
               qDebug() << "ajout:\n";
-              PM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), t);
+              if(pred->item(i)->text() != "")
+                 PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), t);
         }
 
-        }catch(const char* s){qDebug()<<s;}
+        }catch(const char* s){ouvrirWarning(QString(s));}
 
         ouvrirInformation("Tache créée avec succès !\nN'oubliez pas de la programmer !","Félicitations");
-        //t.afficher();
         close();
         }
         else{
         if(ouvrirQuestion("Êtes-vous sûr de vouloir modifier cette tâche ?") == QMessageBox::Yes){
             //MODIFICATION DE LA TACHE
-        PrecedenceManager& PM = PrecedenceManager::getInstance();
         tache->setDisponibiliteDT(dispo->dateTime());
         tache->setDuree(duree->time());
         tache->setTitre(titre->toPlainText());
@@ -196,11 +195,18 @@ void tacheEditeur::sauver()
         else if(tache->getProjet() == nullptr && projet->currentText() != "Sélectionner")
             tache->setProjet(projet->currentText());
 
-        for(PrecedenceManager::const_iterator it = PrM.begin(); it != PrM.end(); ++it){ //suppression des precedences
-           if(&((**it).getSuccesseur()) == tache)
+//       vector<Precedence*> Liste = tache->getPrecedences();
+//       for(vector<Precedence*>::iterator it = Liste.begin(); it != Liste.end(); ++it)
+//           PrM.deleteItem(**it);
 
-               pred->addItem((**it).getPredecesseur().getId());
-          }
+//       qDebug() << "ok............";
+//       for(int i = 0; i < pred->count(); ++i){
+//             qDebug() << "ajout:\n";
+//             if(pred->item(i)->text() != "")
+//                PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), *tache);
+//       }
+
+
         ouvrirInformation("Tâche modifiée avec succès!");
         close();
         }}

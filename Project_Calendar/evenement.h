@@ -14,7 +14,7 @@ class TacheManager;
 class ProgrammationManager;
 class ProjetManager;
 class PrecedenceManager;
-
+class Precedence;
 class TacheComposite;
 
 using namespace std;
@@ -48,6 +48,7 @@ protected:
     virtual ~Tache()=0{}
 public:
     Projet *getProjet()const;
+    vector<Precedence*> getPrecedences()const;
     const QDateTime& getDisponibilite() const{return date_dispo;}
     const QDateTime& getEcheance() const{return date_echeance;}
     const QString& getTitre()const{return titre;}

@@ -61,6 +61,16 @@ void Tache::setProjet(const QString& id){
     setProjet(*p);
 }
 
+vector<Precedence*> Tache::getPrecedences()const{
+    vector<Precedence*> Liste;
+    PrecedenceManager& PrM = PrecedenceManager::getInstance();
+    for(PrecedenceManager::const_iterator it = PrM.begin(); it != PrM.end(); ++it){
+        if(&((*it)->getSuccesseur()) == this)
+           Liste.push_back(*it);
+    }
+    return Liste;
+}
+
 TacheComposite* Tache::getComposite()const{
     TacheManager& TM = TacheManager::getInstance();
     for(TacheManager::iterator it = TM.begin(); it != TM.end() ; it++){

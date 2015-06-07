@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     PrecM.ajouterPrecedence(*tu[0],*tu[1]);
     PrecM.ajouterPrecedence(*tu[1],*tu[3]);
 
+
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
     p.ajouterTache("SOPRA STERIA");
 

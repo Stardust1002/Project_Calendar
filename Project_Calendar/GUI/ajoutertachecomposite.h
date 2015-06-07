@@ -24,6 +24,8 @@ private slots:
     void on_projet_currentIndexChanged(const QString &arg1);
 
 private:
+    TacheComposite* tache_composite;
+    bool updatable;
     Ui::ajouterTacheComposite *ui;
 };
 
