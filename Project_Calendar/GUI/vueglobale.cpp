@@ -2,7 +2,7 @@
 #include "ui_vueglobale.h"
 
 vueGlobale::vueGlobale(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent),_parent(parent),
     ui(new Ui::vueGlobale)
 {
     ui->setupUi(this);
@@ -11,6 +11,7 @@ vueGlobale::vueGlobale(QWidget *parent) :
     ui->treeWidget->resizeColumnToContents(3);
 
     ProjetManager& PM = ProjetManager::getInstance();
+    ProgrammationManager& ProM = ProgrammationManager::getInstance();
 
     for(ProjetManager::iterator it = PM.begin(); it != PM.end(); ++it){
     Projet& projet = (**it);
@@ -25,20 +26,41 @@ vueGlobale::vueGlobale(QWidget *parent) :
     if((*it2)->whoAmI() == "tache_unitaire"){
         TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(*it2);
         QTreeWidgetItem *tu;
-
-        if(!tmp->isPreemptive())
-            tu = insertItem(tmp->getId(),tmp->getDuree().toString(), nonProgrammees);
+        if(!tmp->isPreemptive()){
+            if(ProM.isProgrammee(*tmp))
+                tu = insertItem(tmp->getId(), tmp->getDuree().toString(), (tmp->getProgrammations())[0]->getDate().toString(),programmees);
+            else
+                tu = insertItem(tmp->getId(),tmp->getDuree().toString(),"/", nonProgrammees);
+        }
         else{
-            tu = insertItem(tmp->getId(),tmp->getDuree().toString(),"Préemptive", nonProgrammees);
+            if(ProM.isProgrammee(*tmp))
+                tu = insertItem(tmp->getId(),tmp->getDuree().toString(),"Préemptive", programmees);
+            else
+                tu = insertItem(tmp->getId(),tmp->getDuree().toString(),"Préemptive", nonProgrammees);
+
             QTreeWidgetItem *programmations = insertItem("Programmations",tu);
             //affichage des programmations par programmationManager
+            vector<Programmation*> lprog = tmp->getProgrammations();
+            int i = 1;
+            for(vector<Programmation*>::iterator it = lprog.begin(); it != lprog.end(); ++it, ++i)
+                insertItem("Programmation "+i, (*it)->getDuree().toString(), (*it)->getDate().toString(),programmations);
+
         }
-        insertItem("Prédécesseurs", tu);
+        QTreeWidgetItem* pred = insertItem("Prédécesseurs", tu);
+        vector<Precedence*> liste = tmp->getPrecedences();
+        for(vector<Precedence*>::iterator it = liste.begin(); it != liste.end(); ++it)
+            insertItem((*it)->getPredecesseur().getId(), pred);
     }
     else{
+        TacheComposite* tmp = dynamic_cast<TacheComposite*>(*it2);
         QTreeWidgetItem* tc = insertItem((*it2)->getId(), tachesComposites);
-        insertItem("Taches Composantes", tc);
-        insertItem("Prédécesseurs", tc);
+        QTreeWidgetItem* composantes = insertItem("Taches Composantes", tc);
+        QTreeWidgetItem* pred = insertItem("Prédécesseurs", tc);
+        vector<Precedence*> liste = tmp->getPrecedences();
+        for(vector<Precedence*>::iterator it = liste.begin(); it != liste.end(); ++it)
+            insertItem((*it)->getPredecesseur().getId(), pred);
+        for(TacheComposite::iterator it = tmp->begin(); it != tmp->end(); ++it)
+            insertItem((*it)->getId(), composantes);
     }
    }
   }
@@ -67,6 +89,7 @@ vueGlobale::vueGlobale(QWidget *parent) :
                 QTreeWidgetItem* tc = insertItem((*it)->getId(), tachesComposites);
                 insertItem("Taches Composantes", tc);
                 insertItem("Prédécesseurs", tc);
+
             }
     }
     }
@@ -115,19 +138,19 @@ void vueGlobale::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column){
         if(t == nullptr){ // Il s'agit d'un projet
             Projet* p = PM.getItem(item->text(column));
             if(p == nullptr)return; //aucun projet trouvé
-            ajouterProjet* editeurProjet = new ajouterProjet(p, this);
+            ajouterProjet* editeurProjet = new ajouterProjet(p, _parent);
             editeurProjet->show();
         }
         else{
             if(t->whoAmI() == "tache_unitaire"){
 
                 TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(t);
-                tacheEditeur* editeurTacheUnitaire = new tacheEditeur(tmp,this);
+                tacheEditeur* editeurTacheUnitaire = new tacheEditeur(tmp,_parent);
                 editeurTacheUnitaire->show();
             }
             else{
                 TacheComposite* tmp = dynamic_cast<TacheComposite*>(t);
-                ajouterTacheComposite* tacheComposite = new ajouterTacheComposite(tmp,this);
+                ajouterTacheComposite* tacheComposite = new ajouterTacheComposite(tmp,_parent);
                 tacheComposite->show();
             }
         }
@@ -135,7 +158,7 @@ void vueGlobale::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column){
     }
     else if(column == 2 && !item->text(column).isEmpty()){
         // Recherche de la tache, checker la methode isComposite, si tache unitaire lancer:
-        programmationTache* programmation = new programmationTache(0,this);
+        programmationTache* programmation = new programmationTache(0,_parent);
         programmation->show();
     }
 }

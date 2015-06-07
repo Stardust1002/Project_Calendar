@@ -35,6 +35,7 @@ private slots:
 
 private:
     Ui::vueGlobale *ui;
+    QWidget* _parent;
 };
 
 #endif // VUEGLOBALE_H

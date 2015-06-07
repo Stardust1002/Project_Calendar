@@ -94,6 +94,16 @@ void TacheUnitaire::afficher()const{
     else qDebug()<< "Preemptive: non\n";
 }
 
+vector<Programmation*> Evenement::getProgrammations()const{
+    vector<Programmation*> liste;
+    ProgrammationManager& ProM = ProgrammationManager::getInstance();
+    for(ProgrammationManager::const_iterator it = ProM.begin(); it != ProM.end(); ++it){
+        if(&((*it)->getEvenement()) == this)
+            liste.push_back(*it);
+    }
+    return liste;
+}
+
 void TacheComposite::afficher(){
     qDebug() << "\nTache Composite:";
     Tache::afficher();
@@ -106,12 +116,10 @@ TacheComposite::~TacheComposite(){
     }
     this->tab.clear();
 }
-/*Projet::Projet(QString id, QString t, QDateTime d, vector<Tache*> t):identificateur(id), titre(t), date_dispo(d){
-    for(vector<Tache*>::iterator it = t.begin(); it != t.end(); ++it){
-       tab.push_back(*it);
-    }
-}
-*/
+
+
+
+
 TacheComposite::TacheComposite(const QString& id, const QString& title, vector<Tache*> t, const QDateTime& date_dispo, const QDateTime& date_echeance):Tache(id, title,date_dispo,date_echeance){
     for(iterator it = t.begin(); it != t.end(); ++it)
         tab.push_back(*it);

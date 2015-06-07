@@ -16,6 +16,7 @@ class ProjetManager;
 class PrecedenceManager;
 class Precedence;
 class TacheComposite;
+class Programmation;
 
 using namespace std;
 class Projet;
@@ -30,6 +31,7 @@ protected:
 public:
     const QTimeSpan& getDuree()const{return duree;}
     virtual void setDuree(const QTimeSpan& d){duree=d;}
+    vector<Programmation*> getProgrammations()const;
     virtual QString whoAmI()const = 0;
     virtual bool isPreemptive() const = 0;
 };

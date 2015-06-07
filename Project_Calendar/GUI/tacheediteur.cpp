@@ -194,7 +194,7 @@ void tacheEditeur::sauver()
 
         if(tache->getProjet() == nullptr && projet->currentText() != "Sélectionner")
             tache->setProjet(projet->currentText());
-
+       try{
        vector<Precedence*> Liste = tache->getPrecedences();
        for(vector<Precedence*>::iterator it = Liste.begin(); it != Liste.end(); ++it)
            PrM.deleteItem(*it);
@@ -204,7 +204,8 @@ void tacheEditeur::sauver()
              if(!pred->item(i)->text().isEmpty())
                 PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), *tache);
        }
-
+        }
+        catch(const char* s){ouvrirWarning(QString(s));}
 
         ouvrirInformation("Tâche modifiée avec succès!");
         close();
