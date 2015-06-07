@@ -92,6 +92,11 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
             ui->tableWidget->setRowCount(++max);
 
         ui->tableWidget->setItem(jours[date.dayOfWeek()-1]++,date.dayOfWeek()-1, new QTableWidgetItem(nom));
+        if((*it)->getEvenement().whoAmI() != "tache_unitaire")//ACTIVITE EN BLEU
+                ui->tableWidget->item(jours[date.dayOfWeek()-1]-1,date.dayOfWeek()-1)->setBackgroundColor(QColor(0, 0, 255, 57));
+        else //TACHES UNITAIRES EN ROUGE
+                ui->tableWidget->item(jours[date.dayOfWeek()-1]-1,date.dayOfWeek()-1)->setBackgroundColor(QColor(255, 0, 0, 57));
+
     }
 
     ui->tableWidget->selectColumn(jour-1);
@@ -165,7 +170,17 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 
 void MainWindow::on_voir_clicked()
 {
-    on_actionUnitaire_triggered();
+    TacheManager& TM = TacheManager::getInstance();
+    ActiviteManager& AM = ActiviteManager::getInstance();
+
+    if(ui->type->text() == "tache_unitaire"){
+        TacheUnitaire* e = dynamic_cast<TacheUnitaire*>(TM.getItem(ui->identificateur->text()));
+        on_actionUnitaire_triggered(e);
+    }
+    else{
+        Activite* e = AM.getItem(ui->identificateur->text());
+        on_newActivity_triggered(e);
+}
 }
 
 void MainWindow::on_actionVue_Globale_triggered()

@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 //    act.afficher();
 
 
-//    Programmation& prog = ProgM.ajouterProgrammation(act,"12:07:2022:12:36","02:12");
+ Programmation& prog = ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
 //    qDebug()<<prog.getDuree()<<ProgM.dureeProgrammee(act)<<ProgM.isProgrammee(act);
 
     ProgM.ajouterProgrammation(*tu[0],"11:06:2015:00:00","01:00");
