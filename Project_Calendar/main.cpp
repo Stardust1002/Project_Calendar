@@ -2,6 +2,7 @@
 #include <QApplication>
 #include "qtimespan.h"
 #include "manager.h"
+#include "import-export.h"
 #include "timing.h"
 #include <ostream>
 
@@ -10,6 +11,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    Export& o = Export::getInstance();
+    XML& format= XML::getInstance();
+    format.setPathname("new.xml");
+    o.setStrategie(&format);
 
     TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
