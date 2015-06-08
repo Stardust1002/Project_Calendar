@@ -103,7 +103,7 @@ void MainWindow::refresh_calendar(){
 
 void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 {
-    qDebug() << "Evenement: " << item->text();
+//    qDebug() << "Evenement: " << item->text();
 
     //AFFICHAGE de l'évènement dans le cadre du bord droit
     //Récupérer toutes les informations d'un évènement suivant un identificateur
@@ -124,11 +124,23 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       const QStringList& liste = item->text().split(" | ");
       const QString& identificateur = liste[1];
       const QString& horaire = liste[0];
+      const QStringList& time = horaire.split(":");
+
+      // on retrouve le jour de la semaine pour reformer la date complète et avoir accès à la programmation
+
+      int mois,annee,j;
+      date_calendrier.getDate(&annee,&mois,&j);
+      j = j + 1 - date_calendrier.dayOfWeek() + item->column();
+
+      QDateTime prog(QDate(annee,mois,j),QTime(time[0].toInt(),time[1].toInt(),0,0));
+      qDebug() << prog.toString();
+
       TacheManager& TM = TacheManager::getInstance();
       TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
+      ProgrammationManager& ProgM = ProgrammationManager::getInstance();
+      qDebug() << ProgM.getProgrammation(prog)->getEvenement().getId();
+
       if(t!=nullptr){
-          t->afficher();
-                  t->afficher();
                   ui->groupBox->setEnabled(true);
                   ui->identificateur->setText(t->getId());
                   ui->titre->setText(t->getTitre());
@@ -139,7 +151,6 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       ActiviteManager& AM = ActiviteManager::getInstance();
       Activite* a = AM.getItem(identificateur);
       if(a == nullptr)return;
-      a->afficher();
       ui->groupBox->setEnabled(true);
       ui->identificateur->setText(a->getId());
       ui->titre->setText(a->getTitre());

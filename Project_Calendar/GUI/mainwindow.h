@@ -59,6 +59,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QDate date_calendrier;
+
     enum JOUR{
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE
     };
