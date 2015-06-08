@@ -5,20 +5,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    on_calendarWidget_clicked(date_calendrier);
+    refresh_calendar(date_calendrier);
 
 
-//    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-//    QTableWidgetItem* w = new QTableWidgetItem(QString("Se branler"));
-//    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, LUNDI, w);
-//    ui->tableWidget->item(0,0)->setBackgroundColor(QColor("YELLOW"));
-
-//    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-//    QTableWidgetItem* w2 = new QTableWidgetItem(QString("RENDU NA17"));
-//    ui->tableWidget->setItem(0, MARDI, w2);
-
-//    QTableWidgetItem* w3 = new QTableWidgetItem(QString("SOPRA STERIA"));
-//    ui->tableWidget->setItem(0, MERCREDI, w3);
 }
 
 MainWindow::~MainWindow()
@@ -74,6 +63,10 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
+    refresh_calendar(date);
+}
+
+void MainWindow::refresh_calendar(const QDate& date){
     date_calendrier = date;
     ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
@@ -98,8 +91,10 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
                 ui->tableWidget->item(jours[date.dayOfWeek()-1]-1,date.dayOfWeek()-1)->setBackgroundColor(QColor(255, 0, 0, 57));
 
     }
-
     ui->tableWidget->selectColumn(jour-1);
+}
+void MainWindow::refresh_calendar(){
+    refresh_calendar(date_calendrier);
 }
 
 
@@ -189,7 +184,9 @@ void MainWindow::on_actionVue_Globale_triggered()
     vue->show();
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    on_calendarWidget_clicked(date_calendrier);
+
+
+const QDate& MainWindow::getCurrentDate()const{
+    return date_calendrier;
 }
+

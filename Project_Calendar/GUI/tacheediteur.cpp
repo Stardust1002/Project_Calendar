@@ -1,6 +1,6 @@
 #include "tacheediteur.h"
-
-tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(tacheToEdit), QDialog(parent)
+#include "mainwindow.h"
+tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(tacheToEdit), QDialog(parent),parent(parent)
 {
     TacheManager& TM = TacheManager::getInstance();
     ProjetManager& PM = ProjetManager::getInstance();
@@ -150,6 +150,8 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
 }
 void tacheEditeur::sauver()
 {
+
+    MainWindow* w = dynamic_cast<MainWindow*>(parent);
     if(!id->text().isEmpty() &&
        !titre->toPlainText().isEmpty()&&
        !dispo->text().isEmpty() &&
@@ -200,7 +202,6 @@ void tacheEditeur::sauver()
            PrM.deleteItem(*it);
 
        for(int i = 0; i < pred->count(); ++i){
-             qDebug() << "ajout:\n";
              if(!pred->item(i)->text().isEmpty())
                 PrM.ajouterPrecedence(*(TM.getItem(pred->item(i)->text())), *tache);
        }
@@ -208,6 +209,7 @@ void tacheEditeur::sauver()
         catch(const char* s){ouvrirWarning(QString(s));}
 
         ouvrirInformation("Tâche modifiée avec succès!");
+        w->refresh_calendar();
         close();
         }}
     }

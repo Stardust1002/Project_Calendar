@@ -60,6 +60,8 @@ class tacheEditeur:public QDialog
     QListWidget* pred;
     QListWidget* liste_taches;
 
+    QWidget* parent;
+
 public slots:
     void sauver();
 

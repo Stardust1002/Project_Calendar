@@ -23,6 +23,10 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void refresh_calendar(const QDate& date);
+    void refresh_calendar();
+    const QDate& MainWindow::getCurrentDate()const;
+
     ~MainWindow();
 
 private slots:
@@ -51,7 +55,6 @@ private slots:
 
     void on_actionVue_Globale_triggered();
 
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,8 +1,8 @@
 #include "ajouteractivite.h"
 #include "ui_ajouteractivite.h"
-
+#include "mainwindow.h"
 ajouterActivite::ajouterActivite(Activite *a, QWidget *parent) :
-    QDialog(parent),activite(a),
+    QDialog(parent),activite(a),parent(parent),
     ui(new Ui::ajouterActivite)
 {
     ui->setupUi(this);
@@ -24,6 +24,7 @@ ajouterActivite::~ajouterActivite()
 
 void ajouterActivite::on_pushButton_clicked()
 {
+    MainWindow* w = dynamic_cast<MainWindow*>(parent);
     if(!ui->identificateur->text().isEmpty() &&
        ui->duree->text() != "00:00" &&
        !ui->titre->toPlainText().isEmpty())
@@ -55,6 +56,7 @@ void ajouterActivite::on_pushButton_clicked()
             activite->setDuree(ui->duree->time());
             ouvrirInformation("Activité modifiée avec succès!\n");
             activite->afficher();
+            w->refresh_calendar();
             close();
             }
     }

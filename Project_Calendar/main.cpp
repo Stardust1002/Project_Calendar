@@ -9,8 +9,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
     Export& o = Export::getInstance();
     XML& format= XML::getInstance();
@@ -77,5 +75,8 @@ int main(int argc, char *argv[])
     qDebug()<<"Jusqu'ici tout va bien";
 }
  catch(const char* s){ouvrirWarning(s);}
+    MainWindow w;
+    w.show();
+
     return a.exec();
 }

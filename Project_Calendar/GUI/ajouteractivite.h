@@ -24,6 +24,7 @@ private slots:
 private:
     Activite* activite;
     Ui::ajouterActivite *ui;
+    QWidget* parent;
 };
 
 #endif // AJOUTERACTIVITE_H
