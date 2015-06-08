@@ -138,13 +138,14 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       TacheManager& TM = TacheManager::getInstance();
       TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
       ProgrammationManager& ProgM = ProgrammationManager::getInstance();
-      qDebug() << ProgM.getProgrammation(prog)->getEvenement().getId();
+      Programmation* programmation = ProgM.getProgrammation(prog);
 
       if(t!=nullptr){
                   ui->groupBox->setEnabled(true);
                   ui->identificateur->setText(t->getId());
                   ui->titre->setText(t->getTitre());
-                  ui->duree->setText(t->getDuree().toString());
+                  ui->date->setText(prog.toString());
+                  ui->duree->setText(programmation->getDuree().toString());
                   ui->type->setText(t->whoAmI());
       }
       else{
@@ -154,7 +155,8 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       ui->groupBox->setEnabled(true);
       ui->identificateur->setText(a->getId());
       ui->titre->setText(a->getTitre());
-      ui->duree->setText(a->getDuree().toString());
+      ui->date->setText(prog.toString());
+      ui->duree->setText(programmation->getDuree().toString());
       ui->type->setText(a->getTypeToString());
     }
 
