@@ -50,14 +50,20 @@ void MainWindow::on_actionProgrammer_une_Tache_triggered()
 
 void MainWindow::on_actionProgrammer_une_Activit_triggered()
 {
-    programmationActivite* programmation = new programmationActivite(this); //Faire surcharge pour modifier activité
+    programmationActivite* programmation = new programmationActivite(0,this); //Faire surcharge pour modifier activité
     programmation->show();
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    programmationTache* programmation = new programmationTache(0,this);
+    if(ui->type->text() != "tache_unitaire"){
+    ActiviteManager& AM = ActiviteManager::getInstance();
+    Activite* activite = AM.getItem(ui->identificateur->text());
+
+    programmationActivite* programmation = new programmationActivite(activite,this);
     programmation->show();
+    }
+
 
 }
 
@@ -103,24 +109,6 @@ void MainWindow::refresh_calendar(){
 
 void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 {
-//    qDebug() << "Evenement: " << item->text();
-
-    //AFFICHAGE de l'évènement dans le cadre du bord droit
-    //Récupérer toutes les informations d'un évènement suivant un identificateur
-    //checker programmation manager pour récuperer l'evenement et demander son type avec whoAmI
-
-    //Si tache unitaire
-//    TacheManager& TM = TacheManager::getInstance();
-//    TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
-//    if(t==nullptr)return;
-//        t->afficher();
-//        ui->groupBox->setEnabled(true);
-//        ui->identificateur->setText(t->getId());
-//        ui->titre->setText(t->getTitre());
-//        ui->duree->setText(t->getDuree().toString());
-
-//
-    //Si evenement
       const QStringList& liste = item->text().split(" | ");
       const QString& identificateur = liste[1];
       const QString& horaire = liste[0];

@@ -178,6 +178,7 @@ public:
     Evenement& getEvenement()const{return evenement;}
     const QDateTime& getDate()const {return date;}
     const QTimeSpan& getDuree()const{return duree;}
+    void retirerProgrammation();
 
 };
 

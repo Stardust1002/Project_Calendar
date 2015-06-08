@@ -155,6 +155,7 @@ public:
     QTimeSpan dureeProgrammee(const Evenement& e)const;
     const vector<Programmation*> getProgrammations(int week, int year)const;
     Programmation *getProgrammation(const QDateTime& date)const;
+    void deleteItem(Programmation* p);
 
 
 };

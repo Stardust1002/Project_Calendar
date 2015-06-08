@@ -179,3 +179,11 @@ Programmation* ProgrammationManager::getProgrammation(const QDateTime& date)cons
     while(it != tab.end() && (*it)->getDate() != date)++it;
     return (*it);
 }
+void ProgrammationManager::deleteItem(Programmation *p){
+    const_iterator it = tab.begin();
+    while(it != tab.end() && *it != p) ++it;
+     if(it != tab.end()){
+          tab.erase(it);
+          delete p;
+     }
+   }
