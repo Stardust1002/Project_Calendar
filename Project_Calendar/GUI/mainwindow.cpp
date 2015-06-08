@@ -77,14 +77,16 @@ void MainWindow::refresh_calendar(const QDate& date){
     int max = 0;
     vector<Programmation*> liste = ProM.getProgrammations(semaine,annee);
     vector<int> jours(7,0);
+
     for(vector<Programmation*>::iterator it = liste.begin(); it != liste.end(); ++it){
         const QString& nom = (*it)->getEvenement().getId();
+        const QString& heure = (*it)->getDate().time().toString("HH:mm");
         QDate& date = (*it)->getDate().date();
         qDebug() << nom;
         if(max == jours[date.dayOfWeek()-1])
             ui->tableWidget->setRowCount(++max);
 
-        ui->tableWidget->setItem(jours[date.dayOfWeek()-1]++,date.dayOfWeek()-1, new QTableWidgetItem(nom));
+        ui->tableWidget->setItem(jours[date.dayOfWeek()-1]++,date.dayOfWeek()-1, new QTableWidgetItem(heure + " | " + nom));
         if((*it)->getEvenement().whoAmI() != "tache_unitaire")//ACTIVITE EN BLEU
                 ui->tableWidget->item(jours[date.dayOfWeek()-1]-1,date.dayOfWeek()-1)->setBackgroundColor(QColor(0, 0, 255, 57));
         else //TACHES UNITAIRES EN ROUGE
@@ -119,9 +121,11 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 
 //
     //Si evenement
-
+      const QStringList& liste = item->text().split(" | ");
+      const QString& identificateur = liste[1];
+      const QString& horaire = liste[0];
       TacheManager& TM = TacheManager::getInstance();
-      TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
+      TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
       if(t!=nullptr){
           t->afficher();
                   t->afficher();
@@ -133,7 +137,7 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       }
       else{
       ActiviteManager& AM = ActiviteManager::getInstance();
-      Activite* a = AM.getItem(item->text());
+      Activite* a = AM.getItem(identificateur);
       if(a == nullptr)return;
       a->afficher();
       ui->groupBox->setEnabled(true);
@@ -148,15 +152,18 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 
 void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 {
+    const QStringList& liste = item->text().split(" | ");
+    const QString& identificateur = liste[1];
+    const QString& horaire = liste[0];
     TacheManager& TM = TacheManager::getInstance();
-    TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(item->text()));
+    TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
     if(t!=nullptr){
         t->afficher();
         on_actionUnitaire_triggered(t);
     }
     else{
     ActiviteManager& AM = ActiviteManager::getInstance();
-    Activite* a = AM.getItem(item->text());
+    Activite* a = AM.getItem(identificateur);
     if(a == nullptr)return;
     a->afficher();
     on_newActivity_triggered(a);

@@ -160,13 +160,16 @@ bool ProgrammationManager::isProgrammee(const Evenement& e)const{
 bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& horaire,const QTimeSpan& duree)const{
     return true;
 }
-const vector<Programmation*> ProgrammationManager::getProgrammations(int week, int year){
+const vector<Programmation*> ProgrammationManager::getProgrammations(int week, int year)const{ // Liste des programmations par date croissante
     vector<Programmation*> liste;
-    for(iterator it = tab.begin(); it != tab.end(); ++it){
+    for(const_iterator it = tab.begin(); it != tab.end(); ++it){
         Programmation* programmation = *it;
         QDate date = programmation->getDate().date();
-        if(date.weekNumber() == week)
-            liste.push_back(programmation);
+        if(date.weekNumber() == week){
+            vector<Programmation*>::const_iterator it2 = liste.begin();
+            while(it2 != liste.end() && (*it2)->getDate() < (*it)->getDate())++it2;
+            liste.insert(it2, programmation);
+        }
     }
     return liste;
 }

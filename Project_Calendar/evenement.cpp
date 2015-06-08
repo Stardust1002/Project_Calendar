@@ -2,7 +2,6 @@
 #include "manager.h"
 
 
-
 /* ------------------------------- */
 /* ----------- TACHE ------------ */
 /* ------------------------------- */
@@ -94,12 +93,15 @@ void TacheUnitaire::afficher()const{
     else qDebug()<< "Preemptive: non\n";
 }
 
-vector<Programmation*> Evenement::getProgrammations()const{
+vector<Programmation*> Evenement::getProgrammations()const{ //renvoi les prog par date croissante
     vector<Programmation*> liste;
     ProgrammationManager& ProM = ProgrammationManager::getInstance();
     for(ProgrammationManager::const_iterator it = ProM.begin(); it != ProM.end(); ++it){
-        if(&((*it)->getEvenement()) == this)
-            liste.push_back(*it);
+        if(&((*it)->getEvenement()) == this){
+            vector<Programmation*>::iterator it2 = liste.begin();
+            while(it2 != liste.end() && (*it2)->getDate() < (*it)->getDate())++it2;
+                liste.push_back(*it);
+        }
     }
     return liste;
 }

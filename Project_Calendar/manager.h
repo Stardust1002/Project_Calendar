@@ -153,7 +153,7 @@ public:
     bool isProgrammee(const Evenement&)const;
     bool isProgrammable(const Evenement& t, const QDateTime& horaire,const QTimeSpan& duree)const;
     QTimeSpan dureeProgrammee(const Evenement& e)const;
-    const vector<Programmation*> getProgrammations(int week, int year);
+    const vector<Programmation*> getProgrammations(int week, int year)const;
 
 
 };

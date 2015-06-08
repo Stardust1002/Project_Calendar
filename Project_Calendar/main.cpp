@@ -57,9 +57,9 @@ int main(int argc, char *argv[])
  Programmation& prog = ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
 //    qDebug()<<prog.getDuree()<<ProgM.dureeProgrammee(act)<<ProgM.isProgrammee(act);
 
-    ProgM.ajouterProgrammation(*tu[0],"11:06:2015:00:00","01:00");
+    ProgM.ajouterProgrammation(*tu[0],"11:06:2015:05:00","01:00");
     ProgM.ajouterProgrammation(*tu[1],"11:06:2015:00:00","04:00");
-    ProgM.ajouterProgrammation(*tu[2],"11:06:2015:00:00","08:00");
+    ProgM.ajouterProgrammation(*tu[2],"11:06:2015:09:00","08:00");
     ProgM.ajouterProgrammation(*tu[3],"09:06:2015:00:00","10:00");
 
 //    vector<Programmation*> liste = act.getProgrammations();
@@ -73,7 +73,8 @@ int main(int argc, char *argv[])
    // TM.deleteItem("C1");
 
     qDebug()<<"Jusqu'ici tout va bien";
-}
+
+    }
  catch(const char* s){ouvrirWarning(s);}
     MainWindow w;
     w.show();
