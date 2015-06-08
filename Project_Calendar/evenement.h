@@ -177,6 +177,7 @@ class Programmation{
 public:
     Evenement& getEvenement()const{return evenement;}
     const QDateTime& getDate()const {return date;}
+    QDateTime getFin()const{return QDateTime(date.addSecs(QTimeSpan(0,0).secsTo(duree)));}
     const QTimeSpan& getDuree()const{return duree;}
     void retirerProgrammation();
 

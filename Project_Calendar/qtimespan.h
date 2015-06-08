@@ -11,6 +11,8 @@ public:
 
     QTimeSpan operator+(const QTimeSpan& d)const;
     QTimeSpan& operator+=(const QTimeSpan& d);
+    QTimeSpan operator-(const QTimeSpan& d)const;
+    QTimeSpan& operator-=(const QTimeSpan& d);
 };
 
 

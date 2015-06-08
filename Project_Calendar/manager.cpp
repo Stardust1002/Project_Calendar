@@ -80,6 +80,8 @@ Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, co
     return *t;
 }
 Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, const QDateTime& dispo){
+    if(!dispo.isValid())
+        throw "error : Creation de projet impossible";
     Projet* t = new Projet(id,titre,dispo);
     addItem(*t);
     return *t;
@@ -126,7 +128,7 @@ void PrecedenceManager::deleteItem(Precedence *p){
 /* -------------------------------------------- */
 
 Programmation& ProgrammationManager::ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree){
-    if(!isProgrammable(evenement,horaire,duree) )
+    if(!horaire.isValid() || !duree.isValid() || duree == QTimeSpan(0,0) || !isProgrammable(evenement,horaire,duree))
         throw "Error : Evenement non programmable";
     Programmation *prog = new Programmation(evenement,horaire,duree);
     addItem(*prog);
@@ -140,14 +142,14 @@ Programmation& ProgrammationManager::ajouterProgrammation(Evenement& evenement,c
 }
 
 QTimeSpan ProgrammationManager::dureeProgrammee(const Evenement& e)const{
-    QTimeSpan duree;
+    QTimeSpan duree(0,0);
     bool Preemptive = e.isPreemptive();
     for(const_iterator it = tab.begin(); it!= tab.end() ; it++){
         if((&(*it)->getEvenement()) == &e){
                 if(!Preemptive)
                     return (*it)->getDuree();
                 else
-                    duree += (*it)->getEvenement().getDuree();
+                    duree += (*it)->getDuree();
         }
     }
     return duree;
@@ -160,7 +162,25 @@ bool ProgrammationManager::isProgrammee(const Evenement& e)const{
 }
 
 bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& horaire,const QTimeSpan& duree)const{
+    QTimeSpan& dureeProg = dureeProgrammee(e);
+    QDateTime fin(horaire.addSecs(QTimeSpan(0,0).secsTo(duree)));
+    if(duree > (e.getDuree() - dureeProg))
+        return false;
+    else if(!e.isPreemptive() && duree != e.getDuree())
+        return false;
+    if(typeid(e) == typeid(TacheUnitaire&)){
+        const TacheUnitaire& tu = dynamic_cast<const TacheUnitaire&>(e);
+        if(horaire < tu.getDisponibilite() || fin > tu.getEcheance())
+            return false;
+    }
+    for(const_iterator it = begin() ; it != end() ; it++){
+        if( ((*it)->getDate() < horaire && (*it)->getFin() > fin)
+                || ((*it)->getDate() > horaire && (*it)->getDate() < fin)
+                || ((*it)->getFin() > horaire && (*it)->getFin() < fin) )
+            return false;
+    }
     return true;
+
 }
 const vector<Programmation*> ProgrammationManager::getProgrammations(int week, int year)const{ // Liste des programmations par date croissante
     vector<Programmation*> liste;
