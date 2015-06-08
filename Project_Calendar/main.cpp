@@ -10,11 +10,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Export& o = Export::getInstance();
-    XML& format= XML::getInstance();
-    format.setPathname("new.xml");
-    o.setStrategie(&format);
-
     TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
     ActiviteManager &AM = ActiviteManager::getInstance();
@@ -50,7 +45,7 @@ int main(int argc, char *argv[])
     p.ajouterTache(tu[1]);
     p.ajouterTache(tu[2]);
 
-    Activite& act = AM.ajouterActivite("Se branler", "avec son colloc", Activite::REUNION, "00:30");
+    Activite& act = AM.ajouterActivite("Manger", "avec son colloc", Activite::REUNION, "00:30");
 //    act.afficher();
 
 
@@ -71,6 +66,15 @@ int main(int argc, char *argv[])
    // p.afficher();
 
    // TM.deleteItem("C1");
+
+    /* ----- Test Export ------ */
+
+    Memento& m = Memento::getInstance();
+    // Plus besoin de specifier la strategie (par défaut XML avec pathname = "auto-save.xml"
+    //XML& format= XML::getInstance();
+    //format.setPathname("new.xml");
+    //m.setStrategie(&format);
+    m.save();
 
     qDebug()<<"Jusqu'ici tout va bien";
 

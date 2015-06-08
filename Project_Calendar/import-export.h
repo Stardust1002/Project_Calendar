@@ -2,13 +2,14 @@
 #define IMPORTEXPORT
 
 #include <QXmlStreamWriter>
+#include <QXmlStreamReader>
 #include "evenement.h"
 #include <QFile>
 
 class Format{
 protected:
     QString pathname;
-    Format(){}
+    Format(const QString& p):pathname(p){}
     Format(const Format &){}
     Format& operator=(const Format&){}
     virtual ~Format()=0{}
@@ -17,6 +18,7 @@ public:
     void setPathname(const QString& p){pathname = p;}
     const QString& getPathname(){return pathname;}
     virtual void save()const=0;
+    //virtual void load()const=0;
 };
 
 class XML : public Format{
@@ -26,8 +28,9 @@ class XML : public Format{
         virtual ~Handler(){XML::freeInstance();}
     };
     static Handler handler;
+    XML(const QString &p):Format(p){}
 public:
-    static XML& getInstance();
+    static XML& getInstance(const QString& p = "auto-save.xml");
     static void freeInstance();
     void save() const override;
     void saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const;
@@ -35,24 +38,31 @@ public:
     void saveActivite(QXmlStreamWriter& stream, const Activite& act)const;
     void saveProjet(QXmlStreamWriter& stream, const Projet& proj)const;
     void saveTache(QXmlStreamWriter& stream, const Tache& tache)const;
+    //void load()const override;
+    void loadProgrammation(QXmlStreamReader& stream)const;
+    void loadPrecedence(QXmlStreamReader& stream)const;
+    void loadActivite(QXmlStreamReader& stream)const;
+    void loadProjet(QXmlStreamReader& stream)const;
+    void loadTache(QXmlStreamReader& stream)const;
 };
 
-class Export{
+class Memento{
     Format* strategie;
-    Export(){}
-    Export(const Export &){}
-    Export& operator=(const Export&){}
+    Memento(Format &s):strategie(&s){}
+    Memento(const Memento &){}
+    Memento& operator=(const Memento&){}
     struct Handler{
-        Export* instance;
+        Memento* instance;
         Handler():instance(nullptr){}
-        virtual ~Handler(){Export::freeInstance();}
+        virtual ~Handler(){Memento::freeInstance();}
     };
     static Handler handler;
 public:
     static void freeInstance();
-    static Export& getInstance();
+    static Memento& getInstance(Format &strategie = XML::getInstance());
     void setStrategie(Format* strat){strategie = strat;}
     void save()const{strategie->save();}
+    //void load()const{strategie->load();}
 };
 
 #endif // IMPORTEXPORT

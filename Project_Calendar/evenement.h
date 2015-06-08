@@ -177,7 +177,7 @@ class Programmation{
 public:
     Evenement& getEvenement()const{return evenement;}
     const QDateTime& getDate()const {return date;}
-    const QTimeSpan& getDuree(){return duree;}
+    const QTimeSpan& getDuree()const{return duree;}
 
 };
 
@@ -205,6 +205,8 @@ public:
    };
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
+    const_iterator begin()const{return tab.begin();}
+    const_iterator end()const{return tab.end();}
     size_t getSize() const{return tab.size();}
     const QDateTime& getDisponibilite()const{return date_dispo;}
     QDateTime getEcheance();
