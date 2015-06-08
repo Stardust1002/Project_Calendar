@@ -99,7 +99,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="statut">
+     <widget class="QComboBox" name="status">
       <item>
        <property name="text">
         <string>Non-Programmée</string>

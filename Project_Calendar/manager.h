@@ -49,8 +49,8 @@ public:
 
     iterator begin(){return tab.begin();}
     iterator end(){return tab.end();}
-    const_iterator begin()const{return tab.begin();}
-    const_iterator end()const{return tab.end();}
+    const_iterator begin()const{return tab.cbegin();}
+    const_iterator end()const{return tab.cend();}
 };
 
 template <class T, class U> typename Manager<T,U>::Handler Manager<T,U>::handler;

@@ -50,9 +50,16 @@ void MainWindow::on_actionProgrammer_une_Tache_triggered()
 
 void MainWindow::on_actionProgrammer_une_Activit_triggered()
 {
+    try{
     programmationActivite* programmation = new programmationActivite(0,this); //Faire surcharge pour modifier activité
     programmation->show();
-}
+    }
+    catch(const char* s){
+        if(ouvrirQuestion(s) == QMessageBox::Yes){
+            ajouterActivite* nouvelle_activite = new ajouterActivite(0,this);
+            nouvelle_activite->show();
+        }
+}}
 
 void MainWindow::on_pushButton_2_clicked()
 {

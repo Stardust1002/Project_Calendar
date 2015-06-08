@@ -24,7 +24,9 @@ private slots:
 
     void on_deprogrammer_clicked();
 
-    void on_statut_currentIndexChanged(int index);
+    void on_status_currentIndexChanged(int index);
+
+    void on_activity_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::programmationActivite *ui;

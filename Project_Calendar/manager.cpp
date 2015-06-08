@@ -144,7 +144,7 @@ Programmation& ProgrammationManager::ajouterProgrammation(Evenement& evenement,c
 QTimeSpan ProgrammationManager::dureeProgrammee(const Evenement& e)const{
     QTimeSpan duree(0,0);
     bool Preemptive = e.isPreemptive();
-    for(const_iterator it = tab.begin(); it!= tab.end() ; it++){
+    for(const_iterator it = tab.begin(); it!= tab.end() ; ++it){
         if((&(*it)->getEvenement()) == &e){
                 if(!Preemptive)
                     return (*it)->getDuree();
@@ -202,10 +202,10 @@ Programmation* ProgrammationManager::getProgrammation(const QDateTime& date)cons
     return (*it);
 }
 void ProgrammationManager::deleteItem(Programmation *p){
-    const_iterator it = tab.begin();
+    iterator it = tab.begin();
     while(it != tab.end() && *it != p) ++it;
      if(it != tab.end()){
-          tab.erase(it);
-          delete p;
+       tab.erase(it);
+       delete p;
      }
    }
