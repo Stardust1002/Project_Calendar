@@ -18,7 +18,7 @@ public:
     void setPathname(const QString& p){pathname = p;}
     const QString& getPathname(){return pathname;}
     virtual void save()const=0;
-    //virtual void load()const=0;
+    virtual void load()const=0;
 };
 
 class XML : public Format{
@@ -33,17 +33,18 @@ public:
     static XML& getInstance(const QString& p = "auto-save.xml");
     static void freeInstance();
     void save() const override;
-    void saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const;
-    void savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const;
-    void saveActivite(QXmlStreamWriter& stream, const Activite& act)const;
     void saveProjet(QXmlStreamWriter& stream, const Projet& proj)const;
     void saveTache(QXmlStreamWriter& stream, const Tache& tache)const;
-    //void load()const override;
+    void saveActivite(QXmlStreamWriter& stream, const Activite& act)const;
+    void saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const;
+    void savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const;
+
+    void load()const override;
+    void loadProjet(QXmlStreamReader& stream)const;
+    Tache& loadTache(QXmlStreamReader& stream)const;
+    void loadActivite(QXmlStreamReader& stream)const;
     void loadProgrammation(QXmlStreamReader& stream)const;
     void loadPrecedence(QXmlStreamReader& stream)const;
-    void loadActivite(QXmlStreamReader& stream)const;
-    void loadProjet(QXmlStreamReader& stream)const;
-    void loadTache(QXmlStreamReader& stream)const;
 };
 
 class Memento{
@@ -62,7 +63,7 @@ public:
     static Memento& getInstance(Format &strategie = XML::getInstance());
     void setStrategie(Format* strat){strategie = strat;}
     void save()const{strategie->save();}
-    //void load()const{strategie->load();}
+    void load()const{strategie->load();}
 };
 
 #endif // IMPORTEXPORT

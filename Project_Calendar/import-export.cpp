@@ -43,10 +43,14 @@ void XML::saveProjet(QXmlStreamWriter& stream, const Projet& proj)const{
     stream.writeEndElement();
 }
 void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
+    bool isTacheUnitaire = (typeid(tache) == typeid(TacheUnitaire));
     stream.writeStartElement("Tache");
-    stream.writeAttribute("identificateur",tache.getId());
+    if(isTacheUnitaire)
+        stream.writeAttribute("identificateur",QString("u_")+tache.getId());
+    else
+        stream.writeAttribute("identificateur",QString("c_")+tache.getId());
     stream.writeAttribute("titre",tache.getTitre());
-    if(typeid(tache) == typeid(TacheUnitaire))
+    if(isTacheUnitaire)
     {
         const TacheUnitaire& tu = dynamic_cast<const TacheUnitaire&>(tache);
         stream.writeAttribute("duree",tu.getDuree().toString("hh:mm"));
@@ -57,7 +61,7 @@ void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
     }
     stream.writeAttribute("disponibilite",tache.getDisponibilite().toString("dd-MM-yyyy HH:mm"));
     stream.writeAttribute("echeance",tache.getEcheance().toString("dd-MM-yyyy HH:mm"));
-    if(typeid(tache) == typeid(TacheComposite))
+    if(!isTacheUnitaire)
     {
         const TacheComposite& tc = dynamic_cast<const TacheComposite&>(tache);
         // Sauvegarde de l'ensemble des sous tâches
@@ -70,9 +74,23 @@ void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
     stream.writeEndElement();
 }
 
+void XML::saveActivite(QXmlStreamWriter& stream, const Activite& act)const{
+    stream.writeStartElement("Activite");
+    stream.writeAttribute("identificateur",act.getId());
+    stream.writeAttribute("titre",act.getTitre());
+    stream.writeAttribute("type",act.getTypeToString());
+    stream.writeAttribute("duree",act.getDuree().toString("hh:mm"));
+    stream.writeEndElement();
+}
+
 void XML::saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const{
+    bool isActivite = (typeid(prog.getEvenement()) == typeid(Activite&));
+
     stream.writeStartElement("Programmation");
-    stream.writeAttribute("id_evenement",prog.getEvenement().getId());
+    if(isActivite)
+        stream.writeAttribute("id_evenement",QString("a_")+prog.getEvenement().getId());
+    else
+        stream.writeAttribute("id_evenement",QString("t_")+prog.getEvenement().getId());
     stream.writeAttribute("date",prog.getDate().toString("dd-MM-yyyy HH:mm"));
     stream.writeAttribute("duree",prog.getDuree().toString("hh:mm"));
     stream.writeEndElement();
@@ -85,14 +103,6 @@ void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
     stream.writeEndElement();
 
 }
-void XML::saveActivite(QXmlStreamWriter& stream, const Activite& act)const{
-    stream.writeStartElement("Activite");
-    stream.writeAttribute("identificateur",act.getId());
-    stream.writeAttribute("titre",act.getTitre());
-    stream.writeAttribute("type",act.getTypeToString());
-    stream.writeEndElement();
-}
-
 
 
 void XML::save()const{
@@ -131,21 +141,6 @@ void XML::save()const{
         }
         stream.writeEndElement();
 
-        //   *************************************
-        //   *** Sauvegarde des programmations ***
-        //   *************************************
-        stream.writeStartElement("Programmations");
-        for(ProgrammationManager::iterator it = progM.begin() ; it != progM.end() ; it++)
-            saveProgrammation(stream,**it);
-        stream.writeEndElement();
-
-        //   **********************************
-        //   *** Sauvegarde des precedences ***
-        //   **********************************
-        stream.writeStartElement("Precedences");
-        for(PrecedenceManager::iterator it = precM.begin() ; it != precM.end() ; it++)
-            savePrecedence(stream,**it);
-        stream.writeEndElement();
 
         //   ********************************
         //   *** Sauvegarde des activites ***
@@ -155,17 +150,84 @@ void XML::save()const{
             saveActivite(stream,**it);
         stream.writeEndElement();
 
+
+        //   **********************************
+        //   *** Sauvegarde des precedences ***
+        //   **********************************
+        stream.writeStartElement("Precedences");
+        for(PrecedenceManager::iterator it = precM.begin() ; it != precM.end() ; it++)
+            savePrecedence(stream,**it);
+        stream.writeEndElement();
+
+
+        //   *************************************
+        //   *** Sauvegarde des programmations ***
+        //   *************************************
+        stream.writeStartElement("Programmations");
+        for(ProgrammationManager::iterator it = progM.begin() ; it != progM.end() ; it++)
+            saveProgrammation(stream,**it);
+        stream.writeEndElement();
+
         stream.writeEndDocument();
     }
 }
 
-
-/*void loadProgrammation(QXmlStreamReader& stream)const{
-    stream.
+void XML::loadActivite(QXmlStreamReader& stream)const{
+    if(!(stream.name().toString() == "Activite"))
+        throw "Error : Fichier XML corrompu";
+    Activite::TypeActivite type;
+    QString& id = stream.attributes().value("identificateur").toString();
+    QString& titre = stream.attributes().value("titre").toString();
+    QString& s_type = stream.attributes().value("type").toString();
+    (s_type == "Rendez-vous")?type=Activite::RDV : type=Activite::REUNION;
+    QString& duree = stream.attributes().value("duree").toString();
+    ActiviteManager::getInstance().ajouterActivite(id,titre,type,duree);
+    stream.readNext();
 }
-void loadPrecedence(QXmlStreamReader& stream)const;
-void loadActivite(QXmlStreamReader& stream)const;
-void loadProjet(QXmlStreamReader& stream)const;
-void loadTache(QXmlStreamReader& stream)const;
+void XML::loadProjet(QXmlStreamReader& stream)const{
+    /*if(!(stream.name().toString() == "Projet"))
+        throw "Error : Fichier XML corrompu";
+    QString& id = stream.attributes().value("identificateur").toString();
+    QString& titre = stream.attributes().value("titre").toString();
+    QString& dispo = stream.attributes().value("disponibilite").toString();
+    Projet& proj = ProjetManager::getInstance().ajouterProjet(id,titre,dispo);
+    if(stream.readNextStartElement() && stream.name().toString() == "Taches"){
+        while(stream.readNextStartElement()){
+            Tache& tache = loadTache(stream);
+        }
 
-void load()const override;*/
+    }*/
+
+
+}
+Tache& XML::loadTache(QXmlStreamReader& stream)const{
+    if(!(stream.name().toString() == "Tache"))
+        throw "Error : Fichier XML corrompu";
+
+}
+
+void XML::loadProgrammation(QXmlStreamReader& stream)const{
+    if(!(stream.name().toString() == "Programmation"))
+        throw "Error : Fichier XML corrompu";
+    Evenement* event;
+    QString& id = stream.attributes().value("id_evenement").toString();
+    if(id.startsWith("a"))
+        event = ActiviteManager::getInstance().getItem(id.remove(0,2));
+    else
+        event = dynamic_cast<TacheUnitaire*>(TacheManager::getInstance().getItem(id.remove(0,2)));
+    QString& date = stream.attributes().value("date").toString();
+    QString& duree = stream.attributes().value("duree").toString();
+    ProgrammationManager::getInstance().ajouterProgrammation(*event,date,duree);
+}
+void XML::loadPrecedence(QXmlStreamReader& stream)const{
+    if(!(stream.name().toString() == "Precedence"))
+        throw "Error : Fichier XML corrompu";
+    QString& pred = stream.attributes().value("id_predecesseur").toString();
+    QString& succ = stream.attributes().value("id_successeur").toString();
+    TacheManager& tacheM = TacheManager::getInstance();
+    PrecedenceManager::getInstance().ajouterPrecedence(*tacheM.getItem(pred), *tacheM.getItem(succ));
+}
+
+
+void XML::load()const{
+}

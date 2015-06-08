@@ -143,10 +143,12 @@ QTimeSpan ProgrammationManager::dureeProgrammee(const Evenement& e)const{
     QTimeSpan duree;
     bool Preemptive = e.isPreemptive();
     for(const_iterator it = tab.begin(); it!= tab.end() ; it++){
-        if(&(*it)->getEvenement() == &e && !Preemptive)
-            return (*it)->getDuree();
-        else
-            duree += (*it)->getEvenement().getDuree();
+        if((&(*it)->getEvenement()) == &e){
+                if(!Preemptive)
+                    return (*it)->getDuree();
+                else
+                    duree += (*it)->getEvenement().getDuree();
+        }
     }
     return duree;
 }
