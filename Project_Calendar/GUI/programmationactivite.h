@@ -24,6 +24,8 @@ private slots:
 
     void on_deprogrammer_clicked();
 
+    void on_statut_currentIndexChanged(int index);
+
 private:
     Ui::programmationActivite *ui;
     Activite* activite;
