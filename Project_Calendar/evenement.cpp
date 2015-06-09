@@ -197,7 +197,7 @@ La méthode setDisponibiliteDT() permet de modifier la date de disponibilité de
     for(;it != tab.end();it++)
         if((*it)->getDisponibilite() < *minDispo)
             minDispo = &(*it)->getDisponibilite();
-    qDebug()<<"minDispo : "<<*minDispo<<"\tdispo : "<<dispo;
+    //qDebug()<<"minDispo : "<<*minDispo<<"\tdispo : "<<dispo;
     if(*minDispo < dispo)
         throw "error : Tache Composite possédant une tache disponible avant elle même";
     Tache::setDisponibiliteDT(dispo);
@@ -242,7 +242,6 @@ void Projet::ajouterTache(Tache* t){
     /*!
 La méthode ajouterTache() ajoute la tâche correspondante dans le projet.
     */
-
     TacheManager& TM = TacheManager::getInstance();
     if(t != 0 && TM.getItem(t->getId()))tab.push_back(t);
     else throw "Olalala: Tache inexistante";

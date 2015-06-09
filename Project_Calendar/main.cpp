@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    TacheManager &TM = TacheManager::getInstance();
+ /*   TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
     ActiviteManager &AM = ActiviteManager::getInstance();
     ProgrammationManager &ProgM = ProgrammationManager::getInstance();
@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
 
     Activite& act = AM.ajouterActivite("Manger", "avec son colloc", Activite::REUNION, "00:30");
     Activite& act2 = AM.ajouterActivite("Vaisselle", "avec son colloc", Activite::REUNION, "00:10");
-//    act.afficher();
 
 
     TacheUnitaire & preempt = TM.ajouterTacheUnitaire("4","Donner Pain aux canards","02:00",1,"08:06:2015:00:00","10:08:2015:10:00");
@@ -58,27 +57,15 @@ ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
  ProgM.ajouterProgrammation(act2,"10:06:2015:12:36","00:10");
 //    qDebug()<<prog.getDuree()<<ProgM.dureeProgrammee(act)<<ProgM.isProgrammee(act);
 
- qDebug()<<ProgM.dureeProgrammee(act);
-qDebug()<<ProgM.dureeProgrammee(act2);
-qDebug()<<ProgM.getFinTache(*tu[0]);
-
-
     ProgM.ajouterProgrammation(*tu[1],"10:06:2015:10:00","01:00");
     ProgM.ajouterProgrammation(*tu[2],"10:06:2015:09:00","01:00");
     ProgM.ajouterProgrammation(*tu[3],"11:06:2015:15:30","02:00");
     ProgM.ajouterProgrammation(*tu[0],"11:06:2015:17:30","01:00");
 
-    qDebug()<<ProgM.getFinTache(*tu[0]);
-    qDebug()<<ProgM.getFinTache(preempt);
-
-    qDebug()<<ProgM.isProgrammee(tc2,QDateTime::fromString("11:06:2015:09:00","dd:MM:yyyy:HH:mm"));
-    qDebug()<<ProgM.isProgrammee(tc2,QDateTime::fromString("11:06:2015:10:00","dd:MM:yyyy:HH:mm"));
-    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:09:00","dd:MM:yyyy:HH:mm"));
-    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:09:30","dd:MM:yyyy:HH:mm"));
-    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:10:00","dd:MM:yyyy:HH:mm"));
-    qDebug()<<ProgM.isProgrammee(*tu[1]);
-    qDebug()<<ProgM.isProgrammee(*tu[2]);
-    qDebug()<<ProgM.isProgrammee(*tu[3]);
+    qDebug()<<"\n\n"<<ProgM.getFinTache(*tu[0]);
+    qDebug()<<ProgM.getFinTache(*tu[1]);
+    qDebug()<<ProgM.getFinTache(*tu[2]);
+    qDebug()<<ProgM.getFinTache(*tu[3]);
 
 //    vector<Programmation*> liste = act.getProgrammations();
 //    qDebug() << "----------------------";
@@ -90,7 +77,7 @@ qDebug()<<ProgM.getFinTache(*tu[0]);
 
    // TM.deleteItem("C1");
 
-    /* ----- Test Export ------ */
+    // ----- Test Export ------
 
     Memento& m = Memento::getInstance();
     // Plus besoin de specifier la strategie (par défaut XML avec pathname = "auto-save.xml"
@@ -102,7 +89,10 @@ qDebug()<<ProgM.getFinTache(*tu[0]);
     qDebug()<<"Jusqu'ici tout va bien";
 
     }
- catch(const char* s){ouvrirWarning(s);}
+
+ catch(const char* s){ouvrirWarning(s);}*/
+    //Memento::getInstance().save();
+    Memento::getInstance().load();
     MainWindow w;
     w.show();
 

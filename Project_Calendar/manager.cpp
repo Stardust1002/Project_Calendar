@@ -24,6 +24,8 @@ TacheUnitaire& TacheManager::ajouterTacheUnitaire(const QString& id, const QStri
         throw "Format DateTime de l'échéance invalide";
     if(dispo.date() == echeance.date() && QTimeSpan(0,0).addSecs(dispo.secsTo(echeance)) < duree)
         throw "Erreur : Durée de la tâche supérieur au temps disponible pour la réaliser";
+    if(!isIdFree(id))
+            throw "Erreur : Identifiant déja utilisé";
     TacheUnitaire* t = new TacheUnitaire(id, titre, duree, preemptive, dispo, echeance);
     addItem(*t);
     return *t;
@@ -43,6 +45,8 @@ TacheComposite& TacheManager::ajouterTacheComposite(const QString& id, const QSt
     for(iterator it = tab.begin() ; it != tab.end() ; it++)
         if((*it)->getId() == id)
             throw "Error : Identifiant déja utilisé";
+    if(!isIdFree(id))
+            throw "Erreur : Identifiant déja utilisé";
     TacheComposite* t = new TacheComposite(id, titre, liste, dispo, echeance);
     addItem(*t);
     return *t;
@@ -63,6 +67,8 @@ Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, 
 
 Activite& ActiviteManager::ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QTimeSpan &d){
     Activite* activite = new Activite(id,t,ty,d);
+    if(!isIdFree(id))
+            throw "Erreur : Identifiant déja utilisé";
     addItem(*activite);
     return *activite;
 }
@@ -82,6 +88,8 @@ Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, co
 Projet& ProjetManager::ajouterProjet(const QString& id, const QString& titre, const QDateTime& dispo){
     if(!dispo.isValid())
         throw "error : Creation de projet impossible";
+    if(!isIdFree(id))
+            throw "Erreur : Identifiant déja utilisé";
     Projet* t = new Projet(id,titre,dispo);
     addItem(*t);
     return *t;
@@ -164,8 +172,10 @@ bool ProgrammationManager::isProgrammee(const Tache& t, const QDateTime& date)co
         QDateTime fin = getFinTache(dynamic_cast<const TacheUnitaire&>(t));
         if(!fin.isValid())
             return false;
-        else
+        else{
+
             return ( fin <= date);
+        }
     }
     else{
         const TacheComposite& tc = dynamic_cast<const TacheComposite&>(t);
@@ -190,7 +200,7 @@ bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& h
         PrecedenceManager &precM = PrecedenceManager::getInstance();
         for(PrecedenceManager::const_iterator it = precM.begin() ; it != precM.end() ; it++){
                 if(&((*it)->getSuccesseur()) == &tu && !isProgrammee((*it)->getPredecesseur(),horaire))
-                        return false;
+                    return false;
         }
     }
     for(const_iterator it = begin() ; it != end() ; it++){

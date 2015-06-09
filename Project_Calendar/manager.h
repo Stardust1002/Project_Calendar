@@ -41,6 +41,7 @@ public:
 
     unsigned int getSize() const {return tab.size();}
     T* getItem(const QString& id);
+    bool isIdFree(const QString& id);
     void deleteItem(T& t);
     void deleteItem(const QString& id);
     virtual void deleteItem(iterator it);
@@ -74,10 +75,18 @@ template <class T, class U> Manager<T,U>::~Manager(){
     }
 }
 template <class T,class U> T* Manager<T,U>::getItem(const QString& id){
-    for(iterator it = this->begin(); it != this->end(); ++it)
+    for(iterator it = this->begin(); it != this->end(); ++it){
         if((*it)->getId() == id)
             return *it;
+    }
     return nullptr;
+}
+
+template <class T,class U> bool Manager<T,U>::isIdFree(const QString& id){
+    for(iterator it = tab.begin() ; it != tab.end() ; it++)
+        if((*it)->getId() == id)
+            return false;
+    return true;
 }
 
 template <class T, class U> void Manager<T,U>::deleteItem(T& item){
