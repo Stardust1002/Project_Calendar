@@ -196,6 +196,8 @@ void XML::loadProjet(QXmlStreamReader& stream)const{
             Tache& tache = loadTache(stream);
         }
 
+        // Ajouter contraintes de Precedence dans ajouter Programmation !!!!!!!
+
     }*/
 
 

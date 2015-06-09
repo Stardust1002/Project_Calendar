@@ -182,6 +182,26 @@ bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& h
     return true;
 
 }
+
+QDateTime ProgrammationManager::getFinTache(const TacheUnitaire& tache)const{
+    vector<const Programmation*>& liste = getProgrammations(tache);
+    QDateTime fin;
+    for(vector<const Programmation*>::iterator it = liste.begin() ; it != liste.end() ; it++){
+        if((*it)->getFin() > fin)
+            fin = (*it)->getFin();
+    }
+    return fin;
+}
+
+vector<const Programmation*> ProgrammationManager::getProgrammations(const TacheUnitaire& tache)const{
+    vector<const Programmation*> liste;
+    for(const_iterator it = tab.begin(); it != tab.end(); ++it){
+        if(&(*it)->getEvenement() == &tache)
+            liste.push_back(*it);
+    }
+    return liste;
+}
+
 const vector<Programmation*> ProgrammationManager::getProgrammations(int week, int year)const{ // Liste des programmations par date croissante
     vector<Programmation*> liste;
     for(const_iterator it = tab.begin(); it != tab.end(); ++it){
