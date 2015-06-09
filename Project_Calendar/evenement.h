@@ -29,8 +29,12 @@ protected:
     Evenement(const QTimeSpan& d):duree(d){}
     virtual ~Evenement()=0{}
 public:
-    const QTimeSpan& getDuree()const{return duree;}
-    virtual void setDuree(const QTimeSpan& d){duree=d;}
+    const QTimeSpan& getDuree()const{
+  ///La méthode getDuree() renvoie la durée de l'évènement.
+return duree;}
+    virtual void setDuree(const QTimeSpan& d){
+///La méthode setDuree() met à jour la durée avec celle passée en paramètre.
+            duree=d;}
     vector<Programmation*> getProgrammations()const;
     virtual QString whoAmI()const = 0;
     virtual bool isPreemptive() const = 0;
@@ -52,19 +56,35 @@ protected:
 public:
     Projet *getProjet()const;
     vector<Precedence*> getPrecedences()const;
-    const QDateTime& getDisponibilite() const{return date_dispo;}
-    const QDateTime& getEcheance() const{return date_echeance;}
-    const QString& getTitre()const{return titre;}
-    const QString& getId()const{return identificateur;}
-    void setId(const QString& i){identificateur = i;}
-    void setTitre(const QString& t){titre = t;}
+    const QDateTime& getDisponibilite() const{
+        ///La méthode getDisponibilite() renvoie la date de disponibilité de la tâche.
+        return date_dispo;}
+    const QDateTime& getEcheance() const{
+        ///La méthode getEcheance() renvoie la date d'écheance de la tâche.
+        return date_echeance;}
+    const QString& getTitre()const{
+        ///La méthode getTitre() renvoie le titre de la tâche.
+        return titre;}
+    const QString& getId()const{
+        ///La méthode getId() renvoie l'identificateur de la tâche.
+        return identificateur;}
+    void setId(const QString& i){
+        ///La méthode setId() met à jour l'identificateur de la tâche avec la chaine passée en paramètre.
+        identificateur = i;}
+    void setTitre(const QString& t){
+        ///La méthode setTitre() met à jour le titre de la tâche avec la chaine passée en paramètre.
+        titre = t;}
     void setDisponibilite(const QString& d);
     void setEcheance(const QString& e);
     void setProjet(Projet& p);
     void setProjet(const QString& id);
     TacheComposite* getComposite()const;
-    virtual void setDisponibiliteDT(const QDateTime& d){date_dispo = d;}
-    virtual void setEcheanceDT(const QDateTime& e){date_echeance = e;}
+    virtual void setDisponibiliteDT(const QDateTime& d){
+        ///La méthode setDisponibiliteDT() met à jour la date de disponibilite de la tâche avec la date passée en paramètre.
+        date_dispo = d;}
+    virtual void setEcheanceDT(const QDateTime& e)
+    ///La méthode setEcheanceDT() met à jour la date d'écheance de la tâche avec la date passée en paramètre.
+    {date_echeance = e;}
     virtual void afficher()const;
     virtual QString whoAmI()const = 0;
 

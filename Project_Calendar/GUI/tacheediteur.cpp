@@ -60,9 +60,12 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
 
     cancel = new QPushButton("Annuler");
     save = new QPushButton("Sauver");
+    save->setDefault(true);
+    supp = new QPushButton("Supprimer");
 
     save->setDisabled(false);
     hlayout_4->addWidget(cancel);
+    hlayout_4->addWidget(supp);
     hlayout_4->addWidget(save);
 
     lab7 = new QLabel("Prédecesseurs");
@@ -129,6 +132,7 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
                     liste_taches->addItem((*it)->getId());
         }
     }else{
+        supp->setDisabled(true);
         for(TacheManager::const_iterator it = TM.begin(); it != TM.end(); ++it){
             if(*it != tacheToEdit)
                 liste_taches->addItem((*it)->getId());
@@ -144,6 +148,7 @@ tacheEditeur::tacheEditeur(TacheUnitaire* tacheToEdit, QWidget* parent):tache(ta
 
 
     this->setLayout(vlayout);
+    QObject::connect(supp, SIGNAL(clicked()), this, SLOT(supprimer()));
     QObject::connect(save, SIGNAL(clicked()), this, SLOT(sauver()));
     QObject::connect(cancel, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -220,4 +225,18 @@ tacheEditeur::~tacheEditeur()
 {
 
 }
+void tacheEditeur::supprimer(){
 
+    if(tache != 0){
+//        TacheManager& TM = TacheManager::getInstance();
+//        TacheComposite* tc = tache->getComposite();
+//        TacheComposite::iterator it = tc->begin();
+//        while(it != tc->end() && *it != tache)++it;
+//        if(*it == tache)
+//                tc->erase(it);
+
+//        TM.deleteItem(*tache);
+//        TM.
+
+    }
+}

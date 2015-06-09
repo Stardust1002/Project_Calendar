@@ -59,11 +59,12 @@ class tacheEditeur:public QDialog
     QComboBox* projet;
     QListWidget* pred;
     QListWidget* liste_taches;
-
+    QPushButton* supp;
     QWidget* parent;
 
 public slots:
     void sauver();
+    void supprimer();
 
 public:
     tacheEditeur(TacheUnitaire *tacheToEdit = 0, QWidget* parent = 0);
