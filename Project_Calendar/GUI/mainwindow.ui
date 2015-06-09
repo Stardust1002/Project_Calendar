@@ -205,6 +205,9 @@ selection-color: rgb(0, 0, 0);</string>
              <property name="text">
               <string>Programmation</string>
              </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
            <item row="6" column="1">

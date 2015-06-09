@@ -27,6 +27,8 @@ private slots:
 
     void on_status_activated(int index);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::programmationActivite *ui;
     Activite* activite;

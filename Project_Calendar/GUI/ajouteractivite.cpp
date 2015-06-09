@@ -5,14 +5,18 @@ ajouterActivite::ajouterActivite(Activite *a, QWidget *parent) :
     QDialog(parent),activite(a),parent(parent),
     ui(new Ui::ajouterActivite)
 {
+    ProgrammationManager& ProgM = ProgrammationManager::getInstance();
     ui->setupUi(this);
     if(activite != 0){
         ui->identificateur->setText(activite->getId());
         ui->titre->setPlainText(activite->getTitre());
         ui->duree->setTime(activite->getDuree());
+        if(ProgM.isProgrammee(*activite))
+            ui->duree->setDisabled(true);
         ui->type->setCurrentIndex(activite->getType());
     }
-
+    else
+        ui->pushButton_2->setDisabled(true);
     QObject::connect(ui->annuler, SIGNAL(clicked()), this, SLOT(close()));
 
 }
@@ -46,7 +50,7 @@ void ajouterActivite::on_pushButton_clicked()
                                static_cast<Activite::TypeActivite>(type),
                                ui->duree->time());
             a.afficher();
-            ouvrirInformation("Activité crée avec succès!\nN'oubliez pas de la programmer !");
+            ouvrirInformation("Activité créée avec succès!\nN'oubliez pas de la programmer !");
             close();
             }
             else if(ouvrirQuestion("Êtes-vous sûr de vouloir modifier cette activité ?","Attention")== QMessageBox::Yes){
@@ -64,3 +68,18 @@ void ajouterActivite::on_pushButton_clicked()
         ouvrirWarning("Des informations sont manquantes !","Erreur");
 }
 
+
+void ajouterActivite::on_pushButton_2_clicked()
+{
+    if(ouvrirQuestion("Êtes-vous sûr de vouloir supprimer cette activité ?") == QMessageBox::Yes){
+        MainWindow* w = dynamic_cast<MainWindow*>(parent);
+        ProgrammationManager& PM = ProgrammationManager::getInstance();
+        ActiviteManager& AM = ActiviteManager::getInstance();
+        if(PM.isProgrammee(*activite))
+            PM.deleteItem(activite->getProgrammations()[0]);
+        AM.deleteItem(*activite);
+    ouvrirInformation("Activité supprimée avec succès !");
+    w->refresh_calendar();
+    close();
+    }
+}

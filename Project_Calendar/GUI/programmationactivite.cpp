@@ -79,12 +79,12 @@ void programmationActivite::on_deprogrammer_clicked()
 {
     if(!ui->activity->currentText().isEmpty() && ui->status->currentText() == "Programmée") //faire un operateur d'addition pour comparer fin+durée et comparer avec pred et succ
     {
-        if(ouvrirQuestion("Etes-vous sûr de vouloir la déprogrammer ?","Attention") == QMessageBox::Yes){
+        if(ouvrirQuestion("Etes-vous sûr de vouloir la dé-programmer ?","Attention") == QMessageBox::Yes){
             MainWindow* w = dynamic_cast<MainWindow*>(parent);
             ProgrammationManager& ProgM = ProgrammationManager::getInstance();
             ActiviteManager& AM = ActiviteManager::getInstance();
             ProgM.deleteItem(AM.getItem(ui->activity->currentText())->getProgrammations()[0]);
-            ouvrirInformation("Activité déprogrammée créée avec succès!\n");
+            ouvrirInformation("Activité dé-programmée avec succès!\n");
             w->refresh_calendar();
             close();
         }
@@ -142,4 +142,14 @@ void programmationActivite::on_status_activated(int index)
     }
     //on affiche la première activité de la liste
     on_activity_activated(ui->activity->currentText());
+}
+
+void programmationActivite::on_pushButton_clicked()
+{
+    ActiviteManager& AM = ActiviteManager::getInstance();
+    if(!ui->activity->currentText().isEmpty()){
+        ajouterActivite* modifier = new ajouterActivite(AM.getItem(ui->activity->currentText()), parent);
+        modifier->show();
+        close();
+    }
 }
