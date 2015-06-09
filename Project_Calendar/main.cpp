@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
     tc2.push_back(*tu[3]);
 
 
-    PrecM.ajouterPrecedence(*tu[0],*tu[1]);
-    PrecM.ajouterPrecedence(*tu[1],*tu[3]);
+    PrecM.ajouterPrecedence(tc2,*tu[0]);
+    //PrecM.ajouterPrecedence(*tu[1],*tu[3]);
 
 
     Projet& p = PM.ajouterProjet("NA17","Ca casse les couilles","20:10:1994:00:00");
@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
 
 
     TacheUnitaire & preempt = TM.ajouterTacheUnitaire("4","Donner Pain aux canards","02:00",1,"08:06:2015:00:00","10:08:2015:10:00");
-ProgM.ajouterProgrammation(preempt,"15:06:2015:09:00","01:00");
-    ProgM.ajouterProgrammation(preempt,"15:06:2015:22:00","01:00");
+//ProgM.ajouterProgrammation(preempt,"15:06:2015:09:00","01:00");
+  //  ProgM.ajouterProgrammation(preempt,"17:06:2015:22:00","01:00");
 
 ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
  ProgM.ajouterProgrammation(act2,"10:06:2015:12:36","00:10");
@@ -60,13 +60,22 @@ ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
 
  qDebug()<<ProgM.dureeProgrammee(act);
 qDebug()<<ProgM.dureeProgrammee(act2);
+qDebug()<<ProgM.getFinTache(*tu[0]);
 
-    ProgM.ajouterProgrammation(*tu[0],"10:06:2015:09:00","01:00");
-    ProgM.ajouterProgrammation(*tu[1],"10:06:2015:00:01","01:00");
-    ProgM.ajouterProgrammation(*tu[2],"11:06:2015:09:00","01:00");
-    ProgM.ajouterProgrammation(*tu[3],"10:06:2015:15:30","02:00");
 
-    qDebug()<<ProgM.isProgrammee(*tu[0]);
+    ProgM.ajouterProgrammation(*tu[1],"10:06:2015:10:00","01:00");
+    ProgM.ajouterProgrammation(*tu[2],"10:06:2015:09:00","01:00");
+    ProgM.ajouterProgrammation(*tu[3],"11:06:2015:15:30","02:00");
+    ProgM.ajouterProgrammation(*tu[0],"11:06:2015:17:30","01:00");
+
+    qDebug()<<ProgM.getFinTache(*tu[0]);
+    qDebug()<<ProgM.getFinTache(preempt);
+
+    qDebug()<<ProgM.isProgrammee(tc2,QDateTime::fromString("11:06:2015:09:00","dd:MM:yyyy:HH:mm"));
+    qDebug()<<ProgM.isProgrammee(tc2,QDateTime::fromString("11:06:2015:10:00","dd:MM:yyyy:HH:mm"));
+    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:09:00","dd:MM:yyyy:HH:mm"));
+    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:09:30","dd:MM:yyyy:HH:mm"));
+    qDebug()<<ProgM.isProgrammee(*tu[0],QDateTime::fromString("10:06:2015:10:00","dd:MM:yyyy:HH:mm"));
     qDebug()<<ProgM.isProgrammee(*tu[1]);
     qDebug()<<ProgM.isProgrammee(*tu[2]);
     qDebug()<<ProgM.isProgrammee(*tu[3]);

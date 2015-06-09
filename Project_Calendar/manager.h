@@ -137,6 +137,7 @@ public:
 
     Precedence&  ajouterPrecedence(const Tache& t1,const Tache& t2);
     void supprimerPrecedence(const QString& id);
+    //vector<const Tache*>
     bool isPredecesseur(const Tache& t1, const Tache& t2)const;
 };
 
@@ -150,7 +151,8 @@ class ProgrammationManager:public Manager<Programmation,ProgrammationManager>{
 public:
     Programmation& ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree);
     Programmation& ajouterProgrammation(Evenement& evenement,const QString& horaire,const QString& duree);
-    bool isProgrammee(const Evenement&)const;
+    bool isProgrammee(const Evenement& e)const;
+    bool isProgrammee(const Tache& t, const QDateTime& date)const;
     bool isProgrammable(const Evenement& t, const QDateTime& horaire,const QTimeSpan& duree)const;
     QTimeSpan dureeProgrammee(const Evenement& e)const;
     QDateTime getFinTache(const TacheUnitaire& tache)const;

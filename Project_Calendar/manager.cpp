@@ -156,9 +156,24 @@ QTimeSpan ProgrammationManager::dureeProgrammee(const Evenement& e)const{
 }
 
 bool ProgrammationManager::isProgrammee(const Evenement& e)const{
-    if(dureeProgrammee(e) == e.getDuree())
+    return (e.getDuree() == dureeProgrammee(e));
+}
+
+bool ProgrammationManager::isProgrammee(const Tache& t, const QDateTime& date)const{
+    if(typeid(t) == typeid(TacheUnitaire&)){
+        QDateTime fin = getFinTache(dynamic_cast<const TacheUnitaire&>(t));
+        if(!fin.isValid())
+            return false;
+        else
+            return ( fin <= date);
+    }
+    else{
+        const TacheComposite& tc = dynamic_cast<const TacheComposite&>(t);
+        for(TacheComposite::const_iterator it = tc.begin() ; it != tc.end() ; it++)
+            if(!isProgrammee(**it, date))
+                return false;
         return true;
-    return false;
+    }
 }
 
 bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& horaire,const QTimeSpan& duree)const{
@@ -172,6 +187,11 @@ bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& h
         const TacheUnitaire& tu = dynamic_cast<const TacheUnitaire&>(e);
         if(horaire < tu.getDisponibilite() || fin > tu.getEcheance())
             return false;
+        PrecedenceManager &precM = PrecedenceManager::getInstance();
+        for(PrecedenceManager::const_iterator it = precM.begin() ; it != precM.end() ; it++){
+                if(&((*it)->getSuccesseur()) == &tu && !isProgrammee((*it)->getPredecesseur(),horaire))
+                        return false;
+        }
     }
     for(const_iterator it = begin() ; it != end() ; it++){
         if( ((*it)->getDate() < horaire && (*it)->getFin() > fin)
@@ -179,6 +199,7 @@ bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& h
                 || ((*it)->getFin() > horaire && (*it)->getFin() < fin) )
             return false;
     }
+
     return true;
 
 }
