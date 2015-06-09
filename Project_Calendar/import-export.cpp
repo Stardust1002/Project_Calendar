@@ -65,10 +65,8 @@ void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
     {
         const TacheComposite& tc = dynamic_cast<const TacheComposite&>(tache);
         // Sauvegarde de l'ensemble des sous tâches
-        stream.writeStartElement("Sous_Taches");
         for(TacheComposite::const_iterator it = tc.begin() ; it != tc.end() ; it++)
             saveTache(stream,**it);
-        stream.writeEndElement();
         // Fin du bloc des sous tâches
     }
     stream.writeEndElement();
@@ -185,7 +183,7 @@ void XML::loadActivite(QXmlStreamReader& stream)const{
     stream.readNext();
 }
 void XML::loadProjet(QXmlStreamReader& stream)const{
-    /*if(!(stream.name().toString() == "Projet"))
+    if(!(stream.name().toString() == "Projet"))
         throw "Error : Fichier XML corrompu";
     QString& id = stream.attributes().value("identificateur").toString();
     QString& titre = stream.attributes().value("titre").toString();
@@ -193,19 +191,34 @@ void XML::loadProjet(QXmlStreamReader& stream)const{
     Projet& proj = ProjetManager::getInstance().ajouterProjet(id,titre,dispo);
     if(stream.readNextStartElement() && stream.name().toString() == "Taches"){
         while(stream.readNextStartElement()){
-            Tache& tache = loadTache(stream);
+            proj.ajouterTache(&loadTache(stream));
         }
-
-        // Ajouter contraintes de Precedence dans ajouter Programmation !!!!!!!
-
-    }*/
-
-
-}
-Tache& XML::loadTache(QXmlStreamReader& stream)const{
-    if(!(stream.name().toString() == "Tache"))
+        stream.readNext();
+    }
+    else
         throw "Error : Fichier XML corrompu";
+}
 
+Tache& XML::loadTache(QXmlStreamReader& stream)const{
+    if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Tache"))
+        throw "Error : Fichier XML corrompu";
+    QString& id = stream.attributes().value("identificateur").toString();
+    QString& titre = stream.attributes().value("titre").toString();
+    QString& dispo = stream.attributes().value("disponibilite").toString();
+    QString& echeance = stream.attributes().value("echeance").toString();
+
+    if(id.startsWith("u_")){
+        QString& duree = stream.attributes().value("duree").toString();
+        QString& s_preempt = stream.attributes().value("preemptive").toString();
+        bool preempt = (s_preempt == "true");
+        TacheManager::getInstance().ajouterTacheUnitaire(id.remove(0,2),titre,duree,preempt,dispo,echeance);
+    }
+    else{
+        TacheComposite &tc = TacheManager::getInstance().ajouterTacheComposite(id.remove(0,2),titre,dispo,echeance);
+        while(stream.readNextStartElement())
+            tc.push_back(loadTache(stream));
+    }
+    stream.readNext();
 }
 
 void XML::loadProgrammation(QXmlStreamReader& stream)const{

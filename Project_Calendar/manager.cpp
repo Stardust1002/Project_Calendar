@@ -199,9 +199,7 @@ bool ProgrammationManager::isProgrammable(const Evenement& e, const QDateTime& h
                 || ((*it)->getFin() > horaire && (*it)->getFin() < fin) )
             return false;
     }
-
     return true;
-
 }
 
 QDateTime ProgrammationManager::getFinTache(const TacheUnitaire& tache)const{
