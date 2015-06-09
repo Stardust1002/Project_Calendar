@@ -219,7 +219,9 @@ const vector<Programmation*> ProgrammationManager::getProgrammations(int week, i
 Programmation* ProgrammationManager::getProgrammation(const QDateTime& date)const{ // recupération d'une programmation car date est la "clef primaire"
     const_iterator it = tab.begin();
     while(it != tab.end() && (*it)->getDate() != date)++it;
-    return (*it);
+    if(it != tab.end())
+        return *it;
+    return 0;
 }
 void ProgrammationManager::deleteItem(Programmation *p){
     iterator it = tab.begin();

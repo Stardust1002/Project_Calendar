@@ -132,9 +132,12 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
 
       TacheManager& TM = TacheManager::getInstance();
       TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
-      ProgrammationManager& ProgM = ProgrammationManager::getInstance();
-      Programmation* programmation = ProgM.getProgrammation(prog);
+      qDebug() << "ici";
 
+      ProgrammationManager& ProgM = ProgrammationManager::getInstance();
+      qDebug() << "ici";
+      Programmation* programmation = ProgM.getProgrammation(prog);
+        if(programmation == 0)qDebug() << 0;
       if(t!=nullptr){
                   ui->groupBox->setEnabled(true);
                   ui->identificateur->setText(t->getId());

@@ -8,21 +8,20 @@ programmationActivite::programmationActivite(Activite* activite, QWidget *parent
     ActiviteManager& AM = ActiviteManager::getInstance();
     setWindowTitle("Programmation d'une Activité");
     ui->setupUi(this);
-    QObject::connect(ui->annuler, SIGNAL(clicked()), this, SLOT(close()));
+   QObject::connect(ui->annuler, SIGNAL(clicked()), this, SLOT(close()));
 
-    if(activite != 0){
+   if(activite != 0){
              ui->status->setCurrentIndex(1);
-             on_status_currentIndexChanged(1);
+             on_status_activated(1);
     }
     else{
-        qDebug() << "hello?";
         ui->status->setCurrentIndex(0);
-        on_status_currentIndexChanged(0);
-        qDebug() << "hello!";
+        on_status_activated(0);
     }
 
+   //a debugger
     if(ui->activity->currentText().isEmpty() && activite == 0){//Si aucune activité à programmer
-       on_status_currentIndexChanged(1); //on place le selecteur sur les activité déjà programmées
+       on_status_activated(1); //on place le selecteur sur les activité déjà programmées
        ui->status->setCurrentIndex(1);
        if(!ui->activity->currentText().isEmpty() && activite == 0)//si une activité programmée existe
            activite = AM.getItem(ui->activity->currentText());
@@ -35,11 +34,15 @@ programmationActivite::programmationActivite(Activite* activite, QWidget *parent
 
     ui->type->setEnabled(false);
     ui->textEdit->setEnabled(false);
+    ui->duree->setDisabled(true);
+
     ui->type->setCurrentText(activite->getTypeToString());
     ui->textEdit->setText(activite->getTitre());
-    ui->programmation->setDateTime(activite->getProgrammations()[0]->getDate());
-    ui->duree->setDisabled(true);
+    vector<Programmation*>& prog = activite->getProgrammations();
+    if(prog.size() > 0)
+        ui->programmation->setDateTime(prog[0]->getDate());
     ui->duree->setTime(activite->getDuree());
+
 }
 
 programmationActivite::~programmationActivite()
@@ -63,8 +66,8 @@ void programmationActivite::on_programmer_clicked()
             Programmation* programmation = act->getProgrammations()[0];
             ProgM.deleteItem(programmation);
          }
-
-        ProgM.ajouterProgrammation(*act,ui->programmation->dateTime(),ui->duree->time());
+        Programmation& p = ProgM.ajouterProgrammation(*act,ui->programmation->dateTime(),ui->duree->time());
+        qDebug() << p.getDate() << p.getDuree() << p.getEvenement().getId();
         ouvrirInformation("Programmation ajoutée/modifée avec succès !");
         w->refresh_calendar();
         close();
@@ -94,7 +97,31 @@ void programmationActivite::on_deprogrammer_clicked()
 
 
 
-void programmationActivite::on_status_currentIndexChanged(int index)
+
+
+void programmationActivite::on_activity_activated(const QString &arg1)
+{
+        if(arg1.isEmpty()){
+           ui->textEdit->clear();
+           ui->programmation->setDateTime(QDateTime::currentDateTime());
+
+        }
+        else{
+        ActiviteManager& AM = ActiviteManager::getInstance();
+        Activite* act = AM.getItem(arg1);
+        ui->type->setCurrentText(act->getTypeToString());
+        ui->textEdit->setText(act->getTitre());
+        vector<Programmation*>& prog = act->getProgrammations();
+        if(prog.size() > 0)
+            ui->programmation->setDateTime(prog[0]->getDate());
+
+        ui->duree->setTime(act->getDuree());
+}
+}
+
+
+
+void programmationActivite::on_status_activated(int index)
 {
     ActiviteManager& AM = ActiviteManager::getInstance();
     ProgrammationManager& ProgM = ProgrammationManager::getInstance();
@@ -102,10 +129,9 @@ void programmationActivite::on_status_currentIndexChanged(int index)
 
     if(index == 0){ // on récupère les evts non programmées
         for(ActiviteManager::const_iterator it = AM.begin(); it != AM.end(); ++it){
-            QString tmp =(*it)->getId();
+
             if(!ProgM.isProgrammee(**it)){
-                ouvrirWarning((*it)->getId()); //////////ERREUR WTFFFF
-                ui->activity->addItem((*it)->getId());
+                ui->activity->insertItem(-1, (*it)->getId());
             }
         }
     }else{ // on récupère les evts déjà programmées
@@ -116,16 +142,6 @@ void programmationActivite::on_status_currentIndexChanged(int index)
                 ui->activity->setCurrentIndex(ui->activity->count()-1);
         }
     }
-}
-
-void programmationActivite::on_activity_currentIndexChanged(const QString &arg1)
-{
-    if(arg1.isEmpty())return;
-    ActiviteManager& AM = ActiviteManager::getInstance();
-    Activite* act = AM.getItem(arg1);
-    ui->type->setCurrentText(act->getTypeToString());
-    ui->textEdit->setText(act->getTitre());
-    ui->programmation->setDateTime(act->getProgrammations()[0]->getDate());
-    ui->duree->setDisabled(true);
-    ui->duree->setTime(act->getDuree());
+    //on affiche la première activité de la liste
+    on_activity_activated(ui->activity->currentText());
 }

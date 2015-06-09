@@ -21,17 +21,17 @@ public:
 private slots:
     void on_programmer_clicked();
 
-
     void on_deprogrammer_clicked();
 
-    void on_status_currentIndexChanged(int index);
+    void on_activity_activated(const QString &arg1);
 
-    void on_activity_currentIndexChanged(const QString &arg1);
+    void on_status_activated(int index);
 
 private:
     Ui::programmationActivite *ui;
     Activite* activite;
     QWidget* parent;
+    bool actualisation_autorisee;
 };
 
 #endif // PROGRAMMATIONACTIVITE_H
