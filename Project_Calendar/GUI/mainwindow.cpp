@@ -95,7 +95,6 @@ void MainWindow::refresh_calendar(const QDate& date){
         const QString& nom = (*it)->getEvenement().getId();
         const QString& heure = (*it)->getDate().time().toString("HH:mm");
         QDate& date = (*it)->getDate().date();
-        qDebug() << nom;
         if(max == jours[date.dayOfWeek()-1])
             ui->tableWidget->setRowCount(++max);
 
@@ -128,16 +127,12 @@ void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
       j = j + 1 - date_calendrier.dayOfWeek() + item->column();
 
       QDateTime prog(QDate(annee,mois,j),QTime(time[0].toInt(),time[1].toInt(),0,0));
-      qDebug() << prog.toString();
 
       TacheManager& TM = TacheManager::getInstance();
       TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
-      qDebug() << "ici";
 
       ProgrammationManager& ProgM = ProgrammationManager::getInstance();
-      qDebug() << "ici";
       Programmation* programmation = ProgM.getProgrammation(prog);
-        if(programmation == 0)qDebug() << 0;
       if(t!=nullptr){
                   ui->groupBox->setEnabled(true);
                   ui->identificateur->setText(t->getId());

@@ -207,7 +207,7 @@ const vector<Programmation*> ProgrammationManager::getProgrammations(int week, i
     for(const_iterator it = tab.begin(); it != tab.end(); ++it){
         Programmation* programmation = *it;
         QDate date = programmation->getDate().date();
-        if(date.weekNumber() == week){
+        if(date.weekNumber() == week && date.year() == year){
             vector<Programmation*>::const_iterator it2 = liste.begin();
             while(it2 != liste.end() && (*it2)->getDate() < (*it)->getDate())++it2;
             liste.insert(it2, programmation);

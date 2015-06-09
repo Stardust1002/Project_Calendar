@@ -67,7 +67,6 @@ void programmationActivite::on_programmer_clicked()
             ProgM.deleteItem(programmation);
          }
         Programmation& p = ProgM.ajouterProgrammation(*act,ui->programmation->dateTime(),ui->duree->time());
-        qDebug() << p.getDate() << p.getDuree() << p.getEvenement().getId();
         ouvrirInformation("Programmation ajoutée/modifée avec succès !");
         w->refresh_calendar();
         close();
@@ -103,7 +102,6 @@ void programmationActivite::on_activity_activated(const QString &arg1)
 {
         if(arg1.isEmpty()){
            ui->textEdit->clear();
-           ui->programmation->setDateTime(QDateTime::currentDateTime());
 
         }
         else{
