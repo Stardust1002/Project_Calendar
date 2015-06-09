@@ -310,11 +310,10 @@ void XML::load()const{
         while(stream.readNextStartElement()){
             loadProgrammation(stream);
         }
-
         stream.skipCurrentElement();
-
-
-
+        if(!(stream.name().toString() == "root"))
+            throw "Error : Fichier XML corrompu";
+        file.close();
 
     }
 
