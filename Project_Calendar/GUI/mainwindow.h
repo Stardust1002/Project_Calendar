@@ -11,7 +11,9 @@
 #include "programmationactivite.h"
 #include <QDebug>
 #include <QTableWidget>
+#include <QFileDialog>
 #include "vueglobale.h"
+#include "import-export.h"
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +57,10 @@ private slots:
 
     void on_actionVue_Globale_triggered();
 
+
+    void on_actionOuvrir_triggered();
+
+    void on_actionEnregistrer_Sous_triggered();
 
 private:
     Ui::MainWindow *ui;

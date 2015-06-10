@@ -57,7 +57,7 @@ selection-color: rgb(0, 0, 0);</string>
          <bool>true</bool>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>false</bool>
@@ -186,6 +186,20 @@ selection-color: rgb(0, 0, 0);</string>
              </property>
             </widget>
            </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="type">
+             <property name="text">
+              <string>/</string>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
@@ -217,20 +231,6 @@ selection-color: rgb(0, 0, 0);</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Type</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="type">
-             <property name="text">
-              <string>/</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -246,10 +246,10 @@ selection-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1139</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHello_World">
+   <widget class="QMenu" name="menuGestion_Agenda">
     <property name="title">
      <string>Gestion de l'Agenda</string>
     </property>
@@ -278,7 +278,15 @@ selection-color: rgb(0, 0, 0);</string>
     <addaction name="menuCr_er_une_T_che"/>
     <addaction name="actionCr_er_un_Projet"/>
    </widget>
-   <addaction name="menuHello_World"/>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionOuvrir"/>
+    <addaction name="actionEnregistrer_Sous"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuGestion_Agenda"/>
    <addaction name="menuGestion_des_Projets"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -323,6 +331,16 @@ selection-color: rgb(0, 0, 0);</string>
   <action name="actionProgrammer_une_Activit">
    <property name="text">
     <string>Programmation des Activités</string>
+   </property>
+  </action>
+  <action name="actionOuvrir">
+   <property name="text">
+    <string>Ouvrir</string>
+   </property>
+  </action>
+  <action name="actionEnregistrer_Sous">
+   <property name="text">
+    <string>Enregistrer Sous</string>
    </property>
   </action>
  </widget>

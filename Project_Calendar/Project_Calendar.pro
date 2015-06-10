@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     evenement.cpp \
     manager.cpp \
     qtimespan.cpp \
-    import-export.cpp
+    import-export.cpp \
+    GUI/ouvrirsave.cpp
 
 HEADERS  += GUI/mainwindow.h \
     GUI/ajouteractivite.h \
@@ -39,7 +40,8 @@ HEADERS  += GUI/mainwindow.h \
     evenement.h \
     manager.h \
     qtimespan.h \
-    import-export.h
+    import-export.h \
+    GUI/ouvrirsave.h
 
 FORMS    += GUI/mainwindow.ui \
     GUI/ajouteractivite.ui \
@@ -47,4 +49,5 @@ FORMS    += GUI/mainwindow.ui \
     GUI/ajouterprojet.ui \
     GUI/ajoutertachecomposite.ui \
     GUI/programmationactivite.ui \
-    GUI/vueglobale.ui
+    GUI/vueglobale.ui \
+    GUI/ouvrirsave.ui

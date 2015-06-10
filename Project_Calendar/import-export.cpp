@@ -106,7 +106,7 @@ void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
 void XML::save()const{
     QXmlStreamWriter stream;
     QFile file(pathname);
-
+    qDebug()<<"Je suis passé par la";
     if (!file.open(QIODevice::WriteOnly))
     {
       throw "Error : Impossible d'ouvrir le fichier";

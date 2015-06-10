@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), date_calendrier(QDate::currentDate()),
     ui(new Ui::MainWindow)
@@ -12,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    Memento::getInstance().save();
     delete ui;
 }
 
@@ -197,9 +200,35 @@ void MainWindow::on_actionVue_Globale_triggered()
     vue->show();
 }
 
-
-
 const QDate& MainWindow::getCurrentDate()const{
     return date_calendrier;
 }
 
+
+void MainWindow::on_actionOuvrir_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this,"Ouvrir","./","XML File (*.xml)");
+    if(!filename.isNull()){
+        try{
+            Memento::getInstance(XML::getInstance(filename)).load();
+            refresh_calendar(QDate::currentDate());
+        }
+        catch(const char* s){
+            ouvrirWarning(QString(s));
+        }
+    }
+
+}
+
+void MainWindow::on_actionEnregistrer_Sous_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
+    if(!filename.isNull()){
+        try{
+            Memento::getInstance(XML::getInstance(filename)).save();
+        }
+        catch(const char* s){
+            ouvrirWarning(QString(s));
+        }
+    }
+}

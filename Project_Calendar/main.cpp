@@ -10,7 +10,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
- /*   TacheManager &TM = TacheManager::getInstance();
+    Memento::getInstance().load();
+
+    /*TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
     ActiviteManager &AM = ActiviteManager::getInstance();
     ProgrammationManager &ProgM = ProgrammationManager::getInstance();
@@ -91,10 +93,11 @@ ProgM.ajouterProgrammation(act,"08:06:2015:12:36","00:30");
     }
 
  catch(const char* s){ouvrirWarning(s);}*/
-    //Memento::getInstance().save();
-    Memento::getInstance().load();
+
+
     MainWindow w;
     w.show();
 
     return a.exec();
+
 }
