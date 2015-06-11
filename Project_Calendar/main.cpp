@@ -9,8 +9,13 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    try{
+        Memento::getInstance().load();
+    }
+    catch(const char* s){
+        ouvrirWarning(QString(s));
+    }
 
-    Memento::getInstance().load();
 
     /*TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();

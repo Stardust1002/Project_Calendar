@@ -217,7 +217,6 @@ void MainWindow::on_actionOuvrir_triggered()
             ouvrirWarning(QString(s));
         }
     }
-
 }
 
 void MainWindow::on_actionEnregistrer_Sous_triggered()
