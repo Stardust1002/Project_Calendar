@@ -57,7 +57,7 @@ selection-color: rgb(0, 0, 0);</string>
          <bool>true</bool>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>false</bool>
@@ -246,7 +246,7 @@ selection-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1139</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGestion_Agenda">

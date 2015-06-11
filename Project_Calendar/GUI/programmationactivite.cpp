@@ -19,7 +19,6 @@ programmationActivite::programmationActivite(Activite* activite, QWidget *parent
         on_status_activated(0);
     }
 
-   //a debugger
     if(ui->activity->currentText().isEmpty() && activite == 0){//Si aucune activité à programmer
        on_status_activated(1); //on place le selecteur sur les activité déjà programmées
        ui->status->setCurrentIndex(1);
@@ -66,7 +65,7 @@ void programmationActivite::on_programmer_clicked()
             Programmation* programmation = act->getProgrammations()[0];
             ProgM.deleteItem(programmation);
          }
-        Programmation& p = ProgM.ajouterProgrammation(*act,ui->programmation->dateTime(),ui->duree->time());
+        ProgM.ajouterProgrammation(*act,ui->programmation->dateTime(),ui->duree->time());
         ouvrirInformation("Programmation ajoutée/modifée avec succès !");
         w->refresh_calendar();
         close();

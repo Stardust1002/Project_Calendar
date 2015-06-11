@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <Projets>
+        <Projet identificateur="NA17" titre="Ca casse les couilles" disponibilite="20:10:1994:00:00">
+            <Taches>
+                <Tache identificateur="u_SOPRA STERIA" titre="Test4" duree="02:00" preemptive="false" disponibilite="20:01:2015:00:00" echeance="21:10:2016:23:59"/>
+                <Tache identificateur="c_C1" titre="Frolux" disponibilite="06:06:1993:12:21" echeance="10:07:2025:01:59">
+                    <Tache identificateur="u_1" titre="Test1" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                </Tache>
+                <Tache identificateur="c_C2" titre="Frolux" disponibilite="06:06:1993:12:21" echeance="10:07:2021:01:59">
+                    <Tache identificateur="u_3" titre="Test3" duree="01:00" preemptive="false" disponibilite="09:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                    <Tache identificateur="u_SOPRA STERIA" titre="Test4" duree="02:00" preemptive="false" disponibilite="20:01:2015:00:00" echeance="21:10:2016:23:59"/>
+                </Tache>
+                <Tache identificateur="u_1" titre="Test1" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                <Tache identificateur="u_2" titre="Test2" duree="01:00" preemptive="false" disponibilite="08:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                <Tache identificateur="u_3" titre="Test3" duree="01:00" preemptive="false" disponibilite="09:06:2015:00:00" echeance="10:08:2015:10:00"/>
+            </Taches>
+        </Projet>
+    </Projets>
+    <TacheNonDefini>
+        <Tache identificateur="u_4" titre="Donner Pain aux canards" duree="02:00" preemptive="true" disponibilite="08:06:2015:00:00" echeance="10:08:2015:10:00"/>
+    </TacheNonDefini>
+    <Activites>
+        <Activite identificateur="Manger" titre="avec son colloc" type="Réunion" duree="00:30"/>
+        <Activite identificateur="Vaisselle" titre="avec son colloc" type="Réunion" duree="00:10"/>
+        <Activite identificateur="Fruhstuck" titre="c'est fort en chocolat!!" type="Réunion" duree="00:20"/>
+        <Activite identificateur="1" titre="AbendEssen" type="Réunion" duree="01:00"/>
+    </Activites>
+    <Precedences>
+        <Precedence id_predecesseur="C2" id_successeur="1"/>
+    </Precedences>
+    <Programmations>
+        <Programmation id_evenement="a_Manger" date="08:06:2015:12:36" duree="00:30"/>
+        <Programmation id_evenement="a_Vaisselle" date="10:06:2015:12:36" duree="00:10"/>
+        <Programmation id_evenement="t_2" date="10:06:2015:10:00" duree="01:00"/>
+        <Programmation id_evenement="t_3" date="10:06:2015:09:00" duree="01:00"/>
+        <Programmation id_evenement="t_SOPRA STERIA" date="11:06:2015:15:30" duree="02:00"/>
+        <Programmation id_evenement="t_1" date="11:06:2015:17:30" duree="01:00"/>
+        <Programmation id_evenement="a_Fruhstuck" date="12:06:2015:08:00" duree="00:20"/>
+        <Programmation id_evenement="a_1" date="14:06:2015:18:36" duree="01:00"/>
+    </Programmations>
+</root>
