@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
         Memento::getInstance().load();
     }
     catch(const char* s){
-        ouvrirWarning(QString(s));
+        Memento::getInstance().save();
     }
 
 
