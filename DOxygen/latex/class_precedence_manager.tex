@@ -1,0 +1,70 @@
+\hypertarget{class_precedence_manager}{}\section{Référence de la classe Precedence\+Manager}
+\label{class_precedence_manager}\index{Precedence\+Manager@{Precedence\+Manager}}
+
+
+La classe \hyperlink{class_precedence_manager}{Precedence\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_precedence}{Precedence}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}.  
+
+
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Precedence\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_precedence_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_precedence_manager_ae59ff8a8e92d171c607e988d74a8fe1f}{delete\+Item} (\hyperlink{class_precedence}{Precedence} $\ast$t)
+\item 
+\hyperlink{class_precedence}{Precedence} \& \hyperlink{class_precedence_manager_ad8f271ddf75e6aa4b5a51eadaab662d0}{ajouter\+Precedence} (const \hyperlink{class_tache}{Tache} \&t1, const \hyperlink{class_tache}{Tache} \&t2)
+\item 
+\hypertarget{class_precedence_manager_acb5b927060191c478f496fbe30cd521d}{}void {\bfseries supprimer\+Precedence} (const Q\+String \&id)\label{class_precedence_manager_acb5b927060191c478f496fbe30cd521d}
+
+\item 
+bool \hyperlink{class_precedence_manager_ab50a623212a24469debe33e9df71037f}{is\+Predecesseur} (const \hyperlink{class_tache}{Tache} \&t1, const \hyperlink{class_tache}{Tache} \&t2) const 
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_precedence_manager}{Precedence\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_precedence}{Precedence}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_precedence_manager_ad8f271ddf75e6aa4b5a51eadaab662d0}{}\index{Precedence\+Manager@{Precedence\+Manager}!ajouter\+Precedence@{ajouter\+Precedence}}
+\index{ajouter\+Precedence@{ajouter\+Precedence}!Precedence\+Manager@{Precedence\+Manager}}
+\subsubsection[{ajouter\+Precedence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Precedence} \& Precedence\+Manager\+::ajouter\+Precedence (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} \&}]{t1, }
+\item[{const {\bf Tache} \&}]{t2}
+\end{DoxyParamCaption}
+)}\label{class_precedence_manager_ad8f271ddf75e6aa4b5a51eadaab662d0}
+Créer une une précédence entre deux tâches en vérifiant si celle-\/ci ne créera pas de circuit\+:
+\begin{DoxyItemize}
+\item La précédence de tâche1 est tâche2, la précédence de tâche2 est tâche1.
+\end{DoxyItemize}
+
+Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_precedence_manager_ae59ff8a8e92d171c607e988d74a8fe1f}{}\index{Precedence\+Manager@{Precedence\+Manager}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!Precedence\+Manager@{Precedence\+Manager}}
+\subsubsection[{delete\+Item}]{\setlength{\rightskip}{0pt plus 5cm}void Precedence\+Manager\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Precedence} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\label{class_precedence_manager_ae59ff8a8e92d171c607e988d74a8fe1f}
+Supprimer la prédécence passée en paramètre. \hypertarget{class_precedence_manager_ab50a623212a24469debe33e9df71037f}{}\index{Precedence\+Manager@{Precedence\+Manager}!is\+Predecesseur@{is\+Predecesseur}}
+\index{is\+Predecesseur@{is\+Predecesseur}!Precedence\+Manager@{Precedence\+Manager}}
+\subsubsection[{is\+Predecesseur}]{\setlength{\rightskip}{0pt plus 5cm}bool Precedence\+Manager\+::is\+Predecesseur (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} \&}]{t1, }
+\item[{const {\bf Tache} \&}]{t2}
+\end{DoxyParamCaption}
+) const}\label{class_precedence_manager_ab50a623212a24469debe33e9df71037f}
+Retourne vrai si tâche 1 est un prédécesseur de tâche 2. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+manager.\+h\item 
+manager.\+cpp\end{DoxyCompactItemize}

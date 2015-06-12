@@ -1,0 +1,204 @@
+\hypertarget{class_projet}{}\section{Référence de la classe Projet}
+\label{class_projet}\index{Projet@{Projet}}
+
+
+La classe \hyperlink{class_projet}{Projet} permet de regrouper différentes Taches et impose une dâte de disponibilité. Elle ne peut être instanciée que par le biais du \hyperlink{class_projet_manager}{Projet\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_projet_1_1const__iterator}{const\+\_\+iterator}
+\item 
+class \hyperlink{class_projet_1_1iterator}{iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projet_1_1iterator}{iterator} \hyperlink{class_projet_a8d7cc0246df8b6929f4798b1024e208d}{begin} ()
+\item 
+\hyperlink{class_projet_1_1iterator}{iterator} \hyperlink{class_projet_a2aeb5e7db79a1240800d91b962c14ddf}{end} ()
+\item 
+\hyperlink{class_projet_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_projet_a16cb2ae4625deab305145f78db918e59}{begin} () const 
+\item 
+\hyperlink{class_projet_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_projet_ab24984c532525679fe3c0230b0686363}{end} () const 
+\item 
+size\+\_\+t \hyperlink{class_projet_aaa4fac44323bd319c740c1f1d285bfaa}{get\+Size} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{class_projet_a0deffe9e90675158ea636d346d454cc1}{get\+Disponibilite} () const 
+\item 
+Q\+Date\+Time \hyperlink{class_projet_aaf16b2ced20117743bee25d546f11f78}{get\+Echeance} ()
+\item 
+const Q\+String \& \hyperlink{class_projet_a917a74942a7c232849012687dad64b8e}{get\+Titre} () const 
+\item 
+const Q\+String \& \hyperlink{class_projet_a9a92a64fdf15130c72e3d4a9875467f0}{get\+Id} () const 
+\item 
+bool \hyperlink{class_projet_a42363da876b04e6028924fba9e2e86d8}{possede} (const \hyperlink{class_tache}{Tache} \&t)
+\item 
+void \hyperlink{class_projet_a5f325c588558b085ffacf51c48f06551}{set\+Id} (const Q\+String \&i)
+\item 
+void \hyperlink{class_projet_a1bc00f170040b45948f34b3ce7e0642b}{set\+Titre} (const Q\+String \&t)
+\item 
+void \hyperlink{class_projet_aba69d4166df2f8dc32e39913f2add7f2}{set\+Disponibilite} (const Q\+Date\+Time \&t)
+\item 
+void \hyperlink{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{ajouter\+Tache} (\hyperlink{class_tache}{Tache} $\ast$t)
+\item 
+void \hyperlink{class_projet_a65c346c033545bf02e08864c16ae2e8f}{ajouter\+Tache} (const Q\+String \&id)
+\item 
+void \hyperlink{class_projet_a3c0c1f9a620854878291c3e873a52f6e}{retirer\+Tache} (\hyperlink{class_tache}{Tache} $\ast$t)
+\item 
+void \hyperlink{class_projet_a9cc9037c1ee3ab49a1cbf3c153665f19}{retirer\+Tache} (const Q\+String \&id)
+\item 
+virtual void \hyperlink{class_projet_aff670a5010d70339cdce91773f7199a3}{afficher} ()
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_aaaed9857b3481233fa7c581b5c86151d}{}class {\bfseries Projet\+Manager}\label{class_projet_aaaed9857b3481233fa7c581b5c86151d}
+
+\item 
+\hypertarget{class_projet_a8cf00d1da3b93cadfd9c400c941b9b73}{}class {\bfseries Manager$<$ Projet, Projet\+Manager $>$}\label{class_projet_a8cf00d1da3b93cadfd9c400c941b9b73}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_projet}{Projet} permet de regrouper différentes Taches et impose une dâte de disponibilité. Elle ne peut être instanciée que par le biais du \hyperlink{class_projet_manager}{Projet\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_projet_aff670a5010d70339cdce91773f7199a3}{}\index{Projet@{Projet}!afficher@{afficher}}
+\index{afficher@{afficher}!Projet@{Projet}}
+\subsubsection[{afficher}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::afficher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_projet_aff670a5010d70339cdce91773f7199a3}
+La méthode \hyperlink{class_projet_aff670a5010d70339cdce91773f7199a3}{afficher()} permet d\textquotesingle{}afficher en mode debug les attributs et les tâches du projet.\hypertarget{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{}\index{Projet@{Projet}!ajouter\+Tache@{ajouter\+Tache}}
+\index{ajouter\+Tache@{ajouter\+Tache}!Projet@{Projet}}
+\subsubsection[{ajouter\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::ajouter\+Tache (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}
+La méthode \hyperlink{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{ajouter\+Tache()} ajoute la tâche correspondante dans le projet.\hypertarget{class_projet_a65c346c033545bf02e08864c16ae2e8f}{}\index{Projet@{Projet}!ajouter\+Tache@{ajouter\+Tache}}
+\index{ajouter\+Tache@{ajouter\+Tache}!Projet@{Projet}}
+\subsubsection[{ajouter\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::ajouter\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_projet_a65c346c033545bf02e08864c16ae2e8f}
+Voir \hyperlink{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{ajouter\+Tache(\+Tache$\ast$ t)};\hypertarget{class_projet_a8d7cc0246df8b6929f4798b1024e208d}{}\index{Projet@{Projet}!begin@{begin}}
+\index{begin@{begin}!Projet@{Projet}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf iterator} Projet\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a8d7cc0246df8b6929f4798b1024e208d}
+Renvoie un iterator sur la première tâche composante. \hypertarget{class_projet_a16cb2ae4625deab305145f78db918e59}{}\index{Projet@{Projet}!begin@{begin}}
+\index{begin@{begin}!Projet@{Projet}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf const\+\_\+iterator} Projet\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a16cb2ae4625deab305145f78db918e59}
+Renvoie un \hyperlink{class_projet_1_1const__iterator}{const\+\_\+iterator} sur la première tâche composante. \hypertarget{class_projet_a2aeb5e7db79a1240800d91b962c14ddf}{}\index{Projet@{Projet}!end@{end}}
+\index{end@{end}!Projet@{Projet}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf iterator} Projet\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a2aeb5e7db79a1240800d91b962c14ddf}
+Renvoie un iterator sur la fin du tableau de tâches composantes. \hypertarget{class_projet_ab24984c532525679fe3c0230b0686363}{}\index{Projet@{Projet}!end@{end}}
+\index{end@{end}!Projet@{Projet}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf const\+\_\+iterator} Projet\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_ab24984c532525679fe3c0230b0686363}
+Renvoie un \hyperlink{class_projet_1_1const__iterator}{const\+\_\+iterator} sur la fin du tableau de tâches composantes. \hypertarget{class_projet_a0deffe9e90675158ea636d346d454cc1}{}\index{Projet@{Projet}!get\+Disponibilite@{get\+Disponibilite}}
+\index{get\+Disponibilite@{get\+Disponibilite}!Projet@{Projet}}
+\subsubsection[{get\+Disponibilite}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Projet\+::get\+Disponibilite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a0deffe9e90675158ea636d346d454cc1}
+Renvoie la date de disponibilité du projet. \hypertarget{class_projet_aaf16b2ced20117743bee25d546f11f78}{}\index{Projet@{Projet}!get\+Echeance@{get\+Echeance}}
+\index{get\+Echeance@{get\+Echeance}!Projet@{Projet}}
+\subsubsection[{get\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Date\+Time Projet\+::get\+Echeance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_projet_aaf16b2ced20117743bee25d546f11f78}
+La méthode \hyperlink{class_projet_aaf16b2ced20117743bee25d546f11f78}{get\+Echeance()} renvoie la date d\textquotesingle{}échéance la plus lointaine parmi celles des tâches qui composent le projet..\hypertarget{class_projet_a9a92a64fdf15130c72e3d4a9875467f0}{}\index{Projet@{Projet}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Projet@{Projet}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Projet\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a9a92a64fdf15130c72e3d4a9875467f0}
+Renvoie l\textquotesingle{}identificateur du projet. \hypertarget{class_projet_aaa4fac44323bd319c740c1f1d285bfaa}{}\index{Projet@{Projet}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Projet@{Projet}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Projet\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_aaa4fac44323bd319c740c1f1d285bfaa}
+Renvoie le nombre de tâches liées au projet. \hypertarget{class_projet_a917a74942a7c232849012687dad64b8e}{}\index{Projet@{Projet}!get\+Titre@{get\+Titre}}
+\index{get\+Titre@{get\+Titre}!Projet@{Projet}}
+\subsubsection[{get\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Projet\+::get\+Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a917a74942a7c232849012687dad64b8e}
+Renvoie le titre du projet. \hypertarget{class_projet_a42363da876b04e6028924fba9e2e86d8}{}\index{Projet@{Projet}!possede@{possede}}
+\index{possede@{possede}!Projet@{Projet}}
+\subsubsection[{possede}]{\setlength{\rightskip}{0pt plus 5cm}bool Projet\+::possede (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_a42363da876b04e6028924fba9e2e86d8}
+La méthode \hyperlink{class_projet_a42363da876b04e6028924fba9e2e86d8}{possede()} renvoie true si le la tache en paramètre est liée au projet. False sinon.\hypertarget{class_projet_a3c0c1f9a620854878291c3e873a52f6e}{}\index{Projet@{Projet}!retirer\+Tache@{retirer\+Tache}}
+\index{retirer\+Tache@{retirer\+Tache}!Projet@{Projet}}
+\subsubsection[{retirer\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::retirer\+Tache (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_a3c0c1f9a620854878291c3e873a52f6e}
+La méthode \hyperlink{class_projet_a3c0c1f9a620854878291c3e873a52f6e}{retirer\+Tache()} retire la tâche correspondante du projet.\hypertarget{class_projet_a9cc9037c1ee3ab49a1cbf3c153665f19}{}\index{Projet@{Projet}!retirer\+Tache@{retirer\+Tache}}
+\index{retirer\+Tache@{retirer\+Tache}!Projet@{Projet}}
+\subsubsection[{retirer\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::retirer\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_projet_a9cc9037c1ee3ab49a1cbf3c153665f19}
+Voir \hyperlink{class_projet_a3c0c1f9a620854878291c3e873a52f6e}{retirer\+Tache(\+Tache$\ast$ t)};\hypertarget{class_projet_aba69d4166df2f8dc32e39913f2add7f2}{}\index{Projet@{Projet}!set\+Disponibilite@{set\+Disponibilite}}
+\index{set\+Disponibilite@{set\+Disponibilite}!Projet@{Projet}}
+\subsubsection[{set\+Disponibilite}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::set\+Disponibilite (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_aba69d4166df2f8dc32e39913f2add7f2}
+Met à jour la date de disponibilité du projet. \hypertarget{class_projet_a5f325c588558b085ffacf51c48f06551}{}\index{Projet@{Projet}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Projet@{Projet}}
+\subsubsection[{set\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::set\+Id (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a5f325c588558b085ffacf51c48f06551}
+Met à jour l\textquotesingle{}identificateur du projet. \hypertarget{class_projet_a1bc00f170040b45948f34b3ce7e0642b}{}\index{Projet@{Projet}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!Projet@{Projet}}
+\subsubsection[{set\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_a1bc00f170040b45948f34b3ce7e0642b}
+Met à jour le titre du projet. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

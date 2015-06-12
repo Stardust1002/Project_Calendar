@@ -1,0 +1,70 @@
+\hypertarget{class_programmation}{}\section{Référence de la classe Programmation}
+\label{class_programmation}\index{Programmation@{Programmation}}
+
+
+La classe \hyperlink{class_programmation}{Programmation} permet de programmer un évènement à une heure fixe en fonction de ses \hyperlink{class_precedence}{Precedence} s, de sa date de disponibilité et de sa date d\textquotesingle{}échéance. Une programmation ne peut être instanciée que par le biais du \hyperlink{class_programmation_manager}{Programmation\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_evenement}{Evenement} \& \hyperlink{class_programmation_a574f0e84ee4de3937249dff5df428d9a}{get\+Evenement} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{class_programmation_af047996948783353b99d55e2cd3dfd67}{get\+Date} () const 
+\item 
+Q\+Date\+Time \hyperlink{class_programmation_a178ae2552313a68a3552dea0782d042e}{get\+Fin} () const 
+\item 
+const \hyperlink{class_q_time_span}{Q\+Time\+Span} \& \hyperlink{class_programmation_a45fae841a66ff8abc7bd0af0d913f99f}{get\+Duree} () const 
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_ade7bfcbf8cec66b12064c8ff25993d73}{}class {\bfseries Programmation\+Manager}\label{class_programmation_ade7bfcbf8cec66b12064c8ff25993d73}
+
+\item 
+\hypertarget{class_programmation_a2addbb7d8b656f2ebe9ca6edbb551f64}{}class {\bfseries Manager$<$ Programmation, Programmation\+Manager $>$}\label{class_programmation_a2addbb7d8b656f2ebe9ca6edbb551f64}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_programmation}{Programmation} permet de programmer un évènement à une heure fixe en fonction de ses \hyperlink{class_precedence}{Precedence} s, de sa date de disponibilité et de sa date d\textquotesingle{}échéance. Une programmation ne peut être instanciée que par le biais du \hyperlink{class_programmation_manager}{Programmation\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_programmation_af047996948783353b99d55e2cd3dfd67}{}\index{Programmation@{Programmation}!get\+Date@{get\+Date}}
+\index{get\+Date@{get\+Date}!Programmation@{Programmation}}
+\subsubsection[{get\+Date}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Programmation\+::get\+Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_programmation_af047996948783353b99d55e2cd3dfd67}
+Renvoie la date de la programmation. \hypertarget{class_programmation_a45fae841a66ff8abc7bd0af0d913f99f}{}\index{Programmation@{Programmation}!get\+Duree@{get\+Duree}}
+\index{get\+Duree@{get\+Duree}!Programmation@{Programmation}}
+\subsubsection[{get\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Q\+Time\+Span}\& Programmation\+::get\+Duree (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_programmation_a45fae841a66ff8abc7bd0af0d913f99f}
+Renvoie la durée de la programmation. \hypertarget{class_programmation_a574f0e84ee4de3937249dff5df428d9a}{}\index{Programmation@{Programmation}!get\+Evenement@{get\+Evenement}}
+\index{get\+Evenement@{get\+Evenement}!Programmation@{Programmation}}
+\subsubsection[{get\+Evenement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evenement}\& Programmation\+::get\+Evenement (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_programmation_a574f0e84ee4de3937249dff5df428d9a}
+Renvoie l\textquotesingle{}évènement lié à la programmation. \hypertarget{class_programmation_a178ae2552313a68a3552dea0782d042e}{}\index{Programmation@{Programmation}!get\+Fin@{get\+Fin}}
+\index{get\+Fin@{get\+Fin}!Programmation@{Programmation}}
+\subsubsection[{get\+Fin}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Date\+Time Programmation\+::get\+Fin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_programmation_a178ae2552313a68a3552dea0782d042e}
+Renvoie la date de fin de la programmation, calculée grâce à la durée et au début de celle-\/ci. 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\end{DoxyCompactItemize}

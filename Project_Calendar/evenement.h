@@ -21,7 +21,7 @@ class Programmation;
 using namespace std;
 class Projet;
 
-///La classe évènement est virtuelle pure, seules ses classes filles: tâche unitaire et activité peuvent être instanciées, par leurs Managers respectifs.
+///La classe Evenement est virtuelle pure, seules ses classes filles: TacheUnitaire et Activite peuvent être instanciées, par leurs Managers respectifs.
 class Evenement
 {
     QTimeSpan duree;
@@ -41,7 +41,7 @@ return duree;}
     virtual const QString getId() const = 0;
 };
 
-/// La classe tâche est virtuelle pure, seules ses classes filles: tâche unitaire et tâche composite peuvent être instanciées, par le TacheManager.
+///La classe Tache est virtuelle pure, seules ses classes filles: tâche unitaire et tâche composite peuvent être instanciées, par le TacheManager.
 class Tache{
     friend class TacheManager;
     friend class Manager<Tache,TacheManager>;
@@ -91,8 +91,8 @@ public:
 
 
 };
-/// Une tâche composite est une tâche non-programmable composée d'autres tâches, pouvant être unitaires ou composites.
-/// Elle ne peut être instanciée que par le biais TacheManager.
+
+///Une TacheComposite est une tâche non-programmable composée d'autres tâches, pouvant être unitaires ou composites. Elle ne peut être instanciée que par le biais TacheManager.
 class TacheComposite:public Tache{
     friend class TacheManager;
     friend class Manager<Tache,TacheManager>;
@@ -147,9 +147,8 @@ public:
 
 
 };
-/// Une tâche unitaire est une tâche programmable et composable.
-/// Elle ne peut être instanciée que par le biais du TacheManager.
 
+///Une TacheUnitaire est une tâche programmable et composable. Elle ne peut être instanciée que par le biais du TacheManager.
 class TacheUnitaire:public Tache, public Evenement{
 private:
     friend class TacheManager;
@@ -186,8 +185,7 @@ public:
        return Tache::getId();}
 };
 
-///Une activité est un évènement qui programmable.
-///Elle ne peut être instanciée que par le biais de l'ActiviteManager
+///Une Activite est un évènement qui programmable. Elle ne peut être instanciée que par le biais de l'ActiviteManager
 class Activite:public Evenement{
 public:
     enum TypeActivite{RDV,REUNION};
@@ -234,8 +232,7 @@ public:
 
 };
 
-///La classe programmation permet de programmer un évènement à une heure fixe en fonction de ses précédences, de sa date de disponibilité et de sa date d'échéance.
-///Une programmation ne peut être instanciée que par le biais du ProgrammationManager.
+///La classe Programmation permet de programmer un évènement à une heure fixe en fonction de ses Precedence s, de sa date de disponibilité et de sa date d'échéance. Une programmation ne peut être instanciée que par le biais du ProgrammationManager.
 class Programmation{
     friend class ProgrammationManager;
     friend class Manager<Programmation,ProgrammationManager>;
@@ -261,8 +258,7 @@ public:
 
 };
 
-///La classe projet permet de regrouper différentes tâches et impose une dâte de disponibilité.
-///Elle ne peut être instanciée que par le biais du ProjetManager.
+///La classe Projet permet de regrouper différentes Taches et impose une dâte de disponibilité. Elle ne peut être instanciée que par le biais du ProjetManager.
 class Projet{
     friend class ProjetManager;
     friend class Manager<Projet,ProjetManager>;
@@ -326,8 +322,7 @@ public:
     virtual void afficher();
 };
 
-///La classe Precedence établit une relation de précédences entre deux tâches.
-///Une précédence ne peut être instanciée que par le biais du PrecedenceManager.
+///La classe Precedence établit une relation de Precedence entre deux tâches. Une Precedence ne peut être instanciée que par le biais du PrecedenceManager.
 class Precedence{
     friend class PrecedenceManager;
     friend class Manager<Precedence,PrecedenceManager>;

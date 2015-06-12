@@ -3,6 +3,7 @@
 
 #include <QTime>
 
+///Classe permettant de manipuler les temps/durées en implémentant l'addition et la soustraction manquantes à classe QTime.
 class QTimeSpan : public QTime{
 public:
     QTimeSpan():QTime(){}

@@ -1,0 +1,73 @@
+\hypertarget{class_format}{}\section{Référence de la classe Format}
+\label{class_format}\index{Format@{Format}}
+
+
+\hyperlink{class_format}{Format} est une classe virtuelle pure permettant la mise en place du pattern design Strategy. Les classes fillent qui en héritent peuvent alors être utiliser par le \hyperlink{class_memento}{Memento} afin de réaliser divers types d\textquotesingle{}exportations.  
+
+
+
+
+{\ttfamily \#include $<$import-\/export.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Format\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_format}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_format_ad4549bc7712d09a5fd8874e5cffd7c9b}{set\+Pathname} (const Q\+String \&p)
+\item 
+const Q\+String \& \hyperlink{class_format_a8ef3acfd8d6d5be588e31e6a4a1d789b}{get\+Pathname} ()
+\item 
+\hypertarget{class_format_a4e2330d6894994551b607e5cbfab42bc}{}virtual void {\bfseries save} () const =0\label{class_format_a4e2330d6894994551b607e5cbfab42bc}
+
+\item 
+\hypertarget{class_format_aa571fc1c38b61945d15b999088f43094}{}virtual void {\bfseries load} () const =0\label{class_format_aa571fc1c38b61945d15b999088f43094}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_format_ae0a81f45095e58dda33592992dcf0289}{}{\bfseries Format} (const Q\+String \&p)\label{class_format_ae0a81f45095e58dda33592992dcf0289}
+
+\item 
+\hypertarget{class_format_ab69111c370cfe44f9508e78e5431cc65}{}{\bfseries Format} (const \hyperlink{class_format}{Format} \&)\label{class_format_ab69111c370cfe44f9508e78e5431cc65}
+
+\item 
+\hypertarget{class_format_a7a5276a88c488462eea3a508b71f4d9c}{}\hyperlink{class_format}{Format} \& {\bfseries operator=} (const \hyperlink{class_format}{Format} \&)\label{class_format_a7a5276a88c488462eea3a508b71f4d9c}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_format_a84b62f9b8ac97061cba153dc339b88d4}{}Q\+String {\bfseries pathname}\label{class_format_a84b62f9b8ac97061cba153dc339b88d4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+\hyperlink{class_format}{Format} est une classe virtuelle pure permettant la mise en place du pattern design Strategy. Les classes fillent qui en héritent peuvent alors être utiliser par le \hyperlink{class_memento}{Memento} afin de réaliser divers types d\textquotesingle{}exportations. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_format_a8ef3acfd8d6d5be588e31e6a4a1d789b}{}\index{Format@{Format}!get\+Pathname@{get\+Pathname}}
+\index{get\+Pathname@{get\+Pathname}!Format@{Format}}
+\subsubsection[{get\+Pathname}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Format\+::get\+Pathname (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_format_a8ef3acfd8d6d5be588e31e6a4a1d789b}
+Renvoie le chemin courant du fichier de sauvegarde. \hypertarget{class_format_ad4549bc7712d09a5fd8874e5cffd7c9b}{}\index{Format@{Format}!set\+Pathname@{set\+Pathname}}
+\index{set\+Pathname@{set\+Pathname}!Format@{Format}}
+\subsubsection[{set\+Pathname}]{\setlength{\rightskip}{0pt plus 5cm}void Format\+::set\+Pathname (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_format_ad4549bc7712d09a5fd8874e5cffd7c9b}
+Modifie le chemin courant du fichier de sauvegarde. 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+import-\/export.\+h\end{DoxyCompactItemize}

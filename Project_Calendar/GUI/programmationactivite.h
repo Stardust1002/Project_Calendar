@@ -9,7 +9,7 @@
 namespace Ui {
 class programmationActivite;
 }
-
+///Fenêtre d'ajout et de modification de Programmation d'Activite.
 class programmationActivite : public QDialog
 {
     Q_OBJECT

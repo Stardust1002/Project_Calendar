@@ -1,0 +1,52 @@
+\hypertarget{class_precedence}{}\section{Référence de la classe Precedence}
+\label{class_precedence}\index{Precedence@{Precedence}}
+
+
+La classe \hyperlink{class_precedence}{Precedence} établit une relation de \hyperlink{class_precedence}{Precedence} entre deux tâches. Une \hyperlink{class_precedence}{Precedence} ne peut être instanciée que par le biais du \hyperlink{class_precedence_manager}{Precedence\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{class_tache}{Tache} \& \hyperlink{class_precedence_a807169416212d0a2d83ad8791b91985b}{get\+Successeur} () const 
+\item 
+const \hyperlink{class_tache}{Tache} \& \hyperlink{class_precedence_af9567ba90b3b024ae3b06a034438b2b0}{get\+Predecesseur} () const 
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_precedence_a49a568edb7039450f0fa2feb2f5f4dfa}{}class {\bfseries Precedence\+Manager}\label{class_precedence_a49a568edb7039450f0fa2feb2f5f4dfa}
+
+\item 
+\hypertarget{class_precedence_a542fcb155313e1054cab81875cf9d81f}{}class {\bfseries Manager$<$ Precedence, Precedence\+Manager $>$}\label{class_precedence_a542fcb155313e1054cab81875cf9d81f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_precedence}{Precedence} établit une relation de \hyperlink{class_precedence}{Precedence} entre deux tâches. Une \hyperlink{class_precedence}{Precedence} ne peut être instanciée que par le biais du \hyperlink{class_precedence_manager}{Precedence\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_precedence_af9567ba90b3b024ae3b06a034438b2b0}{}\index{Precedence@{Precedence}!get\+Predecesseur@{get\+Predecesseur}}
+\index{get\+Predecesseur@{get\+Predecesseur}!Precedence@{Precedence}}
+\subsubsection[{get\+Predecesseur}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Tache}\& Precedence\+::get\+Predecesseur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_precedence_af9567ba90b3b024ae3b06a034438b2b0}
+Renvoie la tâche prédécesseur associée à la précédence. \hypertarget{class_precedence_a807169416212d0a2d83ad8791b91985b}{}\index{Precedence@{Precedence}!get\+Successeur@{get\+Successeur}}
+\index{get\+Successeur@{get\+Successeur}!Precedence@{Precedence}}
+\subsubsection[{get\+Successeur}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Tache}\& Precedence\+::get\+Successeur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_precedence_a807169416212d0a2d83ad8791b91985b}
+Renvoie la tâche successeur associée à la précédence. 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,168 @@
+\hypertarget{class_manager}{}\section{Référence du modèle de la classe Manager$<$ T, U $>$}
+\label{class_manager}\index{Manager$<$ T, U $>$@{Manager$<$ T, U $>$}}
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_manager_1_1const__iterator}{const\+\_\+iterator}
+\item 
+class \hyperlink{class_manager_1_1iterator}{iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_manager_adf66a1a70fdd9dc6cdaa13b0c5b4d834}{get\+Size} () const 
+\item 
+T $\ast$ \hyperlink{class_manager_a1a4856f30411e79051523887d0f251b8}{get\+Item} (const Q\+String \&id)
+\item 
+bool \hyperlink{class_manager_a8edf2ecc36ad33ba354ccabff3210d23}{is\+Id\+Free} (const Q\+String \&id)
+\item 
+void \hyperlink{class_manager_ac9136f779f6075c6be1437db35b31468}{delete\+Item} (T \&t)
+\item 
+void \hyperlink{class_manager_a6e003fb43ed160833e3094d1a59874e3}{delete\+Item} (const Q\+String \&id)
+\item 
+virtual void \hyperlink{class_manager_a151e9d0a033a7fa21c2d84221f22b01f}{delete\+Item} (\hyperlink{class_manager_1_1iterator}{iterator} it)
+\item 
+\hyperlink{class_manager_1_1iterator}{iterator} \hyperlink{class_manager_ad2d2c9ac1c765c3db47cb49f926e4494}{begin} ()
+\item 
+\hyperlink{class_manager_1_1iterator}{iterator} \hyperlink{class_manager_ab438bec0cd793093bee6c8f12c05b32a}{end} ()
+\item 
+\hyperlink{class_manager_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_manager_ad53e3636df68daf3cc47ce59da98db6d}{begin} () const 
+\item 
+\hyperlink{class_manager_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_manager_a15006050d43cbaef467051ff53faa8bd}{end} () const 
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static U \& \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance} ()
+\item 
+static void \hyperlink{class_manager_ada15725fe33d625e2c06dcbe2c5edc4e}{free\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_manager_ada69ae9ca42784e98fb81b1fdbcfc6a6}{}void {\bfseries add\+Item} (T \&t)\label{class_manager_ada69ae9ca42784e98fb81b1fdbcfc6a6}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_manager_abbf456c6a3b97e3a4106316545cbfe69}{}vector$<$ T $\ast$ $>$ {\bfseries tab}\label{class_manager_abbf456c6a3b97e3a4106316545cbfe69}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs protégés statiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_manager_a2b5df0a89665c24f3a01f36ac6f725aa}{}static Handler {\bfseries handler}\label{class_manager_a2b5df0a89665c24f3a01f36ac6f725aa}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+\subsubsection*{template$<$class T, class U$>$class Manager$<$ T, U $>$}
+
+La classe \hyperlink{class_manager}{Manager} est un singleton conteneur d\textquotesingle{}items. Elle gère le cycle de vie de ses items, de la création à la destruction en passant par la modification. Une façade d\textquotesingle{}iterator a été mise en place pour empêcher l\textquotesingle{}accès direct au vecteur privé contenant les items. Celle-\/ci est virtuelle pure, ainsi seules ses classes filles peuvent être instanciées\+:
+\begin{DoxyItemize}
+\item \hyperlink{class_projet_manager}{Projet\+Manager}
+\item \hyperlink{class_activite_manager}{Activite\+Manager}
+\item \hyperlink{class_tache_manager}{Tache\+Manager}
+\item \hyperlink{class_programmation_manager}{Programmation\+Manager}
+\item \hyperlink{class_precedence_manager}{Precedence\+Manager}
+\end{DoxyItemize}
+
+Un Handler a également été mis en place permettant la désallocation automatique du \hyperlink{class_manager}{Manager} à la fin du processus. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_manager_ad2d2c9ac1c765c3db47cb49f926e4494}{}\index{Manager@{Manager}!begin@{begin}}
+\index{begin@{begin}!Manager@{Manager}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U$>$ {\bf iterator} {\bf Manager}$<$ T, U $>$\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_manager_ad2d2c9ac1c765c3db47cb49f926e4494}
+Renvoie un iterator sur le premier item du vecteur. \hypertarget{class_manager_ad53e3636df68daf3cc47ce59da98db6d}{}\index{Manager@{Manager}!begin@{begin}}
+\index{begin@{begin}!Manager@{Manager}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U$>$ {\bf const\+\_\+iterator} {\bf Manager}$<$ T, U $>$\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_manager_ad53e3636df68daf3cc47ce59da98db6d}
+Renvoie un \hyperlink{class_manager_1_1const__iterator}{const\+\_\+iterator} sur le premier item du vecteur. \hypertarget{class_manager_ac9136f779f6075c6be1437db35b31468}{}\index{Manager@{Manager}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!Manager@{Manager}}
+\subsubsection[{delete\+Item}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U $>$ void {\bf Manager}$<$ T, U $>$\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{T \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_manager_ac9136f779f6075c6be1437db35b31468}
+Supprime l\textquotesingle{}item dont la référence a été passée en paramètre. \hypertarget{class_manager_a6e003fb43ed160833e3094d1a59874e3}{}\index{Manager@{Manager}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!Manager@{Manager}}
+\subsubsection[{delete\+Item}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U $>$ void {\bf Manager}$<$ T, U $>$\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_manager_a6e003fb43ed160833e3094d1a59874e3}
+Supprime l\textquotesingle{}item dont l\textquotesingle{}identificateur a été passé en paramètre. \hypertarget{class_manager_a151e9d0a033a7fa21c2d84221f22b01f}{}\index{Manager@{Manager}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!Manager@{Manager}}
+\subsubsection[{delete\+Item}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U $>$ void {\bf Manager}$<$ T, U $>$\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf iterator}}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_manager_a151e9d0a033a7fa21c2d84221f22b01f}
+Supprime l\textquotesingle{}item pointé par l\textquotesingle{}iterator passé en paramètre. \hypertarget{class_manager_ab438bec0cd793093bee6c8f12c05b32a}{}\index{Manager@{Manager}!end@{end}}
+\index{end@{end}!Manager@{Manager}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U$>$ {\bf iterator} {\bf Manager}$<$ T, U $>$\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_manager_ab438bec0cd793093bee6c8f12c05b32a}
+Renvoie un iterator sur la fin du vecteur. \hypertarget{class_manager_a15006050d43cbaef467051ff53faa8bd}{}\index{Manager@{Manager}!end@{end}}
+\index{end@{end}!Manager@{Manager}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U$>$ {\bf const\+\_\+iterator} {\bf Manager}$<$ T, U $>$\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_manager_a15006050d43cbaef467051ff53faa8bd}
+Renvoie un \hyperlink{class_manager_1_1const__iterator}{const\+\_\+iterator} sur la fin du vecteur. \hypertarget{class_manager_ada15725fe33d625e2c06dcbe2c5edc4e}{}\index{Manager@{Manager}!free\+Instance@{free\+Instance}}
+\index{free\+Instance@{free\+Instance}!Manager@{Manager}}
+\subsubsection[{free\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class U $>$ void {\bf Manager}$<$ T, U $>$\+::free\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_manager_ada15725fe33d625e2c06dcbe2c5edc4e}
+Libère l\textquotesingle{}instance du \hyperlink{class_manager}{Manager}, et entraine sa désallocation mémoire. \hypertarget{class_manager_a8372e4f1e14f3605a57d839b152325ed}{}\index{Manager@{Manager}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Manager@{Manager}}
+\subsubsection[{get\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class U $>$ U \& {\bf Manager}$<$ T, U $>$\+::get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_manager_a8372e4f1e14f3605a57d839b152325ed}
+Renvoie une référence sur l\textquotesingle{}instance du \hyperlink{class_manager}{Manager}. Si ce dernier n\textquotesingle{}est pas créé lors de l\textquotesingle{}appel, la méthode instancie le \hyperlink{class_manager}{Manager} et renvoie sa référence. \hypertarget{class_manager_a1a4856f30411e79051523887d0f251b8}{}\index{Manager@{Manager}!get\+Item@{get\+Item}}
+\index{get\+Item@{get\+Item}!Manager@{Manager}}
+\subsubsection[{get\+Item}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class U $>$ T $\ast$ {\bf Manager}$<$ T, U $>$\+::get\+Item (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_manager_a1a4856f30411e79051523887d0f251b8}
+Renvoie un pointeur sur l\textquotesingle{}item dont l\textquotesingle{}identificateur a été passé en paramètre Si ce dernier n\textquotesingle{}existe pas, nullptr est retourné. \hypertarget{class_manager_adf66a1a70fdd9dc6cdaa13b0c5b4d834}{}\index{Manager@{Manager}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Manager@{Manager}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class U$>$ unsigned int {\bf Manager}$<$ T, U $>$\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_manager_adf66a1a70fdd9dc6cdaa13b0c5b4d834}
+Retourne le nombre d\textquotesingle{}items contenus dans le vecteur. \hypertarget{class_manager_a8edf2ecc36ad33ba354ccabff3210d23}{}\index{Manager@{Manager}!is\+Id\+Free@{is\+Id\+Free}}
+\index{is\+Id\+Free@{is\+Id\+Free}!Manager@{Manager}}
+\subsubsection[{is\+Id\+Free}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class U $>$ bool {\bf Manager}$<$ T, U $>$\+::is\+Id\+Free (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_manager_a8edf2ecc36ad33ba354ccabff3210d23}
+Vérifie si l\textquotesingle{}identificateur passé en paramètre est déjà existant (il ne peut y avoir de doublon). Renvoie false si déjà existant, sinon retourne vrai. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+manager.\+h\end{DoxyCompactItemize}

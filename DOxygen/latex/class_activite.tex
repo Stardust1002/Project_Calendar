@@ -1,0 +1,158 @@
+\hypertarget{class_activite}{}\section{Référence de la classe Activite}
+\label{class_activite}\index{Activite@{Activite}}
+
+
+Une \hyperlink{class_activite}{Activite} est un évènement qui programmable. Elle ne peut être instanciée que par le biais de l\textquotesingle{}\hyperlink{class_activite_manager}{Activite\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Activite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_activite}
+\end{center}
+\end{figure}
+\subsection*{Types publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_a5553b707c56acfc1dd945f47288f8a66}{}enum {\bfseries Type\+Activite} \{ {\bfseries R\+D\+V}, 
+{\bfseries R\+E\+U\+N\+I\+O\+N}
+ \}\label{class_activite_a5553b707c56acfc1dd945f47288f8a66}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+const Q\+String \hyperlink{class_activite_a3590379c3a3ca9576daf546839f7bd8b}{get\+Id} () const 
+\item 
+const Type\+Activite \& \hyperlink{class_activite_a95c674ca8775241901bc43112b253bd2}{get\+Type} () const 
+\item 
+Q\+String \hyperlink{class_activite_a00ba08913dad4b7e6cd47016b1ae1e83}{get\+Type\+To\+String} () const 
+\item 
+Q\+String \hyperlink{class_activite_a81a06135fa07489e7ed8d9363510467e}{get\+Titre} () const 
+\item 
+Q\+String \hyperlink{class_activite_a82dd41b3ab9c2d00848d88ea8d985743}{who\+Am\+I} () const 
+\item 
+bool \hyperlink{class_activite_a2d5539913a03522aa2244cf091d05aab}{is\+Preemptive} () const override
+\item 
+void \hyperlink{class_activite_a86514a48976df542b3ff15b1bf35003e}{set\+Id} (const Q\+String \&i)
+\item 
+void \hyperlink{class_activite_a8d708867c97f1eea188dce47e56ddf40}{set\+Titre} (const Q\+String \&t)
+\item 
+void \hyperlink{class_activite_a4fa019070cce66fbd8bcd8667a70480d}{set\+Type} (const Type\+Activite \&t)
+\item 
+void \hyperlink{class_activite_a519fc19bc5051e236631e14e3d564ed2}{set\+Type\+From\+String} (const Q\+String \&t)
+\item 
+virtual void \hyperlink{class_activite_a7643c2d88519c174143318cf8f813dc0}{afficher} () const 
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_a3e1acfebc533ba2365df5d04515154dd}{}class {\bfseries Activite\+Manager}\label{class_activite_a3e1acfebc533ba2365df5d04515154dd}
+
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+Une \hyperlink{class_activite}{Activite} est un évènement qui programmable. Elle ne peut être instanciée que par le biais de l\textquotesingle{}\hyperlink{class_activite_manager}{Activite\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_activite_a7643c2d88519c174143318cf8f813dc0}{}\index{Activite@{Activite}!afficher@{afficher}}
+\index{afficher@{afficher}!Activite@{Activite}}
+\subsubsection[{afficher}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+::afficher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_activite_a7643c2d88519c174143318cf8f813dc0}
+La méthode \hyperlink{class_activite_a7643c2d88519c174143318cf8f813dc0}{afficher()} permet d\textquotesingle{}afficher en mode debug les attributs de l\textquotesingle{}activité.\hypertarget{class_activite_a3590379c3a3ca9576daf546839f7bd8b}{}\index{Activite@{Activite}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Activite@{Activite}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String Activite\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_activite_a3590379c3a3ca9576daf546839f7bd8b}
+Renvoie l\textquotesingle{}identificateur de l\textquotesingle{}activité. 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+\hypertarget{class_activite_a81a06135fa07489e7ed8d9363510467e}{}\index{Activite@{Activite}!get\+Titre@{get\+Titre}}
+\index{get\+Titre@{get\+Titre}!Activite@{Activite}}
+\subsubsection[{get\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Activite\+::get\+Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a81a06135fa07489e7ed8d9363510467e}
+Renvoie le titre de l\textquotesingle{}activité. \hypertarget{class_activite_a95c674ca8775241901bc43112b253bd2}{}\index{Activite@{Activite}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Activite@{Activite}}
+\subsubsection[{get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}const Type\+Activite\& Activite\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a95c674ca8775241901bc43112b253bd2}
+Renvoie le type de l\textquotesingle{}activité sous forme d\textquotesingle{}un Type\+Activite (voir énumération Type\+Activite). \hypertarget{class_activite_a00ba08913dad4b7e6cd47016b1ae1e83}{}\index{Activite@{Activite}!get\+Type\+To\+String@{get\+Type\+To\+String}}
+\index{get\+Type\+To\+String@{get\+Type\+To\+String}!Activite@{Activite}}
+\subsubsection[{get\+Type\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Activite\+::get\+Type\+To\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a00ba08913dad4b7e6cd47016b1ae1e83}
+Renvoie le type de l\textquotesingle{}activité sous forme de chaine de caractères const char$\ast$. \hypertarget{class_activite_a2d5539913a03522aa2244cf091d05aab}{}\index{Activite@{Activite}!is\+Preemptive@{is\+Preemptive}}
+\index{is\+Preemptive@{is\+Preemptive}!Activite@{Activite}}
+\subsubsection[{is\+Preemptive}]{\setlength{\rightskip}{0pt plus 5cm}bool Activite\+::is\+Preemptive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_activite_a2d5539913a03522aa2244cf091d05aab}
+Renvoie faux sur la premptivité de l\textquotesingle{}évènement (un activité ne peut être préemptive). 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+\hypertarget{class_activite_a86514a48976df542b3ff15b1bf35003e}{}\index{Activite@{Activite}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Activite@{Activite}}
+\subsubsection[{set\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+::set\+Id (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a86514a48976df542b3ff15b1bf35003e}
+Met à jour l\textquotesingle{}identificateur de l\textquotesingle{}évènement. \hypertarget{class_activite_a8d708867c97f1eea188dce47e56ddf40}{}\index{Activite@{Activite}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!Activite@{Activite}}
+\subsubsection[{set\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a8d708867c97f1eea188dce47e56ddf40}
+Met à jour le titre de l\textquotesingle{}évènement. \hypertarget{class_activite_a4fa019070cce66fbd8bcd8667a70480d}{}\index{Activite@{Activite}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Activite@{Activite}}
+\subsubsection[{set\+Type}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{const Type\+Activite \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a4fa019070cce66fbd8bcd8667a70480d}
+Met à jour le type de l\textquotesingle{}activité. \hypertarget{class_activite_a519fc19bc5051e236631e14e3d564ed2}{}\index{Activite@{Activite}!set\+Type\+From\+String@{set\+Type\+From\+String}}
+\index{set\+Type\+From\+String@{set\+Type\+From\+String}!Activite@{Activite}}
+\subsubsection[{set\+Type\+From\+String}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+::set\+Type\+From\+String (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_a519fc19bc5051e236631e14e3d564ed2}
+Met à jour le type de l\textquotesingle{}activité \hypertarget{class_activite_a82dd41b3ab9c2d00848d88ea8d985743}{}\index{Activite@{Activite}!who\+Am\+I@{who\+Am\+I}}
+\index{who\+Am\+I@{who\+Am\+I}!Activite@{Activite}}
+\subsubsection[{who\+Am\+I}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Activite\+::who\+Am\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_activite_a82dd41b3ab9c2d00848d88ea8d985743}
+Renvoie le type de l\textquotesingle{}évènement, ici \char`\"{}activite\char`\"{}. 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

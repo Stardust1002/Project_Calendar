@@ -12,10 +12,7 @@
 
 using namespace std;
 
-///La classe Manager est un singleton conteneur d'items.
-///Elle gère le cycle de vie de ses items, de la création à la destruction en passant par la modification.
-///Une façade d'iterator a été mise en place pour empêcher l'accès direct au vecteur privé contenant les items.
-///Celle-ci est virtuelle pure, ainsi seules ses classes filles peuvent être instanciées:
+///La classe Manager est un singleton conteneur d'items. Elle gère le cycle de vie de ses items, de la création à la destruction en passant par la modification. Une façade d'iterator a été mise en place pour empêcher l'accès direct au vecteur privé contenant les items. Celle-ci est virtuelle pure, ainsi seules ses classes filles peuvent être instanciées:
 ///- ProjetManager
 ///- ActiviteManager
 ///- TacheManager
@@ -143,9 +140,7 @@ template <> inline void Manager<Tache,TacheManager>::deleteItem(iterator toDelet
     }
 
 }
-///La classe TacheManager est un Manager qui gère les items de type Tache.
-///Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère.
-///Ele peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
+///La classe TacheManager est un Manager qui gère les items de type Tache. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class TacheManager: public Manager<Tache,TacheManager>{
 public:
     TacheUnitaire& ajouterTacheUnitaire(const QString& id, const QString& titre, const QString& duree,
@@ -158,9 +153,7 @@ public:
                                const QDateTime& echeance,vector<Tache*> liste = vector<Tache*>());
 
 };
-///La classe ProjetManager est un Manager qui gère les items de type Projet.
-///Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère.
-///Ele peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
+///La classe ProjetManager est un Manager qui gère les items de type Projet. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class ProjetManager: public Manager<Projet,ProjetManager>{
 public:
     Projet& ajouterProjet(const QString& id, const QString& titre, const QString& dispo);
@@ -168,9 +161,7 @@ public:
     void supprimerProjet(QString id);
 
 };
-///La classe PrecedenceManager est un Manager qui gère les items de type Precedence.
-///Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère.
-///Ele peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
+///La classe PrecedenceManager est un Manager qui gère les items de type Precedence. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class PrecedenceManager: public Manager<Precedence,PrecedenceManager>{
 public:
     void deleteItem(Precedence* t);
@@ -180,18 +171,14 @@ public:
     bool isPredecesseur(const Tache& t1, const Tache& t2)const;
 };
 
-///La classe ActiviteManager est un Manager qui gère les items de type activité.
-///Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère.
-///Ele peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
+///La classe ActiviteManager est un Manager qui gère les items de type activité. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class ActiviteManager: public Manager<Activite,ActiviteManager>{
 public:
     Activite& ajouterActivite(const QString& id, const QString& t, const Activite::TypeActivite& ty, const QTimeSpan& d);
     Activite& ajouterActivite(const QString &id, const QString &t, const Activite::TypeActivite &ty, const QString &d);
 };
 
-///La classe ProgrammationManager est un Manager qui gère les items de type Programmation.
-///Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère.
-///Ele peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
+///La classe ProgrammationManager est un Manager qui gère les items de type Programmation. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class ProgrammationManager:public Manager<Programmation,ProgrammationManager>{
 public:
     Programmation& ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree);

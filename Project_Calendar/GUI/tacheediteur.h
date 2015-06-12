@@ -21,6 +21,7 @@
 #include <QListWidget>
 #include <QAbstractItemView>
 
+///Fenêtre d'ajout et de modification de TacheUnitaire.
 class tacheEditeur:public QDialog
 {
 

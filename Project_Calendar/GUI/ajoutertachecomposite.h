@@ -9,7 +9,7 @@
 namespace Ui {
 class ajouterTacheComposite;
 }
-
+///Fenêtre d'ajout et de modification de TacheComposite
 class ajouterTacheComposite : public QDialog
 {
     Q_OBJECT

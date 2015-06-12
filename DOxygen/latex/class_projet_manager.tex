@@ -1,0 +1,58 @@
+\hypertarget{class_projet_manager}{}\section{Référence de la classe Projet\+Manager}
+\label{class_projet_manager}\index{Projet\+Manager@{Projet\+Manager}}
+
+
+La classe \hyperlink{class_projet_manager}{Projet\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_projet}{Projet}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}.  
+
+
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Projet\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_projet_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projet}{Projet} \& \hyperlink{class_projet_manager_a3394d5ab0749ea68efb5ae535b27e6fc}{ajouter\+Projet} (const Q\+String \&id, const Q\+String \&titre, const Q\+String \&dispo)
+\item 
+\hyperlink{class_projet}{Projet} \& \hyperlink{class_projet_manager_a6da5a61e20cbf0a6bc98a3681f977829}{ajouter\+Projet} (const Q\+String \&id, const Q\+String \&titre, const Q\+Date\+Time \&dispo)
+\item 
+\hypertarget{class_projet_manager_a04c4b5b2c4d84f2ad48abe24d6960607}{}void {\bfseries supprimer\+Projet} (Q\+String id)\label{class_projet_manager_a04c4b5b2c4d84f2ad48abe24d6960607}
+
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_projet_manager}{Projet\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_projet}{Projet}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_projet_manager_a3394d5ab0749ea68efb5ae535b27e6fc}{}\index{Projet\+Manager@{Projet\+Manager}!ajouter\+Projet@{ajouter\+Projet}}
+\index{ajouter\+Projet@{ajouter\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{ajouter\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projet} \& Projet\+Manager\+::ajouter\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+String \&}]{dispo}
+\end{DoxyParamCaption}
+)}\label{class_projet_manager_a3394d5ab0749ea68efb5ae535b27e6fc}
+Créer un projet en vérifiant les attributs passés en paramètre. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_projet_manager_a6da5a61e20cbf0a6bc98a3681f977829}{}\index{Projet\+Manager@{Projet\+Manager}!ajouter\+Projet@{ajouter\+Projet}}
+\index{ajouter\+Projet@{ajouter\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{ajouter\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projet} \& Projet\+Manager\+::ajouter\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+Date\+Time \&}]{dispo}
+\end{DoxyParamCaption}
+)}\label{class_projet_manager_a6da5a61e20cbf0a6bc98a3681f977829}
+Créer un projet en vérifiant les attributs passés en paramètre. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+manager.\+h\item 
+manager.\+cpp\end{DoxyCompactItemize}

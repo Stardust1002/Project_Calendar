@@ -6,7 +6,7 @@
 namespace Ui {
 class ouvrirsave;
 }
-
+///Fenêtre du choix de fichier de sauvegarde.
 class ouvrirsave : public QDialog
 {
     Q_OBJECT

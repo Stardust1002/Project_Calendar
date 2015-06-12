@@ -1,0 +1,191 @@
+\hypertarget{class_x_m_l}{}\section{Référence de la classe X\+M\+L}
+\label{class_x_m_l}\index{X\+M\+L@{X\+M\+L}}
+
+
+La classe \hyperlink{class_x_m_l}{X\+M\+L} est un \hyperlink{class_format}{Format} et permet d\textquotesingle{}exporter l\textquotesingle{}ensemble des données du calendrier sous forme \hyperlink{class_x_m_l}{X\+M\+L}.  
+
+
+
+
+{\ttfamily \#include $<$import-\/export.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de X\+M\+L\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_x_m_l}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_x_m_l_a0c2f3b489419670e42e6cb3b5a99d685}{save} () const override
+\item 
+void \hyperlink{class_x_m_l_a4d293b9b95938449b0eb789cc93d9b50}{save\+Projet} (Q\+Xml\+Stream\+Writer \&stream, const \hyperlink{class_projet}{Projet} \&proj) const 
+\item 
+void \hyperlink{class_x_m_l_acd2ed06f43002937540f02db3edd5119}{save\+Tache} (Q\+Xml\+Stream\+Writer \&stream, const \hyperlink{class_tache}{Tache} \&tache) const 
+\item 
+void \hyperlink{class_x_m_l_acedd44046fabe1b5e92a67d5a92bc577}{save\+Activite} (Q\+Xml\+Stream\+Writer \&stream, const \hyperlink{class_activite}{Activite} \&act) const 
+\item 
+void \hyperlink{class_x_m_l_a954c040930e567a46c2390f0188f273d}{save\+Programmation} (Q\+Xml\+Stream\+Writer \&stream, const \hyperlink{class_programmation}{Programmation} \&prog) const 
+\item 
+void \hyperlink{class_x_m_l_ad0ece286ff5262a63e68e08e2878b0c8}{save\+Precedence} (Q\+Xml\+Stream\+Writer \&stream, const \hyperlink{class_precedence}{Precedence} \&prec) const 
+\item 
+void \hyperlink{class_x_m_l_aba46159218c520cdc783654b34a2c0dd}{load} () const override
+\item 
+void \hyperlink{class_x_m_l_a67683ccfd45dcc4aa18317fefcf723fd}{load\+Projet} (Q\+Xml\+Stream\+Reader \&stream) const 
+\item 
+\hyperlink{class_tache}{Tache} \& \hyperlink{class_x_m_l_a0b5ebfcd1601f9353d9d13f8290e7319}{load\+Tache} (Q\+Xml\+Stream\+Reader \&stream) const 
+\item 
+void \hyperlink{class_x_m_l_a554eb55c0c69dbc3045615d0ab68ab1d}{load\+Activite} (Q\+Xml\+Stream\+Reader \&stream) const 
+\item 
+void \hyperlink{class_x_m_l_a0f2858b84a734c0238d4478df89ce170}{load\+Programmation} (Q\+Xml\+Stream\+Reader \&stream) const 
+\item 
+void \hyperlink{class_x_m_l_a0593dfc3350675f6da3098ac68bb060d}{load\+Precedence} (Q\+Xml\+Stream\+Reader \&stream) const 
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_x_m_l}{X\+M\+L} \& \hyperlink{class_x_m_l_aa2d6c4ab68ae45a0cbb71d3baa67a119}{get\+Instance} (const Q\+String \&p=\char`\"{}auto-\/save.\+xml\char`\"{})
+\item 
+static void \hyperlink{class_x_m_l_aa636b752f30ee85554a88b29687deed7}{free\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_x_m_l}{X\+M\+L} est un \hyperlink{class_format}{Format} et permet d\textquotesingle{}exporter l\textquotesingle{}ensemble des données du calendrier sous forme \hyperlink{class_x_m_l}{X\+M\+L}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_x_m_l_aa636b752f30ee85554a88b29687deed7}{}\index{X\+M\+L@{X\+M\+L}!free\+Instance@{free\+Instance}}
+\index{free\+Instance@{free\+Instance}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{free\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::free\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_x_m_l_aa636b752f30ee85554a88b29687deed7}
+Libère l\textquotesingle{}instance de la stratégie \hyperlink{class_x_m_l}{X\+M\+L} et entraine sa désallocation mémoire. \hypertarget{class_x_m_l_aa2d6c4ab68ae45a0cbb71d3baa67a119}{}\index{X\+M\+L@{X\+M\+L}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{get\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf X\+M\+L} \& X\+M\+L\+::get\+Instance (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{p = {\ttfamily \char`\"{}auto-\/save.xml\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_x_m_l_aa2d6c4ab68ae45a0cbb71d3baa67a119}
+Instancie un objet de la classe \hyperlink{class_x_m_l}{X\+M\+L} si aucune instanciation n\textquotesingle{}a été faite au préalable, et retourne sa référence. \hypertarget{class_x_m_l_aba46159218c520cdc783654b34a2c0dd}{}\index{X\+M\+L@{X\+M\+L}!load@{load}}
+\index{load@{load}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_x_m_l_aba46159218c520cdc783654b34a2c0dd}
+Effectue le chargement total de l\textquotesingle{}ensemble des informations du calendrier stockés dans un fichier \hyperlink{class_x_m_l}{X\+M\+L}.
+\begin{DoxyItemize}
+\item Projets
+\item Tâches
+\item Activités
+\item Précédences
+\item Programmations 
+\end{DoxyItemize}
+
+Implémente \hyperlink{class_format}{Format}.
+
+\hypertarget{class_x_m_l_a554eb55c0c69dbc3045615d0ab68ab1d}{}\index{X\+M\+L@{X\+M\+L}!load\+Activite@{load\+Activite}}
+\index{load\+Activite@{load\+Activite}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load\+Activite}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::load\+Activite (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Reader \&}]{stream}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a554eb55c0c69dbc3045615d0ab68ab1d}
+Charge toutes les activités au sein du \hyperlink{class_activite_manager}{Activite\+Manager} depuis le stream de type Q\+Xml\+Stream\+Reader. \hypertarget{class_x_m_l_a0593dfc3350675f6da3098ac68bb060d}{}\index{X\+M\+L@{X\+M\+L}!load\+Precedence@{load\+Precedence}}
+\index{load\+Precedence@{load\+Precedence}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load\+Precedence}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::load\+Precedence (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Reader \&}]{stream}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a0593dfc3350675f6da3098ac68bb060d}
+Charge toutes les précédences au sein du \hyperlink{class_precedence_manager}{Precedence\+Manager} depuis le stream de type Q\+Xml\+Stream\+Reader. \hypertarget{class_x_m_l_a0f2858b84a734c0238d4478df89ce170}{}\index{X\+M\+L@{X\+M\+L}!load\+Programmation@{load\+Programmation}}
+\index{load\+Programmation@{load\+Programmation}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::load\+Programmation (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Reader \&}]{stream}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a0f2858b84a734c0238d4478df89ce170}
+Charge toutes les programmations au sein du \hyperlink{class_programmation_manager}{Programmation\+Manager} depuis le stream de type Q\+Xml\+Stream\+Reader. \hypertarget{class_x_m_l_a67683ccfd45dcc4aa18317fefcf723fd}{}\index{X\+M\+L@{X\+M\+L}!load\+Projet@{load\+Projet}}
+\index{load\+Projet@{load\+Projet}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::load\+Projet (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Reader \&}]{stream}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a67683ccfd45dcc4aa18317fefcf723fd}
+Charge tous les projets au sein du \hyperlink{class_projet_manager}{Projet\+Manager} depuis le stream de type Q\+Xml\+Stream\+Reader. \hypertarget{class_x_m_l_a0b5ebfcd1601f9353d9d13f8290e7319}{}\index{X\+M\+L@{X\+M\+L}!load\+Tache@{load\+Tache}}
+\index{load\+Tache@{load\+Tache}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{load\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} \& X\+M\+L\+::load\+Tache (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Reader \&}]{stream}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a0b5ebfcd1601f9353d9d13f8290e7319}
+Charge toutes les tâches au sein du \hyperlink{class_tache_manager}{Tache\+Manager} depuis le stream de type Q\+Xml\+Stream\+Reader. \hypertarget{class_x_m_l_a0c2f3b489419670e42e6cb3b5a99d685}{}\index{X\+M\+L@{X\+M\+L}!save@{save}}
+\index{save@{save}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_x_m_l_a0c2f3b489419670e42e6cb3b5a99d685}
+Effectue la sauvegarde totale de l\textquotesingle{}ensemble des informations du calendrier au sein d\textquotesingle{}un fichier \hyperlink{class_x_m_l}{X\+M\+L}\+:
+\begin{DoxyItemize}
+\item Projets\+: en appellant \hyperlink{class_x_m_l_a4d293b9b95938449b0eb789cc93d9b50}{save\+Projet()}
+\item Tâches\+: en appellant \hyperlink{class_x_m_l_acd2ed06f43002937540f02db3edd5119}{save\+Tache()}
+\item Activités\+: en appellant \hyperlink{class_x_m_l_acedd44046fabe1b5e92a67d5a92bc577}{save\+Activite()}
+\item Précédences\+: en appellant \hyperlink{class_x_m_l_ad0ece286ff5262a63e68e08e2878b0c8}{save\+Precedence()}
+\item Programmations\+: en appellant \hyperlink{class_x_m_l_a954c040930e567a46c2390f0188f273d}{save\+Programmation()}
+\end{DoxyItemize}
+
+Pour sauvegarder chaque item, la méthode \hyperlink{class_x_m_l_a0c2f3b489419670e42e6cb3b5a99d685}{save()} parcourt les différents manager à l\textquotesingle{}aide d\textquotesingle{}un iterator. 
+
+Implémente \hyperlink{class_format}{Format}.
+
+\hypertarget{class_x_m_l_acedd44046fabe1b5e92a67d5a92bc577}{}\index{X\+M\+L@{X\+M\+L}!save\+Activite@{save\+Activite}}
+\index{save\+Activite@{save\+Activite}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save\+Activite}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save\+Activite (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream, }
+\item[{const {\bf Activite} \&}]{act}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_acedd44046fabe1b5e92a67d5a92bc577}
+Sauvegarde l\textquotesingle{}activité dans le stream Q\+Xml\+Stream\+Writer, tous deux passés en paramètre. \hypertarget{class_x_m_l_ad0ece286ff5262a63e68e08e2878b0c8}{}\index{X\+M\+L@{X\+M\+L}!save\+Precedence@{save\+Precedence}}
+\index{save\+Precedence@{save\+Precedence}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save\+Precedence}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save\+Precedence (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream, }
+\item[{const {\bf Precedence} \&}]{prec}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_ad0ece286ff5262a63e68e08e2878b0c8}
+Sauvegarde la précédence dans le stream Q\+Xml\+Stream\+Writer, tous deux passés en paramètre. \hypertarget{class_x_m_l_a954c040930e567a46c2390f0188f273d}{}\index{X\+M\+L@{X\+M\+L}!save\+Programmation@{save\+Programmation}}
+\index{save\+Programmation@{save\+Programmation}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save\+Programmation (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream, }
+\item[{const {\bf Programmation} \&}]{prog}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a954c040930e567a46c2390f0188f273d}
+Sauvegarde la programmation dans le stream Q\+Xml\+Stream\+Writer, tous deux passés en paramètre. \hypertarget{class_x_m_l_a4d293b9b95938449b0eb789cc93d9b50}{}\index{X\+M\+L@{X\+M\+L}!save\+Projet@{save\+Projet}}
+\index{save\+Projet@{save\+Projet}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save\+Projet (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream, }
+\item[{const {\bf Projet} \&}]{proj}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_a4d293b9b95938449b0eb789cc93d9b50}
+Sauvegarde le projet dans le stream Q\+Xml\+Stream\+Writer, tous deux passés en paramètre. La méthode sauvegarde également les tâches liées au projet en appelant \hyperlink{class_x_m_l_acd2ed06f43002937540f02db3edd5119}{save\+Tache()}. \hypertarget{class_x_m_l_acd2ed06f43002937540f02db3edd5119}{}\index{X\+M\+L@{X\+M\+L}!save\+Tache@{save\+Tache}}
+\index{save\+Tache@{save\+Tache}!X\+M\+L@{X\+M\+L}}
+\subsubsection[{save\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void X\+M\+L\+::save\+Tache (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream, }
+\item[{const {\bf Tache} \&}]{tache}
+\end{DoxyParamCaption}
+) const}\label{class_x_m_l_acd2ed06f43002937540f02db3edd5119}
+Sauvegarde la tâche dans le stream Q\+Xml\+Stream\+Writer, tous deux passés en paramètre. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+import-\/export.\+h\item 
+import-\/export.\+cpp\end{DoxyCompactItemize}

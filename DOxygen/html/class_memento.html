@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Project Calendar: Référence de la classe Memento</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Project Calendar
+   &#160;<span id="projectnumber">P15</span>
+   </div>
+   <div id="projectbrief">LO21 - Par JEANNOT Antoine &amp; FELD Valentin</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Liste&#160;des&#160;classes</span></a></li>
+      <li><a href="classes.html"><span>Index&#160;des&#160;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&#160;des&#160;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&#160;de&#160;classe</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="class_memento-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe Memento</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>La classe <a class="el" href="class_memento.html" title="La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...">Memento</a> est un singleton memento permettant de charger et de sauvegarder l'ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d'exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode setStrategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d'une référence ou d'un pointeur grâce à la méthode <a class="el" href="class_memento.html#a0d8167075a7e5f8890d8cbe1bd3d1273">getInstance()</a>. Un Handler a été mis en place afin désalloué automatiquement l'instance en fin de processus.  
+ <a href="class_memento.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="import-export_8h_source.html">import-export.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a2ab0539c90bdafdce79776841f3f835b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memento.html#a2ab0539c90bdafdce79776841f3f835b">setStrategie</a> (<a class="el" href="class_format.html">Format</a> *strat)</td></tr>
+<tr class="separator:a2ab0539c90bdafdce79776841f3f835b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b2b96d212c9fe1338e80ae41912fa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memento.html#a36b2b96d212c9fe1338e80ae41912fa3">save</a> () const </td></tr>
+<tr class="separator:a36b2b96d212c9fe1338e80ae41912fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05119b7214605862ef8e48d0d6bb2713"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memento.html#a05119b7214605862ef8e48d0d6bb2713">load</a> () const </td></tr>
+<tr class="separator:a05119b7214605862ef8e48d0d6bb2713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:a8e97e83e767bd9cb13c6ddcf16125553"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memento.html#a8e97e83e767bd9cb13c6ddcf16125553">freeInstance</a> ()</td></tr>
+<tr class="separator:a8e97e83e767bd9cb13c6ddcf16125553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d8167075a7e5f8890d8cbe1bd3d1273"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_memento.html">Memento</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_memento.html#a0d8167075a7e5f8890d8cbe1bd3d1273">getInstance</a> (<a class="el" href="class_format.html">Format</a> &amp;strategie=XML::getInstance())</td></tr>
+<tr class="separator:a0d8167075a7e5f8890d8cbe1bd3d1273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>La classe <a class="el" href="class_memento.html" title="La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...">Memento</a> est un singleton memento permettant de charger et de sauvegarder l'ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d'exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode setStrategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d'une référence ou d'un pointeur grâce à la méthode <a class="el" href="class_memento.html#a0d8167075a7e5f8890d8cbe1bd3d1273">getInstance()</a>. Un Handler a été mis en place afin désalloué automatiquement l'instance en fin de processus. </p>
+</div><h2 class="groupheader">Documentation des fonctions membres</h2>
+<a class="anchor" id="a8e97e83e767bd9cb13c6ddcf16125553"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Memento::freeInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Libère l'instance du <a class="el" href="class_memento.html" title="La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...">Memento</a> et entraine sa désallocation mémoire. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0d8167075a7e5f8890d8cbe1bd3d1273"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_memento.html">Memento</a> &amp; Memento::getInstance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_format.html">Format</a> &amp;&#160;</td>
+          <td class="paramname"><em>strategie</em> = <code>XML::getInstance()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Instancie un objet de la classe <a class="el" href="class_memento.html" title="La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...">Memento</a> si aucune instanciation n'a été faite au préalable, et retourne sa référence. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strategie</td><td>Renvoie une reference sur l'instance de <a class="el" href="class_memento.html" title="La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...">Memento</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a05119b7214605862ef8e48d0d6bb2713"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Memento::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Charge toutes les informations du calendrier à l'aide de la méthode <a class="el" href="class_memento.html#a05119b7214605862ef8e48d0d6bb2713">load()</a> de la stratégie actuelle. </p>
+
+</div>
+</div>
+<a class="anchor" id="a36b2b96d212c9fe1338e80ae41912fa3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Memento::save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sauve toutes les informations du calendrier à l'aide de la méthode de la stratégie actuelle. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2ab0539c90bdafdce79776841f3f835b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Memento::setStrategie </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_format.html">Format</a> *&#160;</td>
+          <td class="paramname"><em>strat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Modifie la stratégie avec celle passée en paramètre </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li><a class="el" href="import-export_8h_source.html">import-export.h</a></li>
+<li>import-export.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 12 Juin 2015 17:50:08 pour Project Calendar par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

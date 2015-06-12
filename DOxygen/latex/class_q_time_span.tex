@@ -1,0 +1,74 @@
+\hypertarget{class_q_time_span}{}\section{Référence de la classe Q\+Time\+Span}
+\label{class_q_time_span}\index{Q\+Time\+Span@{Q\+Time\+Span}}
+
+
+Classe permettant de manipuler les temps/durées en implémentant l\textquotesingle{}addition et la soustraction manquantes à classe Q\+Time.  
+
+
+
+
+{\ttfamily \#include $<$qtimespan.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Q\+Time\+Span\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_q_time_span}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_q_time_span_a8cd29696e67c41f49f5a240e9e78cabe}{}{\bfseries Q\+Time\+Span} (const Q\+Time \&horaire)\label{class_q_time_span_a8cd29696e67c41f49f5a240e9e78cabe}
+
+\item 
+\hypertarget{class_q_time_span_a00f65e986fe17b60dd36cd028c19ce0f}{}{\bfseries Q\+Time\+Span} (int h, int m, int s=0, int ms=0)\label{class_q_time_span_a00f65e986fe17b60dd36cd028c19ce0f}
+
+\item 
+\hyperlink{class_q_time_span}{Q\+Time\+Span} \hyperlink{class_q_time_span_af687464e1116164d0c32c4655b024560}{operator+} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d) const 
+\item 
+\hyperlink{class_q_time_span}{Q\+Time\+Span} \& \hyperlink{class_q_time_span_a038fd914f077796445c578374d066fe5}{operator+=} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)
+\item 
+\hyperlink{class_q_time_span}{Q\+Time\+Span} \hyperlink{class_q_time_span_a2a68d770016787234f2d4b1fb6e05335}{operator-\/} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d) const 
+\item 
+\hyperlink{class_q_time_span}{Q\+Time\+Span} \& \hyperlink{class_q_time_span_a68657d22a32edb47bd04776162038031}{operator-\/=} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe permettant de manipuler les temps/durées en implémentant l\textquotesingle{}addition et la soustraction manquantes à classe Q\+Time. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_q_time_span_af687464e1116164d0c32c4655b024560}{}\index{Q\+Time\+Span@{Q\+Time\+Span}!operator+@{operator+}}
+\index{operator+@{operator+}!Q\+Time\+Span@{Q\+Time\+Span}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Time\+Span} Q\+Time\+Span\+::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+) const}\label{class_q_time_span_af687464e1116164d0c32c4655b024560}
+Opérateur d\textquotesingle{}addition permettant d\textquotesingle{}additionner deux \hyperlink{class_q_time_span}{Q\+Time\+Span} et leurs attributs respectifs. \hypertarget{class_q_time_span_a038fd914f077796445c578374d066fe5}{}\index{Q\+Time\+Span@{Q\+Time\+Span}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Q\+Time\+Span@{Q\+Time\+Span}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Time\+Span} \& Q\+Time\+Span\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_q_time_span_a038fd914f077796445c578374d066fe5}
+Opérateur d\textquotesingle{}addition permettant d\textquotesingle{}additionner deux \hyperlink{class_q_time_span}{Q\+Time\+Span} et leurs attributs respectifs. \hypertarget{class_q_time_span_a2a68d770016787234f2d4b1fb6e05335}{}\index{Q\+Time\+Span@{Q\+Time\+Span}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Q\+Time\+Span@{Q\+Time\+Span}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Time\+Span} Q\+Time\+Span\+::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+) const}\label{class_q_time_span_a2a68d770016787234f2d4b1fb6e05335}
+Opérateur de soustraction permettant de soustraire deux \hyperlink{class_q_time_span}{Q\+Time\+Span} et leurs attributs respectifs. \hypertarget{class_q_time_span_a68657d22a32edb47bd04776162038031}{}\index{Q\+Time\+Span@{Q\+Time\+Span}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Q\+Time\+Span@{Q\+Time\+Span}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Time\+Span} \& Q\+Time\+Span\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_q_time_span_a68657d22a32edb47bd04776162038031}
+Opérateur de soustraction permettant de soustraire deux \hyperlink{class_q_time_span}{Q\+Time\+Span} et leurs attributs respectifs. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+qtimespan.\+h\item 
+qtimespan.\+cpp\end{DoxyCompactItemize}

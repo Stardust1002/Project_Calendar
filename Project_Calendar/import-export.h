@@ -6,8 +6,7 @@
 #include "evenement.h"
 #include <QFile>
 
-///Format est une classe virtuelle pure permettant la mise en place du pattern design Strategy.
-///Les classes fillent qui en héritent peuvent alors être utiliser par le Memento afin de réaliser divers types d'exportations.
+///Format est une classe virtuelle pure permettant la mise en place du pattern design Strategy. Les classes fillent qui en héritent peuvent alors être utiliser par le Memento afin de réaliser divers types d'exportations.
 class Format{
 protected:
     QString pathname;
@@ -27,7 +26,7 @@ public:
     virtual void load()const=0;
 };
 
-///la classe XML est un Format et permet d'exporter l'ensemble des données du calendrier sous forme XML.
+///La classe XML est un Format et permet d'exporter l'ensemble des données du calendrier sous forme XML.
 class XML : public Format{
     struct Handler{
         XML* instance;
@@ -53,11 +52,7 @@ public:
     void loadProgrammation(QXmlStreamReader& stream)const;
     void loadPrecedence(QXmlStreamReader& stream)const;
 };
-///La classe Memento est un singleton memento permettant de charger et de sauvegarder l'ensemble des informations du calendrier.
-///Elle les exporter selon une stratégie particulière, correspondant au format d'exportation.
-///Cette stratégie peut être changée à tout moment par le biais de la méthode setStrategie.
-///De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d'une référence ou d'un pointeur grâce à la méthode getInstance().
-///Un Handler a été mis en place afin désalloué automatiquement l'instance en fin de processus.
+///La classe Memento est un singleton memento permettant de charger et de sauvegarder l'ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d'exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode setStrategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d'une référence ou d'un pointeur grâce à la méthode getInstance(). Un Handler a été mis en place afin désalloué automatiquement l'instance en fin de processus.
 class Memento{
     Format* strategie;
     Memento(Format &s):strategie(&s){}

@@ -1,0 +1,57 @@
+\hypertarget{class_activite_manager}{}\section{Référence de la classe Activite\+Manager}
+\label{class_activite_manager}\index{Activite\+Manager@{Activite\+Manager}}
+
+
+La classe \hyperlink{class_activite_manager}{Activite\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type activité. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}.  
+
+
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Activite\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_activite_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_activite}{Activite} \& \hyperlink{class_activite_manager_a6c62c6f427c541d44c8da3eef994e562}{ajouter\+Activite} (const Q\+String \&id, const Q\+String \&t, const Activite\+::\+Type\+Activite \&ty, const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)
+\item 
+\hyperlink{class_activite}{Activite} \& \hyperlink{class_activite_manager_a275464cd4fd5b3ca57dfeb10120146d0}{ajouter\+Activite} (const Q\+String \&id, const Q\+String \&t, const Activite\+::\+Type\+Activite \&ty, const Q\+String \&d)
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_activite_manager}{Activite\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type activité. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_activite_manager_a6c62c6f427c541d44c8da3eef994e562}{}\index{Activite\+Manager@{Activite\+Manager}!ajouter\+Activite@{ajouter\+Activite}}
+\index{ajouter\+Activite@{ajouter\+Activite}!Activite\+Manager@{Activite\+Manager}}
+\subsubsection[{ajouter\+Activite}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Activite} \& Activite\+Manager\+::ajouter\+Activite (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{t, }
+\item[{const Activite\+::\+Type\+Activite \&}]{ty, }
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_activite_manager_a6c62c6f427c541d44c8da3eef994e562}
+Créer une activité en vérifiant les attributs passés en paramètre. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_activite_manager_a275464cd4fd5b3ca57dfeb10120146d0}{}\index{Activite\+Manager@{Activite\+Manager}!ajouter\+Activite@{ajouter\+Activite}}
+\index{ajouter\+Activite@{ajouter\+Activite}!Activite\+Manager@{Activite\+Manager}}
+\subsubsection[{ajouter\+Activite}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Activite} \& Activite\+Manager\+::ajouter\+Activite (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{t, }
+\item[{const Activite\+::\+Type\+Activite \&}]{ty, }
+\item[{const Q\+String \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_activite_manager_a275464cd4fd5b3ca57dfeb10120146d0}
+Créer une activité en vérifiant les attributs passés en paramètre. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+manager.\+h\item 
+manager.\+cpp\end{DoxyCompactItemize}
