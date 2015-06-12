@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['thunder_20calendar',['Thunder Calendar',['../index.html',1,'']]]
+  ['rocket_21_20calendar',['Rocket! Calendar',['../index.html',1,'']]]
 ];

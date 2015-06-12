@@ -8,9 +8,9 @@
 #include <QSplashScreen>
 #include "Windows.h"
 
-/*! \mainpage Rocker! Calendar
+/*! \mainpage Rocket! Calendar
  *
- * \section  Introduction
+ * \section  Présentation
  *
  * Rocket! Calendar a été réalisé par Valentin Feld et Antoine Jeannot en Printemps 2015.
  *
