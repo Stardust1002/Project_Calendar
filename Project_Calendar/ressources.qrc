@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Extra/logo.png</file>
+        <file>Extra/sound.wav</file>
+    </qresource>
+</RCC>
