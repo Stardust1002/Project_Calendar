@@ -9,7 +9,7 @@
 namespace Ui {
 class ajouterProjet;
 }
-
+///Fenêtre d'ajout et de modification de Projet
 class ajouterProjet : public QDialog
 {
     Q_OBJECT

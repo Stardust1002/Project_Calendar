@@ -1,0 +1,79 @@
+\hypertarget{class_memento}{}\section{Référence de la classe Memento}
+\label{class_memento}\index{Memento@{Memento}}
+
+
+La classe \hyperlink{class_memento}{Memento} est un singleton memento permettant de charger et de sauvegarder l\textquotesingle{}ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d\textquotesingle{}exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode set\+Strategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d\textquotesingle{}une référence ou d\textquotesingle{}un pointeur grâce à la méthode \hyperlink{class_memento_a0d8167075a7e5f8890d8cbe1bd3d1273}{get\+Instance()}. Un Handler a été mis en place afin désalloué automatiquement l\textquotesingle{}instance en fin de processus.  
+
+
+
+
+{\ttfamily \#include $<$import-\/export.\+h$>$}
+
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_memento_a2ab0539c90bdafdce79776841f3f835b}{set\+Strategie} (\hyperlink{class_format}{Format} $\ast$strat)
+\item 
+void \hyperlink{class_memento_a36b2b96d212c9fe1338e80ae41912fa3}{save} () const 
+\item 
+void \hyperlink{class_memento_a05119b7214605862ef8e48d0d6bb2713}{load} () const 
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_memento_a8e97e83e767bd9cb13c6ddcf16125553}{free\+Instance} ()
+\item 
+static \hyperlink{class_memento}{Memento} \& \hyperlink{class_memento_a0d8167075a7e5f8890d8cbe1bd3d1273}{get\+Instance} (\hyperlink{class_format}{Format} \&strategie=X\+M\+L\+::get\+Instance())
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_memento}{Memento} est un singleton memento permettant de charger et de sauvegarder l\textquotesingle{}ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d\textquotesingle{}exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode set\+Strategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d\textquotesingle{}une référence ou d\textquotesingle{}un pointeur grâce à la méthode \hyperlink{class_memento_a0d8167075a7e5f8890d8cbe1bd3d1273}{get\+Instance()}. Un Handler a été mis en place afin désalloué automatiquement l\textquotesingle{}instance en fin de processus. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_memento_a8e97e83e767bd9cb13c6ddcf16125553}{}\index{Memento@{Memento}!free\+Instance@{free\+Instance}}
+\index{free\+Instance@{free\+Instance}!Memento@{Memento}}
+\subsubsection[{free\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}void Memento\+::free\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_memento_a8e97e83e767bd9cb13c6ddcf16125553}
+Libère l\textquotesingle{}instance du \hyperlink{class_memento}{Memento} et entraine sa désallocation mémoire. \hypertarget{class_memento_a0d8167075a7e5f8890d8cbe1bd3d1273}{}\index{Memento@{Memento}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Memento@{Memento}}
+\subsubsection[{get\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memento} \& Memento\+::get\+Instance (
+\begin{DoxyParamCaption}
+\item[{{\bf Format} \&}]{strategie = {\ttfamily XML\+:\+:getInstance()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_memento_a0d8167075a7e5f8890d8cbe1bd3d1273}
+Instancie un objet de la classe \hyperlink{class_memento}{Memento} si aucune instanciation n\textquotesingle{}a été faite au préalable, et retourne sa référence. 
+\begin{DoxyParams}{Paramètres}
+{\em strategie} & Renvoie une reference sur l\textquotesingle{}instance de \hyperlink{class_memento}{Memento}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_memento_a05119b7214605862ef8e48d0d6bb2713}{}\index{Memento@{Memento}!load@{load}}
+\index{load@{load}!Memento@{Memento}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}void Memento\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_memento_a05119b7214605862ef8e48d0d6bb2713}
+Charge toutes les informations du calendrier à l\textquotesingle{}aide de la méthode \hyperlink{class_memento_a05119b7214605862ef8e48d0d6bb2713}{load()} de la stratégie actuelle. \hypertarget{class_memento_a36b2b96d212c9fe1338e80ae41912fa3}{}\index{Memento@{Memento}!save@{save}}
+\index{save@{save}!Memento@{Memento}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}void Memento\+::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_memento_a36b2b96d212c9fe1338e80ae41912fa3}
+Sauve toutes les informations du calendrier à l\textquotesingle{}aide de la méthode de la stratégie actuelle. \hypertarget{class_memento_a2ab0539c90bdafdce79776841f3f835b}{}\index{Memento@{Memento}!set\+Strategie@{set\+Strategie}}
+\index{set\+Strategie@{set\+Strategie}!Memento@{Memento}}
+\subsubsection[{set\+Strategie}]{\setlength{\rightskip}{0pt plus 5cm}void Memento\+::set\+Strategie (
+\begin{DoxyParamCaption}
+\item[{{\bf Format} $\ast$}]{strat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_memento_a2ab0539c90bdafdce79776841f3f835b}
+Modifie la stratégie avec celle passée en paramètre 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+import-\/export.\+h\item 
+import-\/export.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,182 @@
+\hypertarget{class_tache_composite}{}\section{Référence de la classe Tache\+Composite}
+\label{class_tache_composite}\index{Tache\+Composite@{Tache\+Composite}}
+
+
+Une \hyperlink{class_tache_composite}{Tache\+Composite} est une tâche non-\/programmable composée d\textquotesingle{}autres tâches, pouvant être unitaires ou composites. Elle ne peut être instanciée que par le biais \hyperlink{class_tache_manager}{Tache\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Tache\+Composite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tache_composite}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_tache_composite_1_1const__iterator}{const\+\_\+iterator}
+\item 
+class \hyperlink{class_tache_composite_1_1iterator}{iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{class_tache_composite_af1ba658a78e4e6f1080b9c000eba4201}{get\+Size} ()
+\item 
+\hyperlink{class_tache_composite_1_1iterator}{iterator} \hyperlink{class_tache_composite_a0ddf3aa66c03324530c1edae9e51d97b}{begin} ()
+\item 
+\hyperlink{class_tache_composite_1_1iterator}{iterator} \hyperlink{class_tache_composite_a19085d7f01e368efab4ec40f63a04117}{end} ()
+\item 
+\hyperlink{class_tache_composite_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_tache_composite_a08938304455ed31cc3219677787d376e}{begin} () const 
+\item 
+\hyperlink{class_tache_composite_1_1const__iterator}{const\+\_\+iterator} \hyperlink{class_tache_composite_adc3b95cd5e0da1d570535356a7e18ecb}{end} () const 
+\item 
+bool \hyperlink{class_tache_composite_afbbffa746a783c2f5475bd2746bdc318}{is\+Composable} (const \hyperlink{class_tache}{Tache} \&t) const 
+\item 
+void \hyperlink{class_tache_composite_a560d35db6e3c5c0961fcc7224f65765d}{push\+\_\+back} (\hyperlink{class_tache}{Tache} \&t)
+\item 
+void \hyperlink{class_tache_composite_a8f6db68650bf23621041520216dd1a2a}{pop\+\_\+back} ()
+\item 
+\hyperlink{class_tache_composite_1_1iterator}{iterator} \hyperlink{class_tache_composite_af456d1818e34d4e7a91c624a28de2f78}{erase} (\hyperlink{class_tache_composite_1_1iterator}{iterator} position)
+\item 
+void \hyperlink{class_tache_composite_a5032eaa67db81045f77dbf5446943261}{set\+Disponibilite\+D\+T} (const Q\+Date\+Time \&dispo) override
+\item 
+void \hyperlink{class_tache_composite_a286829ee84d887a7416318a07fb72a2e}{set\+Echeance\+D\+T} (const Q\+Date\+Time \&echeance) override
+\begin{DoxyCompactList}\small\item\em La méthode \hyperlink{class_tache_composite_a286829ee84d887a7416318a07fb72a2e}{set\+Echeance\+D\+T()} met à jour la date d\textquotesingle{}écheance de la tâche avec la date passée en paramètre. \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_composite_a784957f6b9a7b7ccb0105e8e73104567}{afficher} ()
+\item 
+Q\+String \hyperlink{class_tache_composite_ac49737e53296e809078d099de5525973}{who\+Am\+I} () const 
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_composite_a59876a285574eb2b160307049a269610}{}class {\bfseries Tache\+Manager}\label{class_tache_composite_a59876a285574eb2b160307049a269610}
+
+\item 
+\hypertarget{class_tache_composite_a46c1844e74be2532f86bf3a09ec141e7}{}class {\bfseries Manager$<$ Tache, Tache\+Manager $>$}\label{class_tache_composite_a46c1844e74be2532f86bf3a09ec141e7}
+
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+Une \hyperlink{class_tache_composite}{Tache\+Composite} est une tâche non-\/programmable composée d\textquotesingle{}autres tâches, pouvant être unitaires ou composites. Elle ne peut être instanciée que par le biais \hyperlink{class_tache_manager}{Tache\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_composite_a784957f6b9a7b7ccb0105e8e73104567}{}\index{Tache\+Composite@{Tache\+Composite}!afficher@{afficher}}
+\index{afficher@{afficher}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{afficher}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Composite\+::afficher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_tache_composite_a784957f6b9a7b7ccb0105e8e73104567}
+La méthode \hyperlink{class_tache_composite_a784957f6b9a7b7ccb0105e8e73104567}{afficher()} permet d\textquotesingle{}afficher en mode debug les attributs et tâches composantes de la tâche composite.\hypertarget{class_tache_composite_a0ddf3aa66c03324530c1edae9e51d97b}{}\index{Tache\+Composite@{Tache\+Composite}!begin@{begin}}
+\index{begin@{begin}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf iterator} Tache\+Composite\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_a0ddf3aa66c03324530c1edae9e51d97b}
+Renvoie un iterator sur la première tâche composante. \hypertarget{class_tache_composite_a08938304455ed31cc3219677787d376e}{}\index{Tache\+Composite@{Tache\+Composite}!begin@{begin}}
+\index{begin@{begin}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf const\+\_\+iterator} Tache\+Composite\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_a08938304455ed31cc3219677787d376e}
+Renvoie un \hyperlink{class_tache_composite_1_1const__iterator}{const\+\_\+iterator} sur la première tâche composante \hypertarget{class_tache_composite_a19085d7f01e368efab4ec40f63a04117}{}\index{Tache\+Composite@{Tache\+Composite}!end@{end}}
+\index{end@{end}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf iterator} Tache\+Composite\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_a19085d7f01e368efab4ec40f63a04117}
+Renvoie un iterator sur la fin du tableau de tâches composantes. \hypertarget{class_tache_composite_adc3b95cd5e0da1d570535356a7e18ecb}{}\index{Tache\+Composite@{Tache\+Composite}!end@{end}}
+\index{end@{end}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf const\+\_\+iterator} Tache\+Composite\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_adc3b95cd5e0da1d570535356a7e18ecb}
+Renvoie un \hyperlink{class_tache_composite_1_1const__iterator}{const\+\_\+iterator} sur la fin du tableau de tâches composantes. \hypertarget{class_tache_composite_af456d1818e34d4e7a91c624a28de2f78}{}\index{Tache\+Composite@{Tache\+Composite}!erase@{erase}}
+\index{erase@{erase}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}{\bf iterator} Tache\+Composite\+::erase (
+\begin{DoxyParamCaption}
+\item[{{\bf iterator}}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_af456d1818e34d4e7a91c624a28de2f78}
+Supprime le pointeur de tâche composante pointée par l\textquotesingle{}iterator \hypertarget{class_tache_composite_af1ba658a78e4e6f1080b9c000eba4201}{}\index{Tache\+Composite@{Tache\+Composite}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Tache\+Composite\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_af1ba658a78e4e6f1080b9c000eba4201}
+Renvoie le nombre de taches composantes. \hypertarget{class_tache_composite_afbbffa746a783c2f5475bd2746bdc318}{}\index{Tache\+Composite@{Tache\+Composite}!is\+Composable@{is\+Composable}}
+\index{is\+Composable@{is\+Composable}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{is\+Composable}]{\setlength{\rightskip}{0pt plus 5cm}bool Tache\+Composite\+::is\+Composable (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} \&}]{t}
+\end{DoxyParamCaption}
+) const}\label{class_tache_composite_afbbffa746a783c2f5475bd2746bdc318}
+La méthode \hyperlink{class_tache_composite_afbbffa746a783c2f5475bd2746bdc318}{is\+Composable()} renvoie true si la tâche en paramètre peut être inclue dans la tâche composite.\hypertarget{class_tache_composite_a8f6db68650bf23621041520216dd1a2a}{}\index{Tache\+Composite@{Tache\+Composite}!pop\+\_\+back@{pop\+\_\+back}}
+\index{pop\+\_\+back@{pop\+\_\+back}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{pop\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Composite\+::pop\+\_\+back (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_composite_a8f6db68650bf23621041520216dd1a2a}
+Supprime le pointeur vers la première tâche composante. \hypertarget{class_tache_composite_a560d35db6e3c5c0961fcc7224f65765d}{}\index{Tache\+Composite@{Tache\+Composite}!push\+\_\+back@{push\+\_\+back}}
+\index{push\+\_\+back@{push\+\_\+back}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{push\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Composite\+::push\+\_\+back (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_tache_composite_a560d35db6e3c5c0961fcc7224f65765d}
+La méthode \hyperlink{class_tache_composite_a560d35db6e3c5c0961fcc7224f65765d}{push\+\_\+back()} vérifie si la tâche en paramètre peut être inclue dans la tâche composite. Si oui, elle ajoute cette tâche dans cette dernière. \hypertarget{class_tache_composite_a5032eaa67db81045f77dbf5446943261}{}\index{Tache\+Composite@{Tache\+Composite}!set\+Disponibilite\+D\+T@{set\+Disponibilite\+D\+T}}
+\index{set\+Disponibilite\+D\+T@{set\+Disponibilite\+D\+T}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{set\+Disponibilite\+D\+T}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Composite\+::set\+Disponibilite\+D\+T (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{dispo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_tache_composite_a5032eaa67db81045f77dbf5446943261}
+La méthode \hyperlink{class_tache_composite_a5032eaa67db81045f77dbf5446943261}{set\+Disponibilite\+D\+T()} permet de modifier la date de disponibilité de la tâche composite.
+
+Réimplémentée à partir de \hyperlink{class_tache_a5f22769fadb598764c937d65a901946f}{Tache}.
+
+\hypertarget{class_tache_composite_a286829ee84d887a7416318a07fb72a2e}{}\index{Tache\+Composite@{Tache\+Composite}!set\+Echeance\+D\+T@{set\+Echeance\+D\+T}}
+\index{set\+Echeance\+D\+T@{set\+Echeance\+D\+T}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{set\+Echeance\+D\+T}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Composite\+::set\+Echeance\+D\+T (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_tache_composite_a286829ee84d887a7416318a07fb72a2e}
+
+
+La méthode \hyperlink{class_tache_composite_a286829ee84d887a7416318a07fb72a2e}{set\+Echeance\+D\+T()} met à jour la date d\textquotesingle{}écheance de la tâche avec la date passée en paramètre. 
+
+La méthode \hyperlink{class_tache_composite_a5032eaa67db81045f77dbf5446943261}{set\+Disponibilite\+D\+T()} permet de modifier la date d\textquotesingle{}échéance de la tâche composite.
+
+Réimplémentée à partir de \hyperlink{class_tache_add128bd3a8b4832f4e6f52e0ee80e16b}{Tache}.
+
+\hypertarget{class_tache_composite_ac49737e53296e809078d099de5525973}{}\index{Tache\+Composite@{Tache\+Composite}!who\+Am\+I@{who\+Am\+I}}
+\index{who\+Am\+I@{who\+Am\+I}!Tache\+Composite@{Tache\+Composite}}
+\subsubsection[{who\+Am\+I}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Tache\+Composite\+::who\+Am\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_tache_composite_ac49737e53296e809078d099de5525973}
+Renvoie le type de tâche, ici \char`\"{}tache\+\_\+composite\char`\"{} 
+
+Implémente \hyperlink{class_tache}{Tache}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

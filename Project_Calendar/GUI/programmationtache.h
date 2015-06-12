@@ -9,7 +9,7 @@
 namespace Ui {
 class programmationTache;
 }
-
+///Fenêtre d'ajout et de modification de Programmation de Tache.
 class programmationTache : public QDialog
 {
     Q_OBJECT

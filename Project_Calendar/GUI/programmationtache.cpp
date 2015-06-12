@@ -9,18 +9,22 @@ programmationTache::programmationTache(TacheUnitaire* tache, QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("Programmation d'une Tache");
 
-
+   ProgrammationManager& ProgM = ProgrammationManager::getInstance();
    TacheManager& TM = TacheManager::getInstance();
    QObject::connect(ui->annuler, SIGNAL(clicked()), this, SLOT(close()));
 
-   if(tache != 0){
+   if(tache != 0 && ProgM.isProgrammee(*tache)){
              ui->statut->setCurrentIndex(1);
              on_statut_activated(1);
     }
-    else{
+    else if(tache != 0 && !tache->isPreemptive()){
         ui->statut->setCurrentIndex(0);
         on_statut_activated(0);
     }
+   else if(tache != 0){
+       ui->statut->setCurrentIndex(2);
+       on_statut_activated(2);
+   }
 
     if(ui->tache->currentText().isEmpty() && tache == 0){//Si aucune activité à programmer
        on_statut_activated(2); //on place le selecteur sur les taches preemptives à programmer
@@ -33,7 +37,7 @@ programmationTache::programmationTache(TacheUnitaire* tache, QWidget *parent) :
            if(!ui->tache->currentText().isEmpty() && tache == 0)
                tache = dynamic_cast<TacheUnitaire*>(TM.getItem(ui->tache->currentText()));
            else
-            throw "Aucune tache n'est créée !\nPourquoi ne pas en ajouter une ?";
+            throw "Aucune tache n'est créée ou liée à un projet !\nPourquoi ne pas en ajouter une ?";
         }
     }
     else if(tache == 0)
@@ -125,10 +129,9 @@ void programmationTache::on_statut_activated(int index)
     TacheManager& TM = TacheManager::getInstance();
     ProgrammationManager& ProgM = ProgrammationManager::getInstance();
     ui->tache->clear();
-
-    if(index == 0){ // on récupère les evts non programmés et non preemptifs
+    if(index == 0){ // on récupère les evts non programmés et non preemptifs, ayant été liés dans un projet
         for(TacheManager::const_iterator it = TM.begin(); it != TM.end(); ++it){
-            if((*it)->whoAmI() == "tache_composite")continue;
+            if((*it)->whoAmI() == "tache_composite" || (*it)->getProjet() == 0)continue;
             TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(*it);
             if(tmp->isPreemptive())continue;
             if(!ProgM.isProgrammee(*tmp)){
@@ -138,7 +141,7 @@ void programmationTache::on_statut_activated(int index)
     }
     else if(index == 1){ // on récupère les evts déjà programmés
         for(TacheManager::const_iterator it = TM.begin(); it != TM.end(); ++it){
-            if((*it)->whoAmI() == "tache_composite")continue;
+            if((*it)->whoAmI() == "tache_composite" || (*it)->getProjet() == 0)continue;
             TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(*it);
             if(ProgM.isProgrammee(*tmp))
                 ui->tache->addItem(tmp->getId());
@@ -148,7 +151,7 @@ void programmationTache::on_statut_activated(int index)
     }
     else{ // on récupère les taches preemptives non programmées
         for(TacheManager::const_iterator it = TM.begin(); it != TM.end(); ++it){
-            if((*it)->whoAmI() == "tache_composite")continue;
+            if((*it)->whoAmI() == "tache_composite"|| (*it)->getProjet() == 0)continue;
             TacheUnitaire* tmp = dynamic_cast<TacheUnitaire*>(*it);
             if(!tmp->isPreemptive())continue;
 

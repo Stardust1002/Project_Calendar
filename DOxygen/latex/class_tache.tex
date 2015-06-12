@@ -1,0 +1,217 @@
+\hypertarget{class_tache}{}\section{Référence de la classe Tache}
+\label{class_tache}\index{Tache@{Tache}}
+
+
+La classe \hyperlink{class_tache}{Tache} est virtuelle pure, seules ses classes filles\+: tâche unitaire et tâche composite peuvent être instanciées, par le \hyperlink{class_tache_manager}{Tache\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Tache\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tache}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projet}{Projet} $\ast$ \hyperlink{class_tache_ab625a7bde0e9ef9cbb8bb07696cdd985}{get\+Projet} () const 
+\item 
+vector$<$ \hyperlink{class_precedence}{Precedence} $\ast$ $>$ \hyperlink{class_tache_a663555dc2753ade57ceb7b3407e01fca}{get\+Precedences} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{class_tache_af01274a0f287d4598c611e65ff560509}{get\+Disponibilite} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{class_tache_a31bc22c34f6f3630192009245347da71}{get\+Echeance} () const 
+\item 
+const Q\+String \& \hyperlink{class_tache_a1f9ccf770c1873bbaa1c63aba11c198e}{get\+Titre} () const 
+\item 
+const Q\+String \& \hyperlink{class_tache_ab8354f8832fb8f1ed8e911c53f9ecb51}{get\+Id} () const 
+\item 
+void \hyperlink{class_tache_ab86e1a897f1da92bedad09af497a4076}{set\+Id} (const Q\+String \&i)
+\item 
+void \hyperlink{class_tache_afade5c5180edea94d258da777b2006df}{set\+Titre} (const Q\+String \&t)
+\item 
+void \hyperlink{class_tache_a3ee16d4ce77af8bae5ceea485d4fce79}{set\+Disponibilite} (const Q\+String \&d)
+\item 
+void \hyperlink{class_tache_a1d06b03ee9f2c60ef43ffb8fc7cacdba}{set\+Echeance} (const Q\+String \&e)
+\item 
+void \hyperlink{class_tache_ad48e1f420a9acdb88d05fab52ddcc402}{set\+Projet} (\hyperlink{class_projet}{Projet} \&p)
+\item 
+void \hyperlink{class_tache_aaceff1bb035b504fdcc06401515b66d8}{set\+Projet} (const Q\+String \&id)
+\item 
+\hyperlink{class_tache_composite}{Tache\+Composite} $\ast$ \hyperlink{class_tache_a69fe54e6a7551244a18101764256c3cd}{get\+Composite} () const 
+\item 
+virtual void \hyperlink{class_tache_a5f22769fadb598764c937d65a901946f}{set\+Disponibilite\+D\+T} (const Q\+Date\+Time \&d)
+\item 
+\hypertarget{class_tache_add128bd3a8b4832f4e6f52e0ee80e16b}{}virtual void \hyperlink{class_tache_add128bd3a8b4832f4e6f52e0ee80e16b}{set\+Echeance\+D\+T} (const Q\+Date\+Time \&e)\label{class_tache_add128bd3a8b4832f4e6f52e0ee80e16b}
+
+\begin{DoxyCompactList}\small\item\em La méthode \hyperlink{class_tache_add128bd3a8b4832f4e6f52e0ee80e16b}{set\+Echeance\+D\+T()} met à jour la date d\textquotesingle{}écheance de la tâche avec la date passée en paramètre. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_tache_aa56e1690299f9b6892d21e10df7768b0}{afficher} () const 
+\item 
+\hypertarget{class_tache_acde59bde54ea8be7c5cbdca0267e7092}{}virtual Q\+String {\bfseries who\+Am\+I} () const =0\label{class_tache_acde59bde54ea8be7c5cbdca0267e7092}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_a5323cf9614ab261150a163937261c8b6}{}{\bfseries Tache} (const Q\+String \&id, const Q\+String \&title, const Q\+Date\+Time \&dispo, const Q\+Date\+Time \&echeance)\label{class_tache_a5323cf9614ab261150a163937261c8b6}
+
+\item 
+\hypertarget{class_tache_af154eeeb0bcfa9f8364025260d5f70b6}{}{\bfseries Tache} (const \hyperlink{class_tache}{Tache} \&t)\label{class_tache_af154eeeb0bcfa9f8364025260d5f70b6}
+
+\item 
+\hypertarget{class_tache_a481a4c75b9908ff79ef9dc9b8e957b51}{}const \hyperlink{class_tache}{Tache} \& {\bfseries operator=} (const \hyperlink{class_tache}{Tache} \&t)\label{class_tache_a481a4c75b9908ff79ef9dc9b8e957b51}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_ae22f26aa33762082872376475946acff}{}Q\+String {\bfseries identificateur}\label{class_tache_ae22f26aa33762082872376475946acff}
+
+\item 
+\hypertarget{class_tache_a1d3d20046c0c4cc8482f71bb555b79cf}{}Q\+String {\bfseries titre}\label{class_tache_a1d3d20046c0c4cc8482f71bb555b79cf}
+
+\item 
+\hypertarget{class_tache_ad4d89bbfb2bd93ecf00e790ab792799d}{}Q\+Date\+Time {\bfseries date\+\_\+echeance}\label{class_tache_ad4d89bbfb2bd93ecf00e790ab792799d}
+
+\item 
+\hypertarget{class_tache_a6a892b5554571cabd823b1dae1ab270d}{}Q\+Date\+Time {\bfseries date\+\_\+dispo}\label{class_tache_a6a892b5554571cabd823b1dae1ab270d}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_a59876a285574eb2b160307049a269610}{}class {\bfseries Tache\+Manager}\label{class_tache_a59876a285574eb2b160307049a269610}
+
+\item 
+\hypertarget{class_tache_a46c1844e74be2532f86bf3a09ec141e7}{}class {\bfseries Manager$<$ Tache, Tache\+Manager $>$}\label{class_tache_a46c1844e74be2532f86bf3a09ec141e7}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_tache}{Tache} est virtuelle pure, seules ses classes filles\+: tâche unitaire et tâche composite peuvent être instanciées, par le \hyperlink{class_tache_manager}{Tache\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_aa56e1690299f9b6892d21e10df7768b0}{}\index{Tache@{Tache}!afficher@{afficher}}
+\index{afficher@{afficher}!Tache@{Tache}}
+\subsubsection[{afficher}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::afficher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_tache_aa56e1690299f9b6892d21e10df7768b0}
+La méthode \hyperlink{class_tache_aa56e1690299f9b6892d21e10df7768b0}{afficher()} permet d\textquotesingle{}afficher en mode debug les attributs de la tâche.
+
+Réimplémentée dans \hyperlink{class_tache_unitaire_a8f28f8372a319aaee49881487f530a60}{Tache\+Unitaire}.
+
+\hypertarget{class_tache_a69fe54e6a7551244a18101764256c3cd}{}\index{Tache@{Tache}!get\+Composite@{get\+Composite}}
+\index{get\+Composite@{get\+Composite}!Tache@{Tache}}
+\subsubsection[{get\+Composite}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache\+Composite} $\ast$ Tache\+::get\+Composite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_tache_a69fe54e6a7551244a18101764256c3cd}
+La méthode \hyperlink{class_tache_a69fe54e6a7551244a18101764256c3cd}{get\+Composite()} renvoie un pointeur sur la tâche composite composé de la tâche. Si cette dernière ne compose pas de tâche composite, un pointeur null sera renvoyé.\hypertarget{class_tache_af01274a0f287d4598c611e65ff560509}{}\index{Tache@{Tache}!get\+Disponibilite@{get\+Disponibilite}}
+\index{get\+Disponibilite@{get\+Disponibilite}!Tache@{Tache}}
+\subsubsection[{get\+Disponibilite}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Tache\+::get\+Disponibilite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_af01274a0f287d4598c611e65ff560509}
+La méthode \hyperlink{class_tache_af01274a0f287d4598c611e65ff560509}{get\+Disponibilite()} renvoie la date de disponibilité de la tâche. \hypertarget{class_tache_a31bc22c34f6f3630192009245347da71}{}\index{Tache@{Tache}!get\+Echeance@{get\+Echeance}}
+\index{get\+Echeance@{get\+Echeance}!Tache@{Tache}}
+\subsubsection[{get\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Tache\+::get\+Echeance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_a31bc22c34f6f3630192009245347da71}
+La méthode \hyperlink{class_tache_a31bc22c34f6f3630192009245347da71}{get\+Echeance()} renvoie la date d\textquotesingle{}écheance de la tâche. \hypertarget{class_tache_ab8354f8832fb8f1ed8e911c53f9ecb51}{}\index{Tache@{Tache}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Tache@{Tache}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Tache\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_ab8354f8832fb8f1ed8e911c53f9ecb51}
+La méthode \hyperlink{class_tache_ab8354f8832fb8f1ed8e911c53f9ecb51}{get\+Id()} renvoie l\textquotesingle{}identificateur de la tâche. \hypertarget{class_tache_a663555dc2753ade57ceb7b3407e01fca}{}\index{Tache@{Tache}!get\+Precedences@{get\+Precedences}}
+\index{get\+Precedences@{get\+Precedences}!Tache@{Tache}}
+\subsubsection[{get\+Precedences}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Precedence} $\ast$ $>$ Tache\+::get\+Precedences (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_tache_a663555dc2753ade57ceb7b3407e01fca}
+La méthode \hyperlink{class_tache_a663555dc2753ade57ceb7b3407e01fca}{get\+Precedences()} renvoie un vecteur contenant les précédences de la tache.\hypertarget{class_tache_ab625a7bde0e9ef9cbb8bb07696cdd985}{}\index{Tache@{Tache}!get\+Projet@{get\+Projet}}
+\index{get\+Projet@{get\+Projet}!Tache@{Tache}}
+\subsubsection[{get\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projet} $\ast$ Tache\+::get\+Projet (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_tache_ab625a7bde0e9ef9cbb8bb07696cdd985}
+La méthode \hyperlink{class_tache_ab625a7bde0e9ef9cbb8bb07696cdd985}{get\+Projet()} renvoie un pointeur sur le projet lié à la tâche. Si la tache n\textquotesingle{}est dans aucun projet, \hyperlink{class_tache_ab625a7bde0e9ef9cbb8bb07696cdd985}{get\+Projet()} renvoie un pointeur null.\hypertarget{class_tache_a1f9ccf770c1873bbaa1c63aba11c198e}{}\index{Tache@{Tache}!get\+Titre@{get\+Titre}}
+\index{get\+Titre@{get\+Titre}!Tache@{Tache}}
+\subsubsection[{get\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Tache\+::get\+Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_a1f9ccf770c1873bbaa1c63aba11c198e}
+La méthode \hyperlink{class_tache_a1f9ccf770c1873bbaa1c63aba11c198e}{get\+Titre()} renvoie le titre de la tâche. \hypertarget{class_tache_a3ee16d4ce77af8bae5ceea485d4fce79}{}\index{Tache@{Tache}!set\+Disponibilite@{set\+Disponibilite}}
+\index{set\+Disponibilite@{set\+Disponibilite}!Tache@{Tache}}
+\subsubsection[{set\+Disponibilite}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Disponibilite (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_tache_a3ee16d4ce77af8bae5ceea485d4fce79}
+La méthode \hyperlink{class_tache_a3ee16d4ce77af8bae5ceea485d4fce79}{set\+Disponibilite()} permet de modifier la date de disponibilite de la tâche.\hypertarget{class_tache_a5f22769fadb598764c937d65a901946f}{}\index{Tache@{Tache}!set\+Disponibilite\+D\+T@{set\+Disponibilite\+D\+T}}
+\index{set\+Disponibilite\+D\+T@{set\+Disponibilite\+D\+T}!Tache@{Tache}}
+\subsubsection[{set\+Disponibilite\+D\+T}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Tache\+::set\+Disponibilite\+D\+T (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_tache_a5f22769fadb598764c937d65a901946f}
+La méthode \hyperlink{class_tache_a5f22769fadb598764c937d65a901946f}{set\+Disponibilite\+D\+T()} met à jour la date de disponibilite de la tâche avec la date passée en paramètre. 
+
+Réimplémentée dans \hyperlink{class_tache_composite_a5032eaa67db81045f77dbf5446943261}{Tache\+Composite}.
+
+\hypertarget{class_tache_a1d06b03ee9f2c60ef43ffb8fc7cacdba}{}\index{Tache@{Tache}!set\+Echeance@{set\+Echeance}}
+\index{set\+Echeance@{set\+Echeance}!Tache@{Tache}}
+\subsubsection[{set\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Echeance (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{e}
+\end{DoxyParamCaption}
+)}\label{class_tache_a1d06b03ee9f2c60ef43ffb8fc7cacdba}
+La méthode \hyperlink{class_tache_a1d06b03ee9f2c60ef43ffb8fc7cacdba}{set\+Echeance()} permet de modifier la date d\textquotesingle{}écheance de la tâche.\hypertarget{class_tache_ab86e1a897f1da92bedad09af497a4076}{}\index{Tache@{Tache}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Tache@{Tache}}
+\subsubsection[{set\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Id (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_ab86e1a897f1da92bedad09af497a4076}
+La méthode \hyperlink{class_tache_ab86e1a897f1da92bedad09af497a4076}{set\+Id()} met à jour l\textquotesingle{}identificateur de la tâche avec la chaine passée en paramètre. \hypertarget{class_tache_ad48e1f420a9acdb88d05fab52ddcc402}{}\index{Tache@{Tache}!set\+Projet@{set\+Projet}}
+\index{set\+Projet@{set\+Projet}!Tache@{Tache}}
+\subsubsection[{set\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Projet (
+\begin{DoxyParamCaption}
+\item[{{\bf Projet} \&}]{p}
+\end{DoxyParamCaption}
+)}\label{class_tache_ad48e1f420a9acdb88d05fab52ddcc402}
+La méthode set\+Projet permet de lier une tâche à un projet. Si cette dernière est déjà liée, cette liaison sera supprimée puis remplacée.\hypertarget{class_tache_aaceff1bb035b504fdcc06401515b66d8}{}\index{Tache@{Tache}!set\+Projet@{set\+Projet}}
+\index{set\+Projet@{set\+Projet}!Tache@{Tache}}
+\subsubsection[{set\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\label{class_tache_aaceff1bb035b504fdcc06401515b66d8}
+Voir \hyperlink{class_tache_ad48e1f420a9acdb88d05fab52ddcc402}{set\+Projet(\+Projet\& P)}.\hypertarget{class_tache_afade5c5180edea94d258da777b2006df}{}\index{Tache@{Tache}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!Tache@{Tache}}
+\subsubsection[{set\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_afade5c5180edea94d258da777b2006df}
+La méthode \hyperlink{class_tache_afade5c5180edea94d258da777b2006df}{set\+Titre()} met à jour le titre de la tâche avec la chaine passée en paramètre. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

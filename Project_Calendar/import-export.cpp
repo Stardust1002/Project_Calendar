@@ -6,22 +6,27 @@ Memento::Handler Memento::handler;
 
 
 void XML::freeInstance(){
+    ///Libère l'instance de la stratégie XML et entraine sa désallocation mémoire.
     delete handler.instance;
     handler.instance = nullptr;
 }
 
 void Memento::freeInstance(){
+    ///Libère l'instance du Memento et entraine sa désallocation mémoire.
     delete handler.instance;
     handler.instance = nullptr;
 }
 
 XML& XML::getInstance(const QString& pathname){
+    ///Instancie un objet de la classe XML si aucune instanciation n'a été faite au préalable, et retourne sa référence.
+
     if(handler.instance == nullptr)
         return * new XML(pathname);
     return *handler.instance;
 }
 
 Memento& Memento::getInstance(Format &strategie){
+    ///Instancie un objet de la classe Memento si aucune instanciation n'a été faite au préalable, et retourne sa référence.
     if(handler.instance == nullptr)
         return * new Memento(strategie);
     return *handler.instance;
@@ -29,6 +34,8 @@ Memento& Memento::getInstance(Format &strategie){
 
 
 void XML::saveProjet(QXmlStreamWriter& stream, const Projet& proj)const{
+    ///Sauvegarde le projet dans le stream QXmlStreamWriter, tous deux passés en paramètre.
+    ///La méthode sauvegarde également les tâches liées au projet en appelant saveTache().
     stream.writeStartElement("Projet");
     stream.writeAttribute("identificateur",proj.getId());
     stream.writeAttribute("titre",proj.getTitre());
@@ -43,6 +50,8 @@ void XML::saveProjet(QXmlStreamWriter& stream, const Projet& proj)const{
     stream.writeEndElement();
 }
 void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
+    ///Sauvegarde la tâche dans le stream QXmlStreamWriter, tous deux passés en paramètre.
+
     bool isTacheUnitaire = (typeid(tache) == typeid(TacheUnitaire));
     stream.writeStartElement("Tache");
     if(isTacheUnitaire)
@@ -73,6 +82,7 @@ void XML::saveTache(QXmlStreamWriter& stream, const Tache& tache)const{
 }
 
 void XML::saveActivite(QXmlStreamWriter& stream, const Activite& act)const{
+    ///Sauvegarde l'activité dans le stream QXmlStreamWriter, tous deux passés en paramètre.
     stream.writeStartElement("Activite");
     stream.writeAttribute("identificateur",act.getId());
     stream.writeAttribute("titre",act.getTitre());
@@ -82,6 +92,8 @@ void XML::saveActivite(QXmlStreamWriter& stream, const Activite& act)const{
 }
 
 void XML::saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const{
+    ///Sauvegarde la programmation dans le stream QXmlStreamWriter, tous deux passés en paramètre.
+
     bool isActivite = (typeid(prog.getEvenement()) == typeid(Activite&));
 
     stream.writeStartElement("Programmation");
@@ -95,6 +107,7 @@ void XML::saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)
 }
 
 void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
+    ///Sauvegarde la précédence dans le stream QXmlStreamWriter, tous deux passés en paramètre.
     stream.writeStartElement("Precedence");
     stream.writeAttribute("id_predecesseur",prec.getPredecesseur().getId());
     stream.writeAttribute("id_successeur",prec.getSuccesseur().getId());
@@ -104,6 +117,14 @@ void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
 
 
 void XML::save()const{
+    ///Effectue la sauvegarde totale de l'ensemble des informations du calendrier au sein d'un fichier XML:
+    ///- Projets: en appellant saveProjet()
+    ///- Tâches: en appellant saveTache()
+    ///- Activités: en appellant saveActivite()
+    ///- Précédences: en appellant savePrecedence()
+    ///- Programmations: en appellant saveProgrammation()
+    ///
+    ///Pour sauvegarder chaque item, la méthode save() parcourt les différents manager à l'aide d'un iterator.
     QXmlStreamWriter stream;
     QFile file(pathname);
     qDebug()<<"Je suis passé par la";
@@ -174,6 +195,7 @@ void XML::save()const{
 
 
 void XML::loadProjet(QXmlStreamReader& stream)const{
+///Charge tous les projets au sein du ProjetManager depuis le stream de type QXmlStreamReader.
     if(!(stream.name().toString() == "Projet"))
         throw "Error : Fichier XML corrompu";
     QString& id = stream.attributes().value("identificateur").toString();
@@ -190,6 +212,8 @@ void XML::loadProjet(QXmlStreamReader& stream)const{
 }
 
 Tache& XML::loadTache(QXmlStreamReader& stream)const{
+///Charge toutes les tâches au sein du TacheManager depuis le stream de type QXmlStreamReader.
+
     if(!(stream.name().toString() == "Tache"))
         throw "Error : Fichier XML corrompu";
     QString& id = stream.attributes().value("identificateur").toString();
@@ -222,6 +246,8 @@ Tache& XML::loadTache(QXmlStreamReader& stream)const{
 }
 
 void XML::loadActivite(QXmlStreamReader& stream)const{
+///Charge toutes les activités au sein du ActiviteManager depuis le stream de type QXmlStreamReader.
+
     if(!(stream.name().toString() == "Activite"))
         throw "Error : Fichier XML corrompu";
     Activite::TypeActivite type;
@@ -235,6 +261,8 @@ void XML::loadActivite(QXmlStreamReader& stream)const{
 }
 
 void XML::loadPrecedence(QXmlStreamReader& stream)const{
+///Charge toutes les précédences au sein du PrecedenceManager depuis le stream de type QXmlStreamReader.
+
     if(!(stream.name().toString() == "Precedence"))
         throw "Error : Fichier XML corrompu";
     QString& pred = stream.attributes().value("id_predecesseur").toString();
@@ -245,6 +273,8 @@ void XML::loadPrecedence(QXmlStreamReader& stream)const{
 }
 
 void XML::loadProgrammation(QXmlStreamReader& stream)const{
+///Charge toutes les programmations au sein du ProgrammationManager depuis le stream de type QXmlStreamReader.
+
     if(!(stream.name().toString() == "Programmation"))
         throw "Error : Fichier XML corrompu";
     Evenement* event;
@@ -260,6 +290,13 @@ void XML::loadProgrammation(QXmlStreamReader& stream)const{
 }
 
 void XML::load()const{
+    ///Effectue le chargement total de l'ensemble des informations du calendrier stockés dans un fichier XML.
+    ///- Projets
+    ///- Tâches
+    ///- Activités
+    ///- Précédences
+    ///- Programmations
+
     QXmlStreamReader stream;
     QFile file(pathname);
 

@@ -1,0 +1,145 @@
+\hypertarget{class_programmation_manager}{}\section{Référence de la classe Programmation\+Manager}
+\label{class_programmation_manager}\index{Programmation\+Manager@{Programmation\+Manager}}
+
+
+La classe \hyperlink{class_programmation_manager}{Programmation\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_programmation}{Programmation}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}.  
+
+
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Programmation\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_programmation_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_programmation}{Programmation} \& \hyperlink{class_programmation_manager_acc7437f476ff946f81f676161b2e5d7a}{ajouter\+Programmation} (\hyperlink{class_evenement}{Evenement} \&evenement, const Q\+Date\+Time \&horaire, const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&duree)
+\item 
+\hyperlink{class_programmation}{Programmation} \& \hyperlink{class_programmation_manager_a98ce96ec69b8df333648132fdb64840f}{ajouter\+Programmation} (\hyperlink{class_evenement}{Evenement} \&evenement, const Q\+String \&horaire, const Q\+String \&duree)
+\item 
+bool \hyperlink{class_programmation_manager_a55d24db8e1764ca3448e0451c6c9d211}{is\+Programmee} (const \hyperlink{class_evenement}{Evenement} \&e) const 
+\item 
+bool \hyperlink{class_programmation_manager_a4fae79fb6e160ca921b39060d9722c13}{is\+Programmee} (const \hyperlink{class_tache}{Tache} \&t, const Q\+Date\+Time \&date) const 
+\item 
+bool \hyperlink{class_programmation_manager_a17f660f90e17cfa6d87274644238ad74}{is\+Programmable} (const \hyperlink{class_evenement}{Evenement} \&t, const Q\+Date\+Time \&horaire, const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&duree) const 
+\item 
+\hyperlink{class_q_time_span}{Q\+Time\+Span} \hyperlink{class_programmation_manager_a2f48066312a266f60c8b2b9bcf16b561}{duree\+Programmee} (const \hyperlink{class_evenement}{Evenement} \&e) const 
+\item 
+Q\+Date\+Time \hyperlink{class_programmation_manager_a808640afebdc24483826a1d3bc5d353a}{get\+Fin\+Tache} (const \hyperlink{class_tache_unitaire}{Tache\+Unitaire} \&tache) const 
+\item 
+vector$<$ const \hyperlink{class_programmation}{Programmation} $\ast$ $>$ \hyperlink{class_programmation_manager_a312930a36ef51d2d2e5b984438d57cd8}{get\+Programmations} (const \hyperlink{class_tache_unitaire}{Tache\+Unitaire} \&tache) const 
+\item 
+const vector$<$ \hyperlink{class_programmation}{Programmation} $\ast$ $>$ \hyperlink{class_programmation_manager_a3eea8e9a8f5d63e49e7a380d68272ff1}{get\+Programmations} (int week, int year) const 
+\item 
+\hyperlink{class_programmation}{Programmation} $\ast$ \hyperlink{class_programmation_manager_ad5f64c40cc00911159d5faf75b71deb1}{get\+Programmation} (const Q\+Date\+Time \&date) const 
+\item 
+void \hyperlink{class_programmation_manager_a640212a0312d5a83988c91f8673ea51b}{delete\+Item} (\hyperlink{class_programmation}{Programmation} $\ast$p)
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_programmation_manager}{Programmation\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_programmation}{Programmation}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_programmation_manager_acc7437f476ff946f81f676161b2e5d7a}{}\index{Programmation\+Manager@{Programmation\+Manager}!ajouter\+Programmation@{ajouter\+Programmation}}
+\index{ajouter\+Programmation@{ajouter\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{ajouter\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} \& Programmation\+Manager\+::ajouter\+Programmation (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} \&}]{evenement, }
+\item[{const Q\+Date\+Time \&}]{horaire, }
+\item[{const {\bf Q\+Time\+Span} \&}]{duree}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_acc7437f476ff946f81f676161b2e5d7a}
+Créer une programmation d\textquotesingle{}évènement en vérifiant les attributs passés en paramètre et si la tâche est bien programmable. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_programmation_manager_a98ce96ec69b8df333648132fdb64840f}{}\index{Programmation\+Manager@{Programmation\+Manager}!ajouter\+Programmation@{ajouter\+Programmation}}
+\index{ajouter\+Programmation@{ajouter\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{ajouter\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} \& Programmation\+Manager\+::ajouter\+Programmation (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} \&}]{evenement, }
+\item[{const Q\+String \&}]{horaire, }
+\item[{const Q\+String \&}]{duree}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_a98ce96ec69b8df333648132fdb64840f}
+Créer un projet en vérifiant les attributs passés en paramètre. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_programmation_manager_a640212a0312d5a83988c91f8673ea51b}{}\index{Programmation\+Manager@{Programmation\+Manager}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{delete\+Item}]{\setlength{\rightskip}{0pt plus 5cm}void Programmation\+Manager\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Programmation} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_a640212a0312d5a83988c91f8673ea51b}
+Supprime la programmation passée en paramètre. \hypertarget{class_programmation_manager_a2f48066312a266f60c8b2b9bcf16b561}{}\index{Programmation\+Manager@{Programmation\+Manager}!duree\+Programmee@{duree\+Programmee}}
+\index{duree\+Programmee@{duree\+Programmee}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{duree\+Programmee}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Time\+Span} Programmation\+Manager\+::duree\+Programmee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evenement} \&}]{e}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a2f48066312a266f60c8b2b9bcf16b561}
+Renvoie la durée totale programmée de l\textquotesingle{}évènement, si celui-\/ci est préemptif (dans le cas d\textquotesingle{}une tâche unitaire préemptive) ou non. \hypertarget{class_programmation_manager_a808640afebdc24483826a1d3bc5d353a}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Fin\+Tache@{get\+Fin\+Tache}}
+\index{get\+Fin\+Tache@{get\+Fin\+Tache}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Fin\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Date\+Time Programmation\+Manager\+::get\+Fin\+Tache (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache\+Unitaire} \&}]{tache}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a808640afebdc24483826a1d3bc5d353a}
+Renvoie la date de fin de la tâche. \hypertarget{class_programmation_manager_ad5f64c40cc00911159d5faf75b71deb1}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Programmation@{get\+Programmation}}
+\index{get\+Programmation@{get\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} $\ast$ Programmation\+Manager\+::get\+Programmation (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{date}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_ad5f64c40cc00911159d5faf75b71deb1}
+Renvoie la programmation d\textquotesingle{}un évènement quelconque dont la date de programmation est celle passée en paramètre. (une unique programmation peut avoir lieu en un temps donné) \hypertarget{class_programmation_manager_a312930a36ef51d2d2e5b984438d57cd8}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Programmations@{get\+Programmations}}
+\index{get\+Programmations@{get\+Programmations}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Programmations}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ const {\bf Programmation} $\ast$ $>$ Programmation\+Manager\+::get\+Programmations (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache\+Unitaire} \&}]{tache}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a312930a36ef51d2d2e5b984438d57cd8}
+Retourne un vecteur de pointeurs des programmations liées à une tâche unitaire.
+\begin{DoxyItemize}
+\item Si la tâche n\textquotesingle{}est pas programmée, elle renvoie un vecteur vide.
+\item Si la tâche est programmée et non-\/préemptive, elle renvoie un vecteur contenant un seul pointeur de programmation.
+\item Si la tâche est programmée et préemptive, elle renvoie un vecteur contenant tous les pointeurs de programmation. 
+\end{DoxyItemize}\hypertarget{class_programmation_manager_a3eea8e9a8f5d63e49e7a380d68272ff1}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Programmations@{get\+Programmations}}
+\index{get\+Programmations@{get\+Programmations}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Programmations}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf Programmation} $\ast$ $>$ Programmation\+Manager\+::get\+Programmations (
+\begin{DoxyParamCaption}
+\item[{int}]{week, }
+\item[{int}]{year}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a3eea8e9a8f5d63e49e7a380d68272ff1}
+Retourne un vecteur de pointeurs des programmations qui ont lieu lors de la semaine et de l\textquotesingle{}année passées en paramètre. \hypertarget{class_programmation_manager_a17f660f90e17cfa6d87274644238ad74}{}\index{Programmation\+Manager@{Programmation\+Manager}!is\+Programmable@{is\+Programmable}}
+\index{is\+Programmable@{is\+Programmable}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{is\+Programmable}]{\setlength{\rightskip}{0pt plus 5cm}bool Programmation\+Manager\+::is\+Programmable (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evenement} \&}]{t, }
+\item[{const Q\+Date\+Time \&}]{horaire, }
+\item[{const {\bf Q\+Time\+Span} \&}]{duree}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a17f660f90e17cfa6d87274644238ad74}
+Vérifie les contraintes liées la date de disponibilité, d\textquotesingle{}échéance, la durée, aux précédence et au projet lié. Retourne vrai si toutes ces contraintes sont vérifiées. \hypertarget{class_programmation_manager_a55d24db8e1764ca3448e0451c6c9d211}{}\index{Programmation\+Manager@{Programmation\+Manager}!is\+Programmee@{is\+Programmee}}
+\index{is\+Programmee@{is\+Programmee}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{is\+Programmee}]{\setlength{\rightskip}{0pt plus 5cm}bool Programmation\+Manager\+::is\+Programmee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evenement} \&}]{e}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a55d24db8e1764ca3448e0451c6c9d211}
+Renvoie vrai si l\textquotesingle{}évènement est entièrement programmé. Dans le cas d\textquotesingle{}une tâche préemptive, is\+Programmee retournera vrai si elle est entièrement programmée. Renvoie faux le cas échéant. \hypertarget{class_programmation_manager_a4fae79fb6e160ca921b39060d9722c13}{}\index{Programmation\+Manager@{Programmation\+Manager}!is\+Programmee@{is\+Programmee}}
+\index{is\+Programmee@{is\+Programmee}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{is\+Programmee}]{\setlength{\rightskip}{0pt plus 5cm}bool Programmation\+Manager\+::is\+Programmee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} \&}]{t, }
+\item[{const Q\+Date\+Time \&}]{date}
+\end{DoxyParamCaption}
+) const}\label{class_programmation_manager_a4fae79fb6e160ca921b39060d9722c13}
+Renvoie vrai si l\textquotesingle{}évènement est entièrement programmé. Dans le cas d\textquotesingle{}une tâche préemptive, is\+Programmee retournera vrai si elle est entièrement programmée. Renvoie faux le cas échéant. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+manager.\+h\item 
+manager.\+cpp\end{DoxyCompactItemize}

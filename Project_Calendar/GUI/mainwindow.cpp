@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     refresh_calendar(date_calendrier);
-
-
 }
 
 MainWindow::~MainWindow()
@@ -54,7 +52,7 @@ void MainWindow::on_actionProgrammer_une_Tache_triggered()
 void MainWindow::on_actionProgrammer_une_Activit_triggered()
 {
     try{
-    programmationActivite* programmation = new programmationActivite(0,this); //Faire surcharge pour modifier activité
+    programmationActivite* programmation = new programmationActivite(0,this);
     programmation->show();
     }
     catch(const char* s){
@@ -66,15 +64,18 @@ void MainWindow::on_actionProgrammer_une_Activit_triggered()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    if(ui->type->text() != "tache_unitaire"){
-    ActiviteManager& AM = ActiviteManager::getInstance();
-    Activite* activite = AM.getItem(ui->identificateur->text());
-
-    programmationActivite* programmation = new programmationActivite(activite,this);
-    programmation->show();
+    if(ui->type->text() == "tache_unitaire"){ // Si tache unitaire
+        TacheManager& TM = TacheManager::getInstance();
+        TacheUnitaire* tache = dynamic_cast<TacheUnitaire*>(TM.getItem(ui->identificateur->text()));
+        programmationTache* programmation = new programmationTache(tache,this);
+        programmation->show();
     }
-
-
+    else{ // sinon
+        ActiviteManager& AM = ActiviteManager::getInstance();
+        Activite* activite = AM.getItem(ui->identificateur->text());
+        programmationActivite* programmation = new programmationActivite(activite,this);
+        programmation->show();
+    }
 }
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
@@ -163,7 +164,7 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 {
     const QStringList& liste = item->text().split(" | ");
     const QString& identificateur = liste[1];
-    const QString& horaire = liste[0];
+    //const QString& horaire = liste[0];
     TacheManager& TM = TacheManager::getInstance();
     TacheUnitaire* t = dynamic_cast<TacheUnitaire*>(TM.getItem(identificateur));
     if(t!=nullptr){

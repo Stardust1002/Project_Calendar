@@ -1,0 +1,87 @@
+\hypertarget{class_tache_manager}{}\section{Référence de la classe Tache\+Manager}
+\label{class_tache_manager}\index{Tache\+Manager@{Tache\+Manager}}
+
+
+La classe \hyperlink{class_tache_manager}{Tache\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_tache}{Tache}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}.  
+
+
+
+
+{\ttfamily \#include $<$manager.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Tache\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tache_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_unitaire}{Tache\+Unitaire} \& \hyperlink{class_tache_manager_aa9a015186cb6f439cc035a451d49ee90}{ajouter\+Tache\+Unitaire} (const Q\+String \&id, const Q\+String \&titre, const Q\+String \&duree, bool preemptive, const Q\+String \&dispo, const Q\+String \&echeance)
+\item 
+\hyperlink{class_tache_unitaire}{Tache\+Unitaire} \& \hyperlink{class_tache_manager_ab15a1f68d9e0c82d01d4751c954ddbf4}{ajouter\+Tache\+Unitaire} (const Q\+String \&id, const Q\+String \&titre, const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&duree, bool preemptive, const Q\+Date\+Time \&dispo, const Q\+Date\+Time \&echeance)
+\item 
+\hyperlink{class_tache_composite}{Tache\+Composite} \& \hyperlink{class_tache_manager_aa8ab42b1e37f0a4965d836dd0ce22068}{ajouter\+Tache\+Composite} (const Q\+String \&id, const Q\+String \&titre, const Q\+String \&dispo, const Q\+String \&echeance, vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ liste=vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$())
+\item 
+\hyperlink{class_tache_composite}{Tache\+Composite} \& \hyperlink{class_tache_manager_a27341ce34b6acd764275307e4d2eeeff}{ajouter\+Tache\+Composite} (const Q\+String \&id, const Q\+String \&titre, const Q\+Date\+Time \&dispo, const Q\+Date\+Time \&echeance, vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ liste=vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$())
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_tache_manager}{Tache\+Manager} est un \hyperlink{class_manager}{Manager} qui gère les items de type \hyperlink{class_tache}{Tache}. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l\textquotesingle{}aide la méthode mère\+: \hyperlink{class_manager_a8372e4f1e14f3605a57d839b152325ed}{get\+Instance()}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_manager_aa8ab42b1e37f0a4965d836dd0ce22068}{}\index{Tache\+Manager@{Tache\+Manager}!ajouter\+Tache\+Composite@{ajouter\+Tache\+Composite}}
+\index{ajouter\+Tache\+Composite@{ajouter\+Tache\+Composite}!Tache\+Manager@{Tache\+Manager}}
+\subsubsection[{ajouter\+Tache\+Composite}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache\+Composite} \& Tache\+Manager\+::ajouter\+Tache\+Composite (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+String \&}]{dispo, }
+\item[{const Q\+String \&}]{echeance, }
+\item[{vector$<$ {\bf Tache} $\ast$ $>$}]{liste = {\ttfamily vector$<${\bf Tache}$\ast$$>$()}}
+\end{DoxyParamCaption}
+)}\label{class_tache_manager_aa8ab42b1e37f0a4965d836dd0ce22068}
+Créer une tâche composite en vérifiant les attributs passés en paramètre, les contraintes de disponibilité, d\textquotesingle{}écheance, de précédence, mais également les contraintes liées aux tâches compostantes. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_tache_manager_a27341ce34b6acd764275307e4d2eeeff}{}\index{Tache\+Manager@{Tache\+Manager}!ajouter\+Tache\+Composite@{ajouter\+Tache\+Composite}}
+\index{ajouter\+Tache\+Composite@{ajouter\+Tache\+Composite}!Tache\+Manager@{Tache\+Manager}}
+\subsubsection[{ajouter\+Tache\+Composite}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache\+Composite} \& Tache\+Manager\+::ajouter\+Tache\+Composite (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+Date\+Time \&}]{dispo, }
+\item[{const Q\+Date\+Time \&}]{echeance, }
+\item[{vector$<$ {\bf Tache} $\ast$ $>$}]{liste = {\ttfamily vector$<${\bf Tache}$\ast$$>$()}}
+\end{DoxyParamCaption}
+)}\label{class_tache_manager_a27341ce34b6acd764275307e4d2eeeff}
+Créer une tâche composite en vérifiant les attributs passés en paramètre, les contraintes de disponibilité, d\textquotesingle{}écheance, de précédence, mais également les contraintes liées aux tâches compostantes. Puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_tache_manager_aa9a015186cb6f439cc035a451d49ee90}{}\index{Tache\+Manager@{Tache\+Manager}!ajouter\+Tache\+Unitaire@{ajouter\+Tache\+Unitaire}}
+\index{ajouter\+Tache\+Unitaire@{ajouter\+Tache\+Unitaire}!Tache\+Manager@{Tache\+Manager}}
+\subsubsection[{ajouter\+Tache\+Unitaire}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache\+Unitaire} \& Tache\+Manager\+::ajouter\+Tache\+Unitaire (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+String \&}]{duree, }
+\item[{bool}]{preemptive, }
+\item[{const Q\+String \&}]{dispo, }
+\item[{const Q\+String \&}]{echeance}
+\end{DoxyParamCaption}
+)}\label{class_tache_manager_aa9a015186cb6f439cc035a451d49ee90}
+Créer une tâche unitaire, l\textquotesingle{}ajoute au vecteur et renvoie sa référence. \hypertarget{class_tache_manager_ab15a1f68d9e0c82d01d4751c954ddbf4}{}\index{Tache\+Manager@{Tache\+Manager}!ajouter\+Tache\+Unitaire@{ajouter\+Tache\+Unitaire}}
+\index{ajouter\+Tache\+Unitaire@{ajouter\+Tache\+Unitaire}!Tache\+Manager@{Tache\+Manager}}
+\subsubsection[{ajouter\+Tache\+Unitaire}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache\+Unitaire} \& Tache\+Manager\+::ajouter\+Tache\+Unitaire (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const {\bf Q\+Time\+Span} \&}]{duree, }
+\item[{bool}]{preemptive, }
+\item[{const Q\+Date\+Time \&}]{dispo, }
+\item[{const Q\+Date\+Time \&}]{echeance}
+\end{DoxyParamCaption}
+)}\label{class_tache_manager_ab15a1f68d9e0c82d01d4751c954ddbf4}
+Créer une tâche unitaire en vérifiant les attributs passés en paramètre, les contraintes de disponibilité, d\textquotesingle{}écheance, de précédence, puis l\textquotesingle{}ajoute au vecteur et renvoie sa référence. 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+manager.\+h\item 
+manager.\+cpp\end{DoxyCompactItemize}

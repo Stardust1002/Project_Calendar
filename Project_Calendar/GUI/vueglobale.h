@@ -8,12 +8,12 @@
 #include "programmationactivite.h"
 #include "programmationtache.h"
 #include "ajouterprojet.h"
-
 #include <QTreeWidgetItem>
+
 namespace Ui {
 class vueGlobale;
 }
-
+///Fenêtre de visualisation globale à l'aide d'un TreeView.
 class vueGlobale : public QDialog
 {
     Q_OBJECT

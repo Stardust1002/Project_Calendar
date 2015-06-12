@@ -1,0 +1,83 @@
+\hypertarget{class_evenement}{}\section{Référence de la classe Evenement}
+\label{class_evenement}\index{Evenement@{Evenement}}
+
+
+La classe \hyperlink{class_evenement}{Evenement} est virtuelle pure, seules ses classes filles\+: \hyperlink{class_tache_unitaire}{Tache\+Unitaire} et \hyperlink{class_activite}{Activite} peuvent être instanciées, par leurs Managers respectifs.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Evenement\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_evenement}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{class_q_time_span}{Q\+Time\+Span} \& \hyperlink{class_evenement_aec0228042f3cfe8ec970ddcbbaa57dd8}{get\+Duree} () const 
+\item 
+virtual void \hyperlink{class_evenement_a8e7e4eb2ec7352a1bf5a63df42c193c6}{set\+Duree} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)
+\item 
+vector$<$ \hyperlink{class_programmation}{Programmation} $\ast$ $>$ \hyperlink{class_evenement_a5f451f67822905b35adf6c089b1f8aef}{get\+Programmations} () const 
+\item 
+\hypertarget{class_evenement_ace9b05926d5866254293a8a295f98e0d}{}virtual Q\+String {\bfseries who\+Am\+I} () const =0\label{class_evenement_ace9b05926d5866254293a8a295f98e0d}
+
+\item 
+\hypertarget{class_evenement_a941fd5fed58174df6cc2675306c80db7}{}virtual bool {\bfseries is\+Preemptive} () const =0\label{class_evenement_a941fd5fed58174df6cc2675306c80db7}
+
+\item 
+\hypertarget{class_evenement_a8230234b16a5056d7ec222ae79869770}{}virtual const Q\+String {\bfseries get\+Id} () const =0\label{class_evenement_a8230234b16a5056d7ec222ae79869770}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_evenement_a4e94a42964ecbdd8eebeb25bc07b0cbb}{}{\bfseries Evenement} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)\label{class_evenement_a4e94a42964ecbdd8eebeb25bc07b0cbb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+La classe \hyperlink{class_evenement}{Evenement} est virtuelle pure, seules ses classes filles\+: \hyperlink{class_tache_unitaire}{Tache\+Unitaire} et \hyperlink{class_activite}{Activite} peuvent être instanciées, par leurs Managers respectifs. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_evenement_aec0228042f3cfe8ec970ddcbbaa57dd8}{}\index{Evenement@{Evenement}!get\+Duree@{get\+Duree}}
+\index{get\+Duree@{get\+Duree}!Evenement@{Evenement}}
+\subsubsection[{get\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Q\+Time\+Span}\& Evenement\+::get\+Duree (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_evenement_aec0228042f3cfe8ec970ddcbbaa57dd8}
+La méthode \hyperlink{class_evenement_aec0228042f3cfe8ec970ddcbbaa57dd8}{get\+Duree()} renvoie la durée de l\textquotesingle{}évènement. \hypertarget{class_evenement_a5f451f67822905b35adf6c089b1f8aef}{}\index{Evenement@{Evenement}!get\+Programmations@{get\+Programmations}}
+\index{get\+Programmations@{get\+Programmations}!Evenement@{Evenement}}
+\subsubsection[{get\+Programmations}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Programmation} $\ast$ $>$ Evenement\+::get\+Programmations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_evenement_a5f451f67822905b35adf6c089b1f8aef}
+La méthode \hyperlink{class_evenement_a5f451f67822905b35adf6c089b1f8aef}{get\+Programmations()} renvoie un vecteur de pointeurs sur les éventuelles programmations de l\textquotesingle{}évènement.
+\begin{DoxyItemize}
+\item Si ce dernier n\textquotesingle{}a pas été programmé, un vecteur vide sera retourné.
+\item Egalement, si une tâche préemptive appelle cette méthode, plusieurs pointeurs de programmation sont susceptibles d\textquotesingle{}être retournés au sein du vecteur.
+\item Sinon un seul pointeur de programmation sera retourné dans le vecteur.
+\end{DoxyItemize}\hypertarget{class_evenement_a8e7e4eb2ec7352a1bf5a63df42c193c6}{}\index{Evenement@{Evenement}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Evenement@{Evenement}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Evenement\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_evenement_a8e7e4eb2ec7352a1bf5a63df42c193c6}
+La méthode \hyperlink{class_evenement_a8e7e4eb2ec7352a1bf5a63df42c193c6}{set\+Duree()} met à jour la durée avec celle passée en paramètre. 
+
+Réimplémentée dans \hyperlink{class_tache_unitaire_a4065892def718cee931fe8bdbafa7ffc}{Tache\+Unitaire}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

@@ -18,7 +18,7 @@
 namespace Ui {
 class MainWindow;
 }
-
+///Fenêtre Principale du calendrier
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

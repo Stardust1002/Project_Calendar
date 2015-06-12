@@ -1,0 +1,125 @@
+\hypertarget{class_tache_unitaire}{}\section{Référence de la classe Tache\+Unitaire}
+\label{class_tache_unitaire}\index{Tache\+Unitaire@{Tache\+Unitaire}}
+
+
+Une \hyperlink{class_tache_unitaire}{Tache\+Unitaire} est une tâche programmable et composable. Elle ne peut être instanciée que par le biais du \hyperlink{class_tache_manager}{Tache\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Graphe d\textquotesingle{}héritage de Tache\+Unitaire\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tache_unitaire}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+const Q\+Date\+Time \& \hyperlink{class_tache_unitaire_a931e6c45135ed4cd554826fad8359ff5}{get\+Echeance} () const 
+\item 
+void \hyperlink{class_tache_unitaire_a4065892def718cee931fe8bdbafa7ffc}{set\+Duree} (const \hyperlink{class_q_time_span}{Q\+Time\+Span} \&d)
+\item 
+bool \hyperlink{class_tache_unitaire_a93e310a15ded15de3f8cd281120d8b37}{is\+Preemptive} () const override
+\item 
+void \hyperlink{class_tache_unitaire_abb5fe9e4ca36a2f08b3e8c04555c445d}{set\+Preemptive} (const bool \&b)
+\item 
+Q\+String \hyperlink{class_tache_unitaire_aa7c4a19559acd6f9267754b611d27cc2}{who\+Am\+I} () const 
+\item 
+void \hyperlink{class_tache_unitaire_a8f28f8372a319aaee49881487f530a60}{afficher} () const 
+\item 
+const Q\+String \hyperlink{class_tache_unitaire_af0fbc4b33b3a844dd6a2a1bffde5ec67}{get\+Id} () const 
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_a59876a285574eb2b160307049a269610}{}class {\bfseries Tache\+Manager}\label{class_tache_unitaire_a59876a285574eb2b160307049a269610}
+
+\item 
+\hypertarget{class_tache_unitaire_a46c1844e74be2532f86bf3a09ec141e7}{}class {\bfseries Manager$<$ Tache, Tache\+Manager $>$}\label{class_tache_unitaire_a46c1844e74be2532f86bf3a09ec141e7}
+
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+Une \hyperlink{class_tache_unitaire}{Tache\+Unitaire} est une tâche programmable et composable. Elle ne peut être instanciée que par le biais du \hyperlink{class_tache_manager}{Tache\+Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_unitaire_a8f28f8372a319aaee49881487f530a60}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!afficher@{afficher}}
+\index{afficher@{afficher}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{afficher}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+::afficher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_tache_unitaire_a8f28f8372a319aaee49881487f530a60}
+La méthode \hyperlink{class_tache_unitaire_a8f28f8372a319aaee49881487f530a60}{afficher()} permet d\textquotesingle{}afficher en mode debug les attributs de la tâche.
+
+Réimplémentée à partir de \hyperlink{class_tache_aa56e1690299f9b6892d21e10df7768b0}{Tache}.
+
+\hypertarget{class_tache_unitaire_a931e6c45135ed4cd554826fad8359ff5}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!get\+Echeance@{get\+Echeance}}
+\index{get\+Echeance@{get\+Echeance}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{get\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Tache\+Unitaire\+::get\+Echeance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_unitaire_a931e6c45135ed4cd554826fad8359ff5}
+Renvoie l\textquotesingle{}écheance de la tache. \hypertarget{class_tache_unitaire_af0fbc4b33b3a844dd6a2a1bffde5ec67}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String Tache\+Unitaire\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_tache_unitaire_af0fbc4b33b3a844dd6a2a1bffde5ec67}
+Renvoie l\textquotesingle{}identificateur de la tache. 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+\hypertarget{class_tache_unitaire_a93e310a15ded15de3f8cd281120d8b37}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!is\+Preemptive@{is\+Preemptive}}
+\index{is\+Preemptive@{is\+Preemptive}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{is\+Preemptive}]{\setlength{\rightskip}{0pt plus 5cm}bool Tache\+Unitaire\+::is\+Preemptive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_tache_unitaire_a93e310a15ded15de3f8cd281120d8b37}
+Renvoie vrai si la tâche est préemptive, faux sinon. 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+\hypertarget{class_tache_unitaire_a4065892def718cee931fe8bdbafa7ffc}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+Time\+Span} \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_tache_unitaire_a4065892def718cee931fe8bdbafa7ffc}
+Met à jour la durée de la tâche en prenant en compte le fait qu\textquotesingle{}elle soit est préemptive ou non. 
+
+Réimplémentée à partir de \hyperlink{class_evenement_a8e7e4eb2ec7352a1bf5a63df42c193c6}{Evenement}.
+
+\hypertarget{class_tache_unitaire_abb5fe9e4ca36a2f08b3e8c04555c445d}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!set\+Preemptive@{set\+Preemptive}}
+\index{set\+Preemptive@{set\+Preemptive}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{set\+Preemptive}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+::set\+Preemptive (
+\begin{DoxyParamCaption}
+\item[{const bool \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_unitaire_abb5fe9e4ca36a2f08b3e8c04555c445d}
+Met à jour la préemptivité de la tâche. \hypertarget{class_tache_unitaire_aa7c4a19559acd6f9267754b611d27cc2}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!who\+Am\+I@{who\+Am\+I}}
+\index{who\+Am\+I@{who\+Am\+I}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{who\+Am\+I}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Tache\+Unitaire\+::who\+Am\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_tache_unitaire_aa7c4a19559acd6f9267754b611d27cc2}
+Renvoie le type de tâche, ici \char`\"{}tâche\+\_\+unitaire\char`\"{}. 
+
+Implémente \hyperlink{class_evenement}{Evenement}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+evenement.\+h\item 
+evenement.\+cpp\end{DoxyCompactItemize}

@@ -70,7 +70,7 @@ vueGlobale::vueGlobale(QWidget *parent) :
     aucun->setText(PROJET, "Non Défini");
     ui->treeWidget->addTopLevelItem(aucun);
     QTreeWidgetItem* tachesUnitaires = insertItem("Taches Unitaires", aucun);
-    QTreeWidgetItem* tachesComposites = insertItem("Taches Composites", aucun);
+    //QTreeWidgetItem* tachesComposites = insertItem("Taches Composites", aucun);
 
     TacheManager& TM = TacheManager::getInstance();
     for(TacheManager::iterator it = TM.begin(); it != TM.end(); ++it){
@@ -83,14 +83,21 @@ vueGlobale::vueGlobale(QWidget *parent) :
                     tu = insertItem(tmp->getId(),tmp->getDuree().toString(), tachesUnitaires);
                 else
                     tu = insertItem(tmp->getId(),tmp->getDuree().toString(),"Préemptive", tachesUnitaires);
-                insertItem("Prédécesseurs", tu);
-            }
-            else{
-                QTreeWidgetItem* tc = insertItem((*it)->getId(), tachesComposites);
-                insertItem("Taches Composantes", tc);
-                insertItem("Prédécesseurs", tc);
+                QTreeWidgetItem* pred = insertItem("Prédécesseurs", tu);
+                vector<Precedence*> liste = tmp->getPrecedences();
+                for(vector<Precedence*>::iterator it2 = liste.begin(); it2 != liste.end(); ++it2)
+                    insertItem((*it2)->getPredecesseur().getId(), pred);
 
             }
+//            else{
+//                QTreeWidgetItem* tc = insertItem((*it)->getId(), tachesComposites);
+//                insertItem("Taches Composantes", tc);
+//                QTreeWidgetItem* pred = insertItem("Prédécesseurs", tc);
+//                vector<Precedence*> liste = (*it)->getPrecedences();
+//                for(vector<Precedence*>::iterator it2 = liste.begin(); it2 != liste.end(); ++it2)
+//                    insertItem((*it2)->getPredecesseur().getId(), pred);
+
+//            }
     }
     }
 }
@@ -156,9 +163,9 @@ void vueGlobale::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column){
         }
         this->close();
     }
-    else if(column == 2 && !item->text(column).isEmpty()){
-        // Recherche de la tache, checker la methode isComposite, si tache unitaire lancer:
-        programmationTache* programmation = new programmationTache(0,_parent);
-        programmation->show();
-    }
+//    else if(column == 2 && !item->text(column).isEmpty()){
+//        ProgrammationManager& ProgM = ProgrammationManager::getInstance();
+//        programmationTache* programmation = new programmationTache(0,_parent);
+//        programmation->show();
+//    }
 }

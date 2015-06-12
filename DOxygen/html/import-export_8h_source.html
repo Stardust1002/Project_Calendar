@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Project Calendar:  Fichier source de import-export.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Project Calendar
+   &#160;<span id="projectnumber">P15</span>
+   </div>
+   <div id="projectbrief">LO21 - Par JEANNOT Antoine &amp; FELD Valentin</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">import-export.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef IMPORTEXPORT</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define IMPORTEXPORT</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QXmlStreamWriter&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QXmlStreamReader&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;evenement.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QFile&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_format.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_format.html">Format</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    QString pathname;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_format.html">Format</a>(<span class="keyword">const</span> QString&amp; p):pathname(p){}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_format.html">Format</a>(<span class="keyword">const</span> <a class="code" href="class_format.html">Format</a> &amp;){}</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_format.html">Format</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="class_format.html">Format</a>&amp;){}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_format.html">Format</a>()=0{}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_format.html#ad4549bc7712d09a5fd8874e5cffd7c9b">   19</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_format.html#ad4549bc7712d09a5fd8874e5cffd7c9b">setPathname</a>(<span class="keyword">const</span> QString&amp; p){</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            pathname = p;}</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_format.html#a8ef3acfd8d6d5be588e31e6a4a1d789b">   22</a></span>&#160;    <span class="keyword">const</span> QString&amp; <a class="code" href="class_format.html#a8ef3acfd8d6d5be588e31e6a4a1d789b">getPathname</a>(){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">return</span> pathname;}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> save()<span class="keyword">const</span>=0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> load()<span class="keyword">const</span>=0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_x_m_l.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_x_m_l.html">XML</a> : <span class="keyword">public</span> <a class="code" href="class_format.html">Format</a>{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">struct </span>Handler{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="class_x_m_l.html">XML</a>* instance;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        Handler():instance(<span class="keyword">nullptr</span>){}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">virtual</span> ~Handler(){<a class="code" href="class_x_m_l.html#aa636b752f30ee85554a88b29687deed7">XML::freeInstance</a>();}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> Handler handler;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_x_m_l.html">XML</a>(<span class="keyword">const</span> QString &amp;p):<a class="code" href="class_format.html">Format</a>(p){}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_x_m_l.html">XML</a>&amp; <a class="code" href="class_x_m_l.html#aa2d6c4ab68ae45a0cbb71d3baa67a119">getInstance</a>(<span class="keyword">const</span> QString&amp; p = <span class="stringliteral">&quot;auto-save.xml&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#aa636b752f30ee85554a88b29687deed7">freeInstance</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a0c2f3b489419670e42e6cb3b5a99d685">save</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a4d293b9b95938449b0eb789cc93d9b50">saveProjet</a>(QXmlStreamWriter&amp; stream, <span class="keyword">const</span> <a class="code" href="class_projet.html">Projet</a>&amp; proj)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#acd2ed06f43002937540f02db3edd5119">saveTache</a>(QXmlStreamWriter&amp; stream, <span class="keyword">const</span> <a class="code" href="class_tache.html">Tache</a>&amp; tache)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#acedd44046fabe1b5e92a67d5a92bc577">saveActivite</a>(QXmlStreamWriter&amp; stream, <span class="keyword">const</span> <a class="code" href="class_activite.html">Activite</a>&amp; act)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a954c040930e567a46c2390f0188f273d">saveProgrammation</a>(QXmlStreamWriter&amp; stream, <span class="keyword">const</span> <a class="code" href="class_programmation.html">Programmation</a>&amp; prog)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#ad0ece286ff5262a63e68e08e2878b0c8">savePrecedence</a>(QXmlStreamWriter&amp; stream, <span class="keyword">const</span> <a class="code" href="class_precedence.html">Precedence</a>&amp; prec)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#aba46159218c520cdc783654b34a2c0dd">load</a>()<span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a67683ccfd45dcc4aa18317fefcf723fd">loadProjet</a>(QXmlStreamReader&amp; stream)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_tache.html">Tache</a>&amp; <a class="code" href="class_x_m_l.html#a0b5ebfcd1601f9353d9d13f8290e7319">loadTache</a>(QXmlStreamReader&amp; stream)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a554eb55c0c69dbc3045615d0ab68ab1d">loadActivite</a>(QXmlStreamReader&amp; stream)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a0f2858b84a734c0238d4478df89ce170">loadProgrammation</a>(QXmlStreamReader&amp; stream)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_x_m_l.html#a0593dfc3350675f6da3098ac68bb060d">loadPrecedence</a>(QXmlStreamReader&amp; stream)<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_memento.html">   56</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_memento.html">Memento</a>{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_format.html">Format</a>* strategie;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_memento.html">Memento</a>(<a class="code" href="class_format.html">Format</a> &amp;s):strategie(&amp;s){}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_memento.html">Memento</a>(<span class="keyword">const</span> <a class="code" href="class_memento.html">Memento</a> &amp;){}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_memento.html">Memento</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="class_memento.html">Memento</a>&amp;){}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span>Handler{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_memento.html">Memento</a>* instance;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        Handler():instance(<span class="keyword">nullptr</span>){}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">virtual</span> ~Handler(){<a class="code" href="class_memento.html#a8e97e83e767bd9cb13c6ddcf16125553">Memento::freeInstance</a>();}</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">static</span> Handler handler;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_memento.html#a8e97e83e767bd9cb13c6ddcf16125553">freeInstance</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_memento.html">Memento</a>&amp; <a class="code" href="class_memento.html#a0d8167075a7e5f8890d8cbe1bd3d1273">getInstance</a>(</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="class_format.html">Format</a> &amp;strategie = <a class="code" href="class_x_m_l.html#aa2d6c4ab68ae45a0cbb71d3baa67a119">XML::getInstance</a>());</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_memento.html#a2ab0539c90bdafdce79776841f3f835b">   72</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_memento.html#a2ab0539c90bdafdce79776841f3f835b">setStrategie</a>(<a class="code" href="class_format.html">Format</a>* strat){</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        strategie = strat;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_memento.html#a36b2b96d212c9fe1338e80ae41912fa3">   75</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_memento.html#a36b2b96d212c9fe1338e80ae41912fa3">save</a>()<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        strategie-&gt;save();}</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_memento.html#a05119b7214605862ef8e48d0d6bb2713">   78</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_memento.html#a05119b7214605862ef8e48d0d6bb2713">load</a>()<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        strategie-&gt;load();}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif // IMPORTEXPORT</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="ttc" id="class_x_m_l_html_a554eb55c0c69dbc3045615d0ab68ab1d"><div class="ttname"><a href="class_x_m_l.html#a554eb55c0c69dbc3045615d0ab68ab1d">XML::loadActivite</a></div><div class="ttdeci">void loadActivite(QXmlStreamReader &amp;stream) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:248</div></div>
+<div class="ttc" id="class_x_m_l_html_aa2d6c4ab68ae45a0cbb71d3baa67a119"><div class="ttname"><a href="class_x_m_l.html#aa2d6c4ab68ae45a0cbb71d3baa67a119">XML::getInstance</a></div><div class="ttdeci">static XML &amp; getInstance(const QString &amp;p=&quot;auto-save.xml&quot;)</div><div class="ttdef"><b>Definition:</b> import-export.cpp:20</div></div>
+<div class="ttc" id="class_format_html"><div class="ttname"><a href="class_format.html">Format</a></div><div class="ttdoc">Format est une classe virtuelle pure permettant la mise en place du pattern design Strategy...</div><div class="ttdef"><b>Definition:</b> import-export.h:10</div></div>
+<div class="ttc" id="class_x_m_l_html_aa636b752f30ee85554a88b29687deed7"><div class="ttname"><a href="class_x_m_l.html#aa636b752f30ee85554a88b29687deed7">XML::freeInstance</a></div><div class="ttdeci">static void freeInstance()</div><div class="ttdef"><b>Definition:</b> import-export.cpp:8</div></div>
+<div class="ttc" id="class_x_m_l_html_a67683ccfd45dcc4aa18317fefcf723fd"><div class="ttname"><a href="class_x_m_l.html#a67683ccfd45dcc4aa18317fefcf723fd">XML::loadProjet</a></div><div class="ttdeci">void loadProjet(QXmlStreamReader &amp;stream) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:197</div></div>
+<div class="ttc" id="class_x_m_l_html_a0593dfc3350675f6da3098ac68bb060d"><div class="ttname"><a href="class_x_m_l.html#a0593dfc3350675f6da3098ac68bb060d">XML::loadPrecedence</a></div><div class="ttdeci">void loadPrecedence(QXmlStreamReader &amp;stream) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:263</div></div>
+<div class="ttc" id="class_memento_html_a05119b7214605862ef8e48d0d6bb2713"><div class="ttname"><a href="class_memento.html#a05119b7214605862ef8e48d0d6bb2713">Memento::load</a></div><div class="ttdeci">void load() const </div><div class="ttdef"><b>Definition:</b> import-export.h:78</div></div>
+<div class="ttc" id="class_x_m_l_html_a954c040930e567a46c2390f0188f273d"><div class="ttname"><a href="class_x_m_l.html#a954c040930e567a46c2390f0188f273d">XML::saveProgrammation</a></div><div class="ttdeci">void saveProgrammation(QXmlStreamWriter &amp;stream, const Programmation &amp;prog) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:94</div></div>
+<div class="ttc" id="class_programmation_html"><div class="ttname"><a href="class_programmation.html">Programmation</a></div><div class="ttdoc">La classe Programmation permet de programmer un évènement à une heure fixe en fonction de ses Precede...</div><div class="ttdef"><b>Definition:</b> evenement.h:236</div></div>
+<div class="ttc" id="class_memento_html_a36b2b96d212c9fe1338e80ae41912fa3"><div class="ttname"><a href="class_memento.html#a36b2b96d212c9fe1338e80ae41912fa3">Memento::save</a></div><div class="ttdeci">void save() const </div><div class="ttdef"><b>Definition:</b> import-export.h:75</div></div>
+<div class="ttc" id="class_memento_html"><div class="ttname"><a href="class_memento.html">Memento</a></div><div class="ttdoc">La classe Memento est un singleton memento permettant de charger et de sauvegarder l&#39;ensemble des inf...</div><div class="ttdef"><b>Definition:</b> import-export.h:56</div></div>
+<div class="ttc" id="class_x_m_l_html_acedd44046fabe1b5e92a67d5a92bc577"><div class="ttname"><a href="class_x_m_l.html#acedd44046fabe1b5e92a67d5a92bc577">XML::saveActivite</a></div><div class="ttdeci">void saveActivite(QXmlStreamWriter &amp;stream, const Activite &amp;act) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:84</div></div>
+<div class="ttc" id="class_memento_html_a2ab0539c90bdafdce79776841f3f835b"><div class="ttname"><a href="class_memento.html#a2ab0539c90bdafdce79776841f3f835b">Memento::setStrategie</a></div><div class="ttdeci">void setStrategie(Format *strat)</div><div class="ttdef"><b>Definition:</b> import-export.h:72</div></div>
+<div class="ttc" id="class_x_m_l_html_a4d293b9b95938449b0eb789cc93d9b50"><div class="ttname"><a href="class_x_m_l.html#a4d293b9b95938449b0eb789cc93d9b50">XML::saveProjet</a></div><div class="ttdeci">void saveProjet(QXmlStreamWriter &amp;stream, const Projet &amp;proj) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:36</div></div>
+<div class="ttc" id="class_x_m_l_html_a0b5ebfcd1601f9353d9d13f8290e7319"><div class="ttname"><a href="class_x_m_l.html#a0b5ebfcd1601f9353d9d13f8290e7319">XML::loadTache</a></div><div class="ttdeci">Tache &amp; loadTache(QXmlStreamReader &amp;stream) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:214</div></div>
+<div class="ttc" id="class_format_html_a8ef3acfd8d6d5be588e31e6a4a1d789b"><div class="ttname"><a href="class_format.html#a8ef3acfd8d6d5be588e31e6a4a1d789b">Format::getPathname</a></div><div class="ttdeci">const QString &amp; getPathname()</div><div class="ttdef"><b>Definition:</b> import-export.h:22</div></div>
+<div class="ttc" id="class_x_m_l_html_ad0ece286ff5262a63e68e08e2878b0c8"><div class="ttname"><a href="class_x_m_l.html#ad0ece286ff5262a63e68e08e2878b0c8">XML::savePrecedence</a></div><div class="ttdeci">void savePrecedence(QXmlStreamWriter &amp;stream, const Precedence &amp;prec) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:109</div></div>
+<div class="ttc" id="class_precedence_html"><div class="ttname"><a href="class_precedence.html">Precedence</a></div><div class="ttdoc">La classe Precedence établit une relation de Precedence entre deux tâches. Une Precedence ne peut êtr...</div><div class="ttdef"><b>Definition:</b> evenement.h:326</div></div>
+<div class="ttc" id="class_x_m_l_html_acd2ed06f43002937540f02db3edd5119"><div class="ttname"><a href="class_x_m_l.html#acd2ed06f43002937540f02db3edd5119">XML::saveTache</a></div><div class="ttdeci">void saveTache(QXmlStreamWriter &amp;stream, const Tache &amp;tache) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:52</div></div>
+<div class="ttc" id="class_tache_html"><div class="ttname"><a href="class_tache.html">Tache</a></div><div class="ttdoc">La classe Tache est virtuelle pure, seules ses classes filles: tâche unitaire et tâche composite peuv...</div><div class="ttdef"><b>Definition:</b> evenement.h:45</div></div>
+<div class="ttc" id="class_x_m_l_html_a0f2858b84a734c0238d4478df89ce170"><div class="ttname"><a href="class_x_m_l.html#a0f2858b84a734c0238d4478df89ce170">XML::loadProgrammation</a></div><div class="ttdeci">void loadProgrammation(QXmlStreamReader &amp;stream) const </div><div class="ttdef"><b>Definition:</b> import-export.cpp:275</div></div>
+<div class="ttc" id="class_projet_html"><div class="ttname"><a href="class_projet.html">Projet</a></div><div class="ttdoc">La classe Projet permet de regrouper différentes Taches et impose une dâte de disponibilité. Elle ne peut être instanciée que par le biais du ProjetManager. </div><div class="ttdef"><b>Definition:</b> evenement.h:262</div></div>
+<div class="ttc" id="class_format_html_ad4549bc7712d09a5fd8874e5cffd7c9b"><div class="ttname"><a href="class_format.html#ad4549bc7712d09a5fd8874e5cffd7c9b">Format::setPathname</a></div><div class="ttdeci">void setPathname(const QString &amp;p)</div><div class="ttdef"><b>Definition:</b> import-export.h:19</div></div>
+<div class="ttc" id="class_x_m_l_html"><div class="ttname"><a href="class_x_m_l.html">XML</a></div><div class="ttdoc">La classe XML est un Format et permet d&#39;exporter l&#39;ensemble des données du calendrier sous forme XML...</div><div class="ttdef"><b>Definition:</b> import-export.h:30</div></div>
+<div class="ttc" id="class_x_m_l_html_a0c2f3b489419670e42e6cb3b5a99d685"><div class="ttname"><a href="class_x_m_l.html#a0c2f3b489419670e42e6cb3b5a99d685">XML::save</a></div><div class="ttdeci">void save() const override</div><div class="ttdef"><b>Definition:</b> import-export.cpp:119</div></div>
+<div class="ttc" id="class_memento_html_a8e97e83e767bd9cb13c6ddcf16125553"><div class="ttname"><a href="class_memento.html#a8e97e83e767bd9cb13c6ddcf16125553">Memento::freeInstance</a></div><div class="ttdeci">static void freeInstance()</div><div class="ttdef"><b>Definition:</b> import-export.cpp:14</div></div>
+<div class="ttc" id="class_activite_html"><div class="ttname"><a href="class_activite.html">Activite</a></div><div class="ttdoc">Une Activite est un évènement qui programmable. Elle ne peut être instanciée que par le biais de l&#39;Ac...</div><div class="ttdef"><b>Definition:</b> evenement.h:189</div></div>
+<div class="ttc" id="class_x_m_l_html_aba46159218c520cdc783654b34a2c0dd"><div class="ttname"><a href="class_x_m_l.html#aba46159218c520cdc783654b34a2c0dd">XML::load</a></div><div class="ttdeci">void load() const override</div><div class="ttdef"><b>Definition:</b> import-export.cpp:292</div></div>
+<div class="ttc" id="class_memento_html_a0d8167075a7e5f8890d8cbe1bd3d1273"><div class="ttname"><a href="class_memento.html#a0d8167075a7e5f8890d8cbe1bd3d1273">Memento::getInstance</a></div><div class="ttdeci">static Memento &amp; getInstance(Format &amp;strategie=XML::getInstance())</div><div class="ttdef"><b>Definition:</b> import-export.cpp:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 12 Juin 2015 17:50:08 pour Project Calendar par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>
