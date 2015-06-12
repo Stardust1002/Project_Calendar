@@ -87,8 +87,6 @@ public:
     {date_echeance = e;}
     virtual void afficher()const;
     virtual QString whoAmI()const = 0;
-
-
 };
 
 class TacheComposite:public Tache{
@@ -145,7 +143,7 @@ private:
         Tache(id,t,dispo,echeance),Evenement(duree), preemptive(pre){}
     ~TacheUnitaire(){}
 public:
-   const QDateTime& getEcheance()const{return this->date_echeance;}
+   //const QDateTime& getEcheance()const{return this->date_echeance;}
    void setDuree(const QTimeSpan& d){
        if(!preemptive && d>QTimeSpan(12,00))
            throw "Error : Durée d'une Tâche non preemptive supérieur à 12H impossible";
