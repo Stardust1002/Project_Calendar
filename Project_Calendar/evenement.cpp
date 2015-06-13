@@ -295,10 +295,15 @@ bool Projet::possede(const Tache &t){
 La méthode possede() renvoie true si le la tache en paramètre est liée au projet.
 False sinon.
     */
-   iterator it = tab.begin();
-   while(it != tab.end() && *it != &t)++it;
-   if(it == tab.end())return false;
-   return true;
+   iterator it;
+   for(it = tab.begin() ; it != tab.end() ; ++it){
+       if(*it == &t)
+           return true;
+   }
+   if(t.getComposite() && possede(*t.getComposite()))
+       return true;
+
+   return false;
 }
 
 /* ------------------------------- */

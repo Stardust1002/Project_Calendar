@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
         Memento::getInstance().save();
     }
 
-
     /*TacheManager &TM = TacheManager::getInstance();
     ProjetManager &PM = ProjetManager::getInstance();
     ActiviteManager &AM = ActiviteManager::getInstance();

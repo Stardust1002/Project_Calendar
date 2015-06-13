@@ -185,7 +185,7 @@ void XML::save()const{
 
         stream.writeStartElement("TacheNonDefini");
         for(TacheManager::iterator it = tacheM.begin() ; it != tacheM.end() ; it++){
-            if(!(*it)->getProjet())
+            if(!(*it)->getProjet() && !(*it)->getComposite())
                 saveTache(stream,**it);
         }
         stream.writeEndElement();

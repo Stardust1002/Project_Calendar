@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <Projets>
-        <Projet identificateur="NA17" titre="Ca casse les couilles" disponibilite="20:10:1994:00:00">
+        <Projet identificateur="NA17" titre="Gestion de projets de recherche" disponibilite="10:05:2015:00:00">
             <Taches>
-                <Tache identificateur="u_SOPRA STERIA" titre="Test4" duree="02:00" preemptive="false" disponibilite="20:01:2015:00:00" echeance="21:10:2016:23:59"/>
-                <Tache identificateur="c_C1" titre="Frolux" disponibilite="06:06:1993:12:21" echeance="10:07:2025:01:59">
-                    <Tache identificateur="u_1" titre="Test1" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                <Tache identificateur="u_Trigger" titre="Réaliser les triggers en PL/SQL PostgreSQL pour le projet de recherche" duree="04:00" preemptive="true" disponibilite="02:06:2015:00:00" echeance="14:06:2015:10:00"/>
+                <Tache identificateur="c_WEB" titre="Finir l'interface web pour l'accès à la bdd" disponibilite="20:05:2015:12:25" echeance="20:06:2025:01:59">
+                    <Tache identificateur="u_HTML Appel Projet" titre="Interface avec l'utilisateur : ajout d'appel à projet, consultation avec filtres" duree="03:00" preemptive="false" disponibilite="01:06:2015:00:00" echeance="15:06:2015:10:00"/>
+                    <Tache identificateur="u_PHP Appel Projet" titre="" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
                 </Tache>
-                <Tache identificateur="c_C2" titre="Frolux" disponibilite="06:06:1993:12:21" echeance="10:07:2021:01:59">
-                    <Tache identificateur="u_3" titre="Test3" duree="01:00" preemptive="false" disponibilite="09:06:2015:00:00" echeance="10:08:2015:10:00"/>
-                    <Tache identificateur="u_SOPRA STERIA" titre="Test4" duree="02:00" preemptive="false" disponibilite="20:01:2015:00:00" echeance="21:10:2016:23:59"/>
+                <Tache identificateur="c_Creation BDD" titre="Mise en place de la bdd, création des tables et insertion de données" disponibilite="11:05:2015:12:21" echeance="29:06:2015:01:59">
+                    <Tache identificateur="u_Ajout des tables" titre="Faire les requetes SQL pour les tables" duree="02:00" preemptive="false" disponibilite="12:05:2015:00:00" echeance="09:06:2015:10:00"/>
+                    <Tache identificateur="u_Insertion Donnes" titre="Réaliser les requêtes SQL d'insertion de données" duree="02:00" preemptive="false" disponibilite="12:05:2015:00:00" echeance="10:06:2015:23:59"/>
                 </Tache>
-                <Tache identificateur="u_1" titre="Test1" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
-                <Tache identificateur="u_2" titre="Test2" duree="01:00" preemptive="false" disponibilite="08:06:2015:00:00" echeance="10:08:2015:10:00"/>
-                <Tache identificateur="u_3" titre="Test3" duree="01:00" preemptive="false" disponibilite="09:06:2015:00:00" echeance="10:08:2015:10:00"/>
+                <Tache identificateur="u_Faire le powerpoint" titre="Powerpoint : support de soutenance" duree="02:00" preemptive="false" disponibilite="08:06:2015:00:00" echeance="14:06:2015:22:00"/>
+                <Tache identificateur="u_CHAMPAGNE!!!" titre="Fêter la fin du projet" duree="06:00" preemptive="false" disponibilite="23:06:2015:16:00" echeance="29:06:2015:10:00"/>
             </Taches>
         </Projet>
     </Projets>
     <TacheNonDefini>
-        <Tache identificateur="u_4" titre="Donner Pain aux canards" duree="02:00" preemptive="true" disponibilite="08:06:2015:00:00" echeance="10:08:2015:10:00"/>
+        <Tache identificateur="c_Rimes Techno" titre="Entretien sur Paris" disponibilite="06:06:1993:12:21" echeance="10:07:2025:01:59">
+            <Tache identificateur="u_Train " titre="Train pour la Gare du Nord" duree="01:00" preemptive="false" disponibilite="07:06:2015:00:00" echeance="10:08:2015:10:00"/>
+        </Tache>
     </TacheNonDefini>
     <Activites>
-        <Activite identificateur="Manger" titre="avec son colloc" type="Réunion" duree="00:30"/>
-        <Activite identificateur="Vaisselle" titre="avec son colloc" type="Réunion" duree="00:10"/>
-        <Activite identificateur="Fruhstuck" titre="c'est fort en chocolat!!" type="Réunion" duree="00:20"/>
-        <Activite identificateur="1" titre="AbendEssen" type="Réunion" duree="01:00"/>
+        <Activite identificateur="Sopra Steria" titre="Entretien avec le responsable Technique, Mr Decorle." type="Réunion" duree="01:00"/>
+        <Activite identificateur="Restaurant" titre="Kebab entre potes" type="Rendez-vous" duree="00:30"/>
+        <Activite identificateur="Foot" titre="Un peu de sport pour éliminer le kebab" type="Rendez-vous" duree="02:00"/>
     </Activites>
     <Precedences>
-        <Precedence id_predecesseur="C2" id_successeur="1"/>
+        <Precedence id_predecesseur="Creation BDD" id_successeur="WEB"/>
+        <Precedence id_predecesseur="Trigger" id_successeur="WEB"/>
+        <Precedence id_predecesseur="WEB" id_successeur="CHAMPAGNE!!!"/>
+        <Precedence id_predecesseur="Faire le powerpoint" id_successeur="CHAMPAGNE!!!"/>
     </Precedences>
     <Programmations>
-        <Programmation id_evenement="a_Manger" date="08:06:2015:12:36" duree="00:30"/>
-        <Programmation id_evenement="a_Vaisselle" date="10:06:2015:12:36" duree="00:10"/>
-        <Programmation id_evenement="t_2" date="10:06:2015:10:00" duree="01:00"/>
-        <Programmation id_evenement="t_3" date="10:06:2015:09:00" duree="01:00"/>
-        <Programmation id_evenement="t_SOPRA STERIA" date="11:06:2015:15:30" duree="02:00"/>
-        <Programmation id_evenement="t_1" date="11:06:2015:17:30" duree="01:00"/>
-        <Programmation id_evenement="a_Fruhstuck" date="12:06:2015:08:00" duree="00:20"/>
-        <Programmation id_evenement="a_1" date="14:06:2015:18:36" duree="01:00"/>
+        <Programmation id_evenement="t_Trigger" date="09:06:2015:10:12" duree="01:00"/>
+        <Programmation id_evenement="t_Trigger" date="09:06:2015:14:07" duree="01:00"/>
+        <Programmation id_evenement="t_Trigger" date="10:06:2015:22:22" duree="02:00"/>
+        <Programmation id_evenement="t_HTML Appel Projet" date="11:06:2015:09:00" duree="03:00"/>
+        <Programmation id_evenement="t_PHP Appel Projet" date="11:06:2015:15:31" duree="01:00"/>
+        <Programmation id_evenement="t_Ajout des tables" date="08:06:2015:08:00" duree="02:00"/>
+        <Programmation id_evenement="t_Insertion Donnes" date="08:06:2015:10:30" duree="02:00"/>
+        <Programmation id_evenement="t_Faire le powerpoint" date="14:06:2015:18:00" duree="02:00"/>
+        <Programmation id_evenement="a_Sopra Steria" date="12:06:2015:14:00" duree="01:00"/>
+        <Programmation id_evenement="a_Restaurant" date="11:06:2015:12:02" duree="00:30"/>
+        <Programmation id_evenement="a_Foot" date="13:06:2015:16:00" duree="02:00"/>
     </Programmations>
 </root>
