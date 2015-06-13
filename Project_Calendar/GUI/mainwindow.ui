@@ -253,7 +253,7 @@ selection-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1139</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGestion_Agenda">
@@ -291,8 +291,6 @@ selection-color: rgb(0, 0, 0);</string>
     </property>
     <addaction name="actionOuvrir"/>
     <addaction name="actionEnregistrer_Sous"/>
-    <addaction name="actionSauvegarder_un_projet"/>
-    <addaction name="actionSauvegarder_une_semaine"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuGestion_Agenda"/>

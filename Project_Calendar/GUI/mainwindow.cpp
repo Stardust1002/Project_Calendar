@@ -192,7 +192,7 @@ void MainWindow::on_voir_clicked()
     else{
         Activite* e = AM.getItem(ui->identificateur->text());
         on_newActivity_triggered(e);
-}
+    }
 }
 
 void MainWindow::on_actionVue_Globale_triggered()
@@ -233,19 +233,17 @@ void MainWindow::on_actionEnregistrer_Sous_triggered()
     }
 }
 
-
-
 void MainWindow::on_pushButton_clicked()
 {
     int semaine = date_calendrier.weekNumber();
+    int annee = date_calendrier.year();
     QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
     if(!filename.isNull()){
         try{
-            Memento::getInstance(XML::getInstance(filename)).save();
+            Memento::getInstance(XML::getInstance(filename)).saveWeek(semaine,annee);
         }
         catch(const char* s){
             ouvrirWarning(QString(s));
         }
     }
-
 }

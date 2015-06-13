@@ -1,5 +1,6 @@
 #include "ajouterprojet.h"
 #include "ui_ajouterprojet.h"
+#include "import-export.h"
 #include <QFileDialog>
 
 ajouterProjet::ajouterProjet(Projet* proj, QWidget *parent) :
@@ -63,14 +64,17 @@ void ajouterProjet::on_pushButton_clicked()
 
 void ajouterProjet::on_pushButton_2_clicked()
 {
-    QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
-    if(!filename.isNull()){
-        try{
-          ///  Memento::getInstance(XML::getInstance(filename)).save();
-          /// Ajouter methode de sauvegarde de projet
-        }
-        catch(const char* s){
-            ouvrirWarning(QString(s));
+    if(ui->identificateur->text().isEmpty())
+        ouvrirWarning("Des informations sont manquantes !","Erreur");
+    else{
+        QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
+        if(!filename.isNull()){
+            try{
+                Memento::getInstance(XML::getInstance(filename)).saveProject(ui->identificateur->text());
+            }
+            catch(const char* s){
+                ouvrirWarning(QString(s));
+            }
         }
     }
 }
