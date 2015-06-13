@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     try{
         Memento::getInstance().load();
+        Memento::getInstance(XML::getInstance("project-save.xml")).saveProject("NA17");
+        QDate date = QDate(2015,06,10);
+        Memento::getInstance(XML::getInstance("week-save.xml")).saveWeek(date.weekNumber(),date.year());
     }
     catch(const char* ){
         Memento::getInstance().save();

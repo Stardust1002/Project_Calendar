@@ -24,6 +24,8 @@ public:
             return pathname;}
     virtual void save()const=0;
     virtual void load()const=0;
+    virtual void saveWeek(int week, int year)const =0;
+    virtual void saveProjet(const Projet& proj)const =0;
 };
 
 ///La classe XML est un Format et permet d'exporter l'ensemble des données du calendrier sous forme XML.
@@ -40,10 +42,13 @@ public:
     static XML& getInstance(const QString& p = "auto-save.xml");
     static void freeInstance();
     void save() const override;
+    void saveWeek(int week, int year)const override;
+    void saveProjet(const Projet& proj)const override;
     void saveProjet(QXmlStreamWriter& stream, const Projet& proj)const;
     void saveTache(QXmlStreamWriter& stream, const Tache& tache)const;
     void saveActivite(QXmlStreamWriter& stream, const Activite& act)const;
     void saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)const;
+    void saveProgrammationExterne(QXmlStreamWriter& stream, const Programmation& prog)const;
     void savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const;
 
     void load()const override;
@@ -76,6 +81,15 @@ public:
     void save()const{
         ///Sauve toutes les informations du calendrier à l'aide de la méthode de la stratégie actuelle.
         strategie->save();}
+    void saveWeek(int week, int year)const{
+        ///Sauve toutes les programmations relatives à une semaine particulière ainsi que les évenements associés.
+        strategie->saveWeek(week,year);
+    }
+    void saveProject(const QString& id)const;
+    void saveProject(const Projet& proj)const{
+        ///Sauve toutes les programmations relatives à un projet ainsi que les évenements associés.
+        strategie->saveProjet(proj);
+    }
     void load()const{
         ///Charge toutes les informations du calendrier à l'aide de la méthode load() de la stratégie actuelle.
         strategie->load();}

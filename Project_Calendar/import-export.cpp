@@ -32,6 +32,14 @@ Memento& Memento::getInstance(Format &strategie){
     return *handler.instance;
 }
 
+void Memento::saveProject(const QString& id)const{
+    ProjetManager& projM = ProjetManager::getInstance();
+    ProjetManager::iterator it;
+    for(it = projM.begin() ; it != projM.end() && (*it)->getId() != id; it++);
+    if(it != projM.end())
+        saveProject(**it);
+}
+
 
 void XML::saveProjet(QXmlStreamWriter& stream, const Projet& proj)const{
     ///Sauvegarde le projet dans le stream QXmlStreamWriter, tous deux passés en paramètre.
@@ -106,6 +114,28 @@ void XML::saveProgrammation(QXmlStreamWriter& stream, const Programmation& prog)
     stream.writeEndElement();
 }
 
+void XML::saveProgrammationExterne(QXmlStreamWriter& stream, const Programmation& prog)const{
+    ///Sauvegarde la programmation et les informations de l'évenement correspondant dans le stream QXmlStreamWriter, tous deux passés en paramètre.
+
+    bool isActivite = (typeid(prog.getEvenement()) == typeid(Activite&));
+    stream.writeStartElement("Programmation");
+    if(isActivite){
+        const Activite& act = dynamic_cast<const Activite&>(prog.getEvenement());
+        stream.writeAttribute("nom_evenement",act.getId());
+        stream.writeAttribute("description",act.getTitre());
+        stream.writeAttribute("type",act.getTypeToString());
+    }
+    else{
+        const TacheUnitaire& tache = dynamic_cast<const TacheUnitaire&>(prog.getEvenement());
+        stream.writeAttribute("nom_evenement",tache.getId());
+        stream.writeAttribute("description",tache.getTitre());
+    }
+    stream.writeAttribute("date",prog.getDate().toString("dd:MM:yyyy:HH:mm"));
+    stream.writeAttribute("duree",prog.getDuree().toString("hh:mm"));
+    stream.writeAttribute("type","Tâche");
+    stream.writeEndElement();
+}
+
 void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
     ///Sauvegarde la précédence dans le stream QXmlStreamWriter, tous deux passés en paramètre.
     stream.writeStartElement("Precedence");
@@ -127,7 +157,6 @@ void XML::save()const{
     ///Pour sauvegarder chaque item, la méthode save() parcourt les différents manager à l'aide d'un iterator.
     QXmlStreamWriter stream;
     QFile file(pathname);
-    qDebug()<<"Je suis passé par la";
     if (!file.open(QIODevice::WriteOnly))
     {
       throw "Error : Impossible d'ouvrir le fichier";
@@ -192,6 +221,64 @@ void XML::save()const{
         stream.writeEndDocument();
     }
 }
+
+void XML::saveWeek(int week, int year)const{
+    QXmlStreamWriter stream;
+    QFile file(pathname);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+      throw "Error : Impossible d'ouvrir le fichier";
+    }
+    else
+    {
+        ProgrammationManager& progM = ProgrammationManager::getInstance();
+
+        stream.setAutoFormatting(true);
+        stream.setDevice(&file);
+
+        stream.writeStartDocument();
+        stream.writeStartElement("Programmations");
+        stream.writeAttribute("Semaine",QString::number(week));
+        stream.writeAttribute("Annee",QString::number(year));
+        vector<Programmation*> progs = progM.getProgrammations(week,year);
+        for(vector<Programmation*>::iterator it = progs.begin() ; it != progs.end() ; it++)
+            saveProgrammationExterne(stream,**it);
+
+        stream.writeEndElement();
+        stream.writeEndDocument();
+    }
+}
+
+void XML::saveProjet(const Projet& proj)const{
+    QXmlStreamWriter stream;
+    QFile file(pathname);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+      throw "Error : Impossible d'ouvrir le fichier";
+    }
+    else
+    {
+        stream.setAutoFormatting(true);
+        stream.setDevice(&file);
+
+        stream.writeStartDocument();
+        stream.writeStartElement("Projet");
+        stream.writeAttribute("Nom",proj.getId());
+        for(Projet::const_iterator it = proj.begin() ; it != proj.end() ; it++){
+            if(typeid(**it) == typeid(TacheUnitaire)){
+                const TacheUnitaire& tache = dynamic_cast<const TacheUnitaire&>(**it);
+                vector<Programmation*> progs = tache.getProgrammations();
+                for(vector<Programmation*>::iterator it = progs.begin(); it != progs.end() ; it++)
+                    saveProgrammationExterne(stream,**it);
+            }
+        }
+
+        stream.writeEndElement();
+        stream.writeEndDocument();
+    }
+
+}
+
 
 
 void XML::loadProjet(QXmlStreamReader& stream)const{
