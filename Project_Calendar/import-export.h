@@ -31,10 +31,11 @@ class XML : public Format{
     struct Handler{
         XML* instance;
         Handler():instance(nullptr){}
-        virtual ~Handler(){XML::freeInstance();}
+        ~Handler(){XML::freeInstance();}
     };
     static Handler handler;
     XML(const QString &p):Format(p){}
+    XML& operator=(const XML&){}
 public:
     static XML& getInstance(const QString& p = "auto-save.xml");
     static void freeInstance();

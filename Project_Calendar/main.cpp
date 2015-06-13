@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     try{
         Memento::getInstance().load();
     }
-    catch(const char* s){
+    catch(const char* ){
         Memento::getInstance().save();
     }
 

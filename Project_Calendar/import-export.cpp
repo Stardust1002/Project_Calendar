@@ -285,7 +285,7 @@ void XML::loadProgrammation(QXmlStreamReader& stream)const{
         event = dynamic_cast<TacheUnitaire*>(TacheManager::getInstance().getItem(id.remove(0,2)));
     QString& date = stream.attributes().value("date").toString();
     QString& duree = stream.attributes().value("duree").toString();
-    Programmation& prog = ProgrammationManager::getInstance().ajouterProgrammation(*event,date,duree);
+    ProgrammationManager::getInstance().ajouterProgrammation(*event,date,duree);
     stream.readNext();
 }
 

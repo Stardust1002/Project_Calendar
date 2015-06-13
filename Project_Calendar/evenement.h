@@ -329,6 +329,8 @@ class Precedence{
     const Tache* pred;
     const Tache* succ;
     Precedence(const Tache& t1, const Tache& t2):pred(&t1), succ(&t2){}
+    Precedence(const Precedence&){}
+    Precedence& operator=(const Precedence&){}
     ~Precedence(){}
 public:
     const Tache& getSuccesseur()const{

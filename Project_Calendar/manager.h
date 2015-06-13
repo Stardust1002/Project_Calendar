@@ -28,6 +28,7 @@ private:
         virtual ~Handler(){U::freeInstance();}
     };
     Manager& operator=(const Manager&);
+    Manager(const Manager&){}
 protected:    
     vector<T*> tab;
     static Handler handler;
@@ -54,7 +55,7 @@ public:
     bool isIdFree(const QString& id);
     void deleteItem(T& t);
     void deleteItem(const QString& id);
-    virtual void deleteItem(iterator it);
+    void deleteItem(iterator it);
     static U& getInstance();
     static void freeInstance();
 
@@ -167,7 +168,6 @@ public:
     void deleteItem(Precedence* t);
 
     Precedence&  ajouterPrecedence(const Tache& t1,const Tache& t2);
-    void supprimerPrecedence(const QString& id);
     bool isPredecesseur(const Tache& t1, const Tache& t2)const;
 };
 
@@ -181,11 +181,11 @@ public:
 ///La classe ProgrammationManager est un Manager qui gère les items de type Programmation. Elle ne peut être instanciée à cause du singleton mis en place dans sa classe mère. Elle peut toutefois être récupérée dans une référence ou un pointeur à l'aide la méthode mère: getInstance().
 class ProgrammationManager:public Manager<Programmation,ProgrammationManager>{
 public:
-    Programmation& ajouterProgrammation(Evenement& evenement,const QDateTime& horaire,const QTimeSpan& duree);
+    Programmation& ajouterProgrammation(Evenement& evenement,const QDateTime& date,const QTimeSpan& duree);
     Programmation& ajouterProgrammation(Evenement& evenement,const QString& horaire,const QString& duree);
     bool isProgrammee(const Evenement& e)const;
     bool isProgrammee(const Tache& t, const QDateTime& date)const;
-    bool isProgrammable(const Evenement& t, const QDateTime& horaire,const QTimeSpan& duree)const;
+    bool isProgrammable(const Evenement& t, const QDateTime& date,const QTimeSpan& duree)const;
     QTimeSpan dureeProgrammee(const Evenement& e)const;
     QDateTime getFinTache(const TacheUnitaire& tache)const;
     vector<const Programmation*> getProgrammations(const TacheUnitaire& tache)const;
