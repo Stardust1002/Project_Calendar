@@ -62,6 +62,8 @@ private slots:
 
     void on_actionEnregistrer_Sous_triggered();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QDate date_calendrier;

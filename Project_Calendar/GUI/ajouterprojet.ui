@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Création d'un Projet</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -21,7 +21,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="0" column="1" colspan="2">
     <widget class="QLineEdit" name="identificateur"/>
    </item>
    <item row="1" column="0">
@@ -31,7 +31,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="1" column="1" colspan="2">
     <widget class="QPlainTextEdit" name="titre">
      <property name="minimumSize">
       <size>
@@ -48,6 +48,13 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="1">
+    <widget class="QDateTimeEdit" name="dispo">
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="0">
     <widget class="QPushButton" name="annuler">
      <property name="text">
@@ -56,16 +63,19 @@
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
-      <string>Créer !</string>
+      <string>Sauvegarder</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QDateTimeEdit" name="dispo">
-     <property name="calendarPopup">
-      <bool>true</bool>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Créer !</string>
      </property>
     </widget>
    </item>

@@ -232,3 +232,20 @@ void MainWindow::on_actionEnregistrer_Sous_triggered()
         }
     }
 }
+
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    int semaine = date_calendrier.weekNumber();
+    QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
+    if(!filename.isNull()){
+        try{
+            Memento::getInstance(XML::getInstance(filename)).save();
+        }
+        catch(const char* s){
+            ouvrirWarning(QString(s));
+        }
+    }
+
+}

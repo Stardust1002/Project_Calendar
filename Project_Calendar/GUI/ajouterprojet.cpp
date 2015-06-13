@@ -1,5 +1,6 @@
 #include "ajouterprojet.h"
 #include "ui_ajouterprojet.h"
+#include <QFileDialog>
 
 ajouterProjet::ajouterProjet(Projet* proj, QWidget *parent) :
     QDialog(parent),projet(proj),
@@ -8,6 +9,7 @@ ajouterProjet::ajouterProjet(Projet* proj, QWidget *parent) :
     ui->setupUi(this);
     ui->dispo->setDateTime(QDateTime::currentDateTime());
     if(projet != nullptr){
+        ui->pushButton_2->setEnabled(true);
         ui->identificateur->setText(projet->getId());
         ui->titre->setPlainText(projet->getTitre());
         ui->dispo->setDateTime(projet->getDisponibilite());
@@ -57,4 +59,18 @@ void ajouterProjet::on_pushButton_clicked()
     }
     else
         ouvrirWarning("Des informations sont manquantes !","Erreur");
+}
+
+void ajouterProjet::on_pushButton_2_clicked()
+{
+    QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
+    if(!filename.isNull()){
+        try{
+          ///  Memento::getInstance(XML::getInstance(filename)).save();
+          /// Ajouter methode de sauvegarde de projet
+        }
+        catch(const char* s){
+            ouvrirWarning(QString(s));
+        }
+    }
 }
