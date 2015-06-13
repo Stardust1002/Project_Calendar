@@ -223,6 +223,7 @@ void XML::save()const{
 }
 
 void XML::saveWeek(int week, int year)const{
+    ///Effectue la sauvegarde de l'ensemble des programmations pour une semaine donnée en ajoutant les informations de l'evenement : nom, description, durée
     QXmlStreamWriter stream;
     QFile file(pathname);
     if (!file.open(QIODevice::WriteOnly))
@@ -250,6 +251,8 @@ void XML::saveWeek(int week, int year)const{
 }
 
 void XML::saveProjet(const Projet& proj)const{
+    ///Effectue la sauvegarde de l'ensemble des programmations pour un projet donnée en ajoutant les informations de l'evenement : nom, description, durée
+
     QXmlStreamWriter stream;
     QFile file(pathname);
     if (!file.open(QIODevice::WriteOnly))

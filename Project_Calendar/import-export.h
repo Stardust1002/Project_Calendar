@@ -86,6 +86,7 @@ public:
         strategie->saveWeek(week,year);
     }
     void saveProject(const QString& id)const;
+        ///Sauve toutes les programmations relatives à un projet ainsi que les évenements associés. Le projet est repéré par son identificateur.
     void saveProject(const Projet& proj)const{
         ///Sauve toutes les programmations relatives à un projet ainsi que les évenements associés.
         strategie->saveProjet(proj);
