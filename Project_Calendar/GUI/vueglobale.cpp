@@ -43,7 +43,7 @@ vueGlobale::vueGlobale(QWidget *parent) :
             vector<Programmation*> lprog = tmp->getProgrammations();
             int i = 1;
             for(vector<Programmation*>::iterator it = lprog.begin(); it != lprog.end(); ++it, ++i)
-                insertItem("Programmation "+i, (*it)->getDuree().toString(), (*it)->getDate().toString(),programmations);
+                insertItem("Programmation "+QString::number(i), (*it)->getDuree().toString(), (*it)->getDate().toString(),programmations);
 
         }
         QTreeWidgetItem* pred = insertItem("Prédécesseurs", tu);
