@@ -70,7 +70,7 @@ void ajouterProjet::on_pushButton_2_clicked()
         QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
         if(!filename.isNull()){
             try{
-                Memento::getInstance(XML::getInstance(filename)).saveProject(ui->identificateur->text());
+                Memento::getInstance(XML::getInstance(),filename).saveProject(ui->identificateur->text());
             }
             catch(const char* s){
                 ouvrirWarning(QString(s));

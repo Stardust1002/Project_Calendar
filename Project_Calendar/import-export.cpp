@@ -16,18 +16,18 @@ void Memento::freeInstance(){
     handler.instance = nullptr;
 }
 
-XML& XML::getInstance(const QString& pathname){
+XML& XML::getInstance(){
     ///Instancie un objet de la classe XML si aucune instanciation n'a été faite au préalable, et retourne sa référence.
 
     if(handler.instance == nullptr)
-        return * new XML(pathname);
+        return * new XML();
     return *handler.instance;
 }
 
-Memento& Memento::getInstance(Format &strategie){
+Memento& Memento::getInstance(Format &strategie,const QString& path){
     ///Instancie un objet de la classe Memento si aucune instanciation n'a été faite au préalable, et retourne sa référence.
     if(handler.instance == nullptr)
-        return * new Memento(strategie);
+        return * new Memento(strategie,path);
     return *handler.instance;
 }
 
@@ -39,7 +39,7 @@ void Memento::saveProject(const QString& id)const{
         saveProject(**it);
 }
 
-void Format::save()const{
+void Format::save(const QString& path)const{
     ///Défini la structure du comportement de sauvegarde de l'ensemble des informations du calendrier en laissant aux classes filles la définition du comportement de la sauvegarde de chaque élément:
     ///- Projets: en appellant saveProjet(), méthodes virtuelles pures redéfinies dans la classe fille
     ///- Tâches: en appellant saveTache(), méthodes virtuelles pures redéfinies dans la classe fille
@@ -49,7 +49,7 @@ void Format::save()const{
     ///
     ///Pour sauvegarder chaque item, la méthode save() parcourt les différents manager à l'aide d'un iterator.
     QXmlStreamWriter stream;
-    QFile file(pathname);
+    QFile file(path);
     if (!file.open(QIODevice::WriteOnly))
     {
       throw "Error : Impossible d'ouvrir le fichier";
@@ -222,10 +222,10 @@ void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
 
 
 
-void XML::saveWeek(int week, int year)const{
+void XML::saveWeek(int week, int year,const QString& path)const{
     ///Effectue la sauvegarde de l'ensemble des programmations pour une semaine donnée en ajoutant les informations de l'evenement : nom, description, durée
     QXmlStreamWriter stream;
-    QFile file(pathname);
+    QFile file(path);
     if (!file.open(QIODevice::WriteOnly))
     {
       throw "Error : Impossible d'ouvrir le fichier";
@@ -250,11 +250,11 @@ void XML::saveWeek(int week, int year)const{
     }
 }
 
-void XML::saveProjet(const Projet& proj)const{
+void XML::saveProjet(const Projet& proj,const QString& path)const{
     ///Effectue la sauvegarde de l'ensemble des programmations pour un projet donnée en ajoutant les informations de l'evenement : nom, description, durée
 
     QXmlStreamWriter stream;
-    QFile file(pathname);
+    QFile file(path);
     if (!file.open(QIODevice::WriteOnly))
     {
       throw "Error : Impossible d'ouvrir le fichier";
@@ -282,7 +282,7 @@ void XML::saveProjet(const Projet& proj)const{
 
 }
 
-void Format::load()const{
+void Format::load(const QString& path)const{
     ///Défini la structure du comportement du chargement de l'ensemble des informations du calendrier stockés dans un fichier. Le comportement de l'importation est défini dans les points d'extensions suivants
     ///- Projets
     ///- Tâches
@@ -291,7 +291,7 @@ void Format::load()const{
     ///- Programmations
 
     QXmlStreamReader stream;
-    QFile file(pathname);
+    QFile file(path);
 
     if (!file.open(QIODevice::ReadOnly))
     {

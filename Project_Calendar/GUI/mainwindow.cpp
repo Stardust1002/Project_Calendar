@@ -211,7 +211,7 @@ void MainWindow::on_actionOuvrir_triggered()
     QString filename = QFileDialog::getOpenFileName(this,"Ouvrir","./","XML File (*.xml)");
     if(!filename.isNull()){
         try{
-            Memento::getInstance(XML::getInstance(filename)).load();
+            Memento::getInstance(XML::getInstance(),filename).load();
             refresh_calendar(QDate::currentDate());
         }
         catch(const char* s){
@@ -225,7 +225,7 @@ void MainWindow::on_actionEnregistrer_Sous_triggered()
     QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
     if(!filename.isNull()){
         try{
-            Memento::getInstance(XML::getInstance(filename)).save();
+            Memento::getInstance(XML::getInstance(),filename).save();
         }
         catch(const char* s){
             ouvrirWarning(QString(s));
@@ -240,7 +240,7 @@ void MainWindow::on_pushButton_clicked()
     QString filename = QFileDialog::getSaveFileName(this,"Enregistrer sous","./","XML File (*.xml)");
     if(!filename.isNull()){
         try{
-            Memento::getInstance(XML::getInstance(filename)).saveWeek(semaine,annee);
+            Memento::getInstance(XML::getInstance(),filename).saveWeek(semaine,annee);
         }
         catch(const char* s){
             ouvrirWarning(QString(s));

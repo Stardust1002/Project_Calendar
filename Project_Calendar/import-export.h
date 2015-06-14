@@ -9,22 +9,16 @@
 ///Format est une classe virtuelle pure permettant la mise en place du pattern design Strategy et Template Method. Elle défini la structure du comportement d'importation et d'exportation mais laisse aux classes filles qui en héritent le choix du type d'exportation ou d'importation. Il est ainsi possible d'exporter sous un autre format ou bien sous le même format mais avec une structure de fichier différente et mieux adaptée à l'utilisation.
 class Format{
 protected:
-    QString pathname;
-    Format(const QString& p):pathname(p){}
+
+    Format(){}
     Format(const Format &){}
     Format& operator=(const Format&){}
     virtual ~Format()=0{}
 
 public:
-    void setPathname(const QString& p){
-            ///Modifie le chemin courant du fichier de sauvegarde.
-            pathname = p;}
-    const QString& getPathname(){
-            ///Renvoie le chemin courant du fichier de sauvegarde.
-            return pathname;}
-    virtual void save()const;
-    virtual void saveWeek(int week, int year)const =0;
-    virtual void saveProjet(const Projet& proj)const =0;
+    virtual void save(const QString& path)const;
+    virtual void saveWeek(int week, int year,const QString& path)const =0;
+    virtual void saveProjet(const Projet& proj,const QString& path)const =0;
     virtual void saveProjet(QXmlStreamWriter& stream, const Projet& proj)const=0;
     virtual void saveTache(QXmlStreamWriter& stream, const Tache& tache)const=0;
     virtual void saveActivite(QXmlStreamWriter& stream, const Activite& act)const =0;
@@ -32,7 +26,7 @@ public:
     virtual void saveProgrammationExterne(QXmlStreamWriter& stream, const Programmation& prog)const=0;
     virtual void savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const=0;
 
-    virtual void load()const;
+    virtual void load(const QString& path)const;
     virtual void loadProjet(QXmlStreamReader& stream)const =0;
     virtual Tache& loadTache(QXmlStreamReader& stream)const =0;
     virtual void loadActivite(QXmlStreamReader& stream)const =0;
@@ -49,13 +43,13 @@ class XML : public Format{
         ~Handler(){XML::freeInstance();}
     };
     static Handler handler;
-    XML(const QString &p):Format(p){}
+    XML():Format(){}
     XML& operator=(const XML&){}
 public:
-    static XML& getInstance(const QString& p = "auto-save.xml");
+    static XML& getInstance();
     static void freeInstance();
-    void saveWeek(int week, int year)const override;
-    void saveProjet(const Projet& proj)const override;
+    void saveWeek(int week, int year, const QString& path)const override;
+    void saveProjet(const Projet& proj, const QString& path)const override;
     void saveProjet(QXmlStreamWriter& stream, const Projet& proj)const override;
     void saveTache(QXmlStreamWriter& stream, const Tache& tache)const override;
     void saveActivite(QXmlStreamWriter& stream, const Activite& act)const override;
@@ -71,8 +65,9 @@ public:
 };
 ///La classe Memento est un singleton memento permettant de charger et de sauvegarder l'ensemble des informations du calendrier. Elle les exporter selon une stratégie particulière, correspondant au format d'exportation. Cette stratégie peut être changée à tout moment par le biais de la méthode setStrategie. De plus, elle ne peut être instanciée directement mais peut être récupérer par le biais d'une référence ou d'un pointeur grâce à la méthode getInstance(). Un Handler a été mis en place afin désalloué automatiquement l'instance en fin de processus.
 class Memento{
+    QString pathname;
     Format* strategie;
-    Memento(Format &s):strategie(&s){}
+    Memento(Format &s,const QString& p):strategie(&s),pathname(p){}
     Memento(const Memento &){}
     Memento& operator=(const Memento&){}
     struct Handler{
@@ -82,25 +77,31 @@ class Memento{
     };
     static Handler handler;
 public:
+    void setPathname(const QString& p){
+            ///Modifie le chemin courant du fichier de sauvegarde.
+            pathname = p;}
+    const QString& getPathname(){
+            ///Renvoie le chemin courant du fichier de sauvegarde.
+            return pathname;}
     static void freeInstance();
     static Memento& getInstance(
             ///Renvoie une reference sur l'instance de Memento.
-            Format &strategie = XML::getInstance());
+            Format &strategie = XML::getInstance(),const QString& path="auto-save.xml");
     void setStrategie(Format* strat){
         ///Modifie la stratégie avec celle passée en paramètre
         strategie = strat;}
     void save()const{
         ///Sauve toutes les informations du calendrier à l'aide de la méthode de la stratégie actuelle.
-        strategie->save();}
+        strategie->save(pathname);}
     void saveWeek(int week, int year)const{
         ///Sauve toutes les programmations relatives à une semaine particulière ainsi que les évenements associés.
-        strategie->saveWeek(week,year);
+        strategie->saveWeek(week,year,pathname);
     }
     void saveProject(const QString& id)const;
         ///Sauve toutes les programmations relatives à un projet ainsi que les évenements associés. Le projet est repéré par son identificateur.
     void saveProject(const Projet& proj)const{
         ///Sauve toutes les programmations relatives à un projet ainsi que les évenements associés.
-        strategie->saveProjet(proj);
+        strategie->saveProjet(proj,pathname);
     }
     void load()const{
         ///Charge toutes les informations d'un fichier externe dans l'application à l'aide de la méthode load() de la stratégie actuelle. Les données antérieures sont écrasées.
@@ -110,7 +111,7 @@ public:
         ActiviteManager::freeInstance();
         ProjetManager::freeInstance();
 
-        strategie->load();}
+        strategie->load(pathname);}
 };
 
 #endif // IMPORTEXPORT
