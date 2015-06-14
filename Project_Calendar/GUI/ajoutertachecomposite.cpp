@@ -66,83 +66,84 @@ ajouterTacheComposite::~ajouterTacheComposite()
 
 void ajouterTacheComposite::on_pushButton_clicked()
 {
-    if(!ui->identificateur->text().isEmpty() &&
-       ui->dispo->text() != "00/00/0000 00:00" &&
-       ui->dispo->text() != ui->echeance->text() &&
-       ui->echeance->text() != "00/00/0000 00:00" &&
-       !ui->titre->toPlainText().isEmpty() &&
-       ui->composants->count() > 0 &&
-       ui->dispo->dateTime() < ui->echeance->dateTime())
-    {
-        TacheManager& TM = TacheManager::getInstance();
-        bool erreur = false;
-        if(tache_composite == 0){
-            //AJOUT DE LA TACHE COMPOSITE
-            vector<Tache*> Liste;
-            PrecedenceManager& PrM = PrecedenceManager::getInstance();
-            ProjetManager& PM = ProjetManager::getInstance();
-            if(TM.getItem(ui->identificateur->text()) != nullptr){
-                ouvrirWarning("Attention une tâche possède déjà cet identificateur,\nVeuillez en changer!");
-                return;
-            }
-            for(int i = 0; i < ui->composants->count(); i++){
-                if(!ui->composants->item(i)->text().isEmpty()){
-                for(int j = 0; j < ui->pred->count(); j++){  //generation à la volée de la liste des composants, pointeurs de tache.
-                     if(ui->composants->item(i)->text() == ui->pred->item(j)->text()){ // Si un composant est predecesseur
-                         ouvrirWarning("Attention, un composant ne peut pas être prédécesseur");
-                         return;
-                         }
+    bool erreur = false;
+    try{
+
+        if(!ui->identificateur->text().isEmpty() &&
+           ui->dispo->text() != "00/00/0000 00:00" &&
+           ui->dispo->text() != ui->echeance->text() &&
+           ui->echeance->text() != "00/00/0000 00:00" &&
+           !ui->titre->toPlainText().isEmpty() &&
+           ui->composants->count() > 0 &&
+           ui->dispo->dateTime() < ui->echeance->dateTime())
+        {
+            TacheManager& TM = TacheManager::getInstance();
+            if(tache_composite == 0){
+                //AJOUT DE LA TACHE COMPOSITE
+                vector<Tache*> Liste;
+                PrecedenceManager& PrM = PrecedenceManager::getInstance();
+                ProjetManager& PM = ProjetManager::getInstance();
+                if(TM.getItem(ui->identificateur->text()) != nullptr){
+                    ouvrirWarning("Attention une tâche possède déjà cet identificateur,\nVeuillez en changer!");
+                    return;
                 }
-                          Liste.push_back(TM.getItem(ui->composants->item(i)->text()));
-                 }
-            }
+                for(int i = 0; i < ui->composants->count(); i++){
+                    if(!ui->composants->item(i)->text().isEmpty()){
+                    for(int j = 0; j < ui->pred->count(); j++){  //generation à la volée de la liste des composants, pointeurs de tache.
+                         if(ui->composants->item(i)->text() == ui->pred->item(j)->text()){ // Si un composant est predecesseur
+                             ouvrirWarning("Attention, un composant ne peut pas être prédécesseur");
+                             return;
+                             }
+                    }
+                              Liste.push_back(TM.getItem(ui->composants->item(i)->text()));
+                     }
+                }
 
-           try{
+                TacheComposite& t = TM.ajouterTacheComposite(ui->identificateur->text(), ui->titre->toPlainText(),ui->dispo->dateTime(), ui->echeance->dateTime(), Liste);
+                t.setProjet(*PM.getItem(ui->projet->currentText()));
+                for(int i = 0; i < ui->pred->count(); ++i)
+                    PrM.ajouterPrecedence(*TM.getItem(ui->pred->item(i)->text()), t);
+                t.afficher();
 
-            TacheComposite& t = TM.ajouterTacheComposite(ui->identificateur->text(), ui->titre->toPlainText(),ui->dispo->dateTime(), ui->echeance->dateTime(), Liste);
-            t.setProjet(*PM.getItem(ui->projet->currentText()));
-            for(int i = 0; i < ui->pred->count(); ++i)
-                PrM.ajouterPrecedence(*TM.getItem(ui->pred->item(i)->text()), t);
-            t.afficher();
-           }
-           catch(const char* s){
-                ouvrirWarning(QString(s));
-                erreur = true;
-            }
-            if(!erreur){
-                ouvrirInformation("Tache Composite créée avec succès!\nN'oubliez pas de programmer ses tâches unitaires !");
-            }
-            else
-                ouvrirWarning("Des erreurs ont eu lieu, veuillez-vérifier la tâche composite dans la vue globale !");
+                if(!erreur){
+                    ouvrirInformation("Tache Composite créée avec succès!\nN'oubliez pas de programmer ses tâches unitaires !");
+                }
+                else
+                    ouvrirWarning("Des erreurs ont eu lieu, veuillez-vérifier la tâche composite dans la vue globale !");
 
+                close();
+            }else{
+                //MODIFICATION DE LA TACHE COMPOSITE
+
+             if(tache_composite->getId() != ui->identificateur->text() && TM.getItem(ui->identificateur->text()) == 0)
+                tache_composite->setId(ui->identificateur->text());
+             else if (tache_composite->getId() != ui->identificateur->text()){
+                 ouvrirWarning("Attention, une tache ayant cet identificateur est déjà existant !");
+                 return;
+             }
+             tache_composite->setTitre(ui->titre->toPlainText());
+             try{
+             PrecedenceManager& PrM = PrecedenceManager::getInstance();
+             vector<Precedence*> Precedences = tache_composite->getPrecedences();
+             for(vector<Precedence*>::iterator it = Precedences.begin(); it != Precedences.end(); ++it)
+                 PrM.deleteItem(*it);
+             for(int i = 0; i < ui->pred->count(); i++){
+                 if(!ui->pred->item(i)->text().isEmpty())
+                     PrM.ajouterPrecedence(*TM.getItem(ui->pred->item(i)->text()), *tache_composite);
+             }
+
+             }catch(const char* s){ ouvrirWarning(s);}
+             ouvrirInformation("Tache Composite modifiée avec succès!\n");
             close();
-        }else{
-            //MODIFICATION DE LA TACHE COMPOSITE
-
-         if(tache_composite->getId() != ui->identificateur->text() && TM.getItem(ui->identificateur->text()) == 0)
-            tache_composite->setId(ui->identificateur->text());
-         else if (tache_composite->getId() != ui->identificateur->text()){
-             ouvrirWarning("Attention, une tache ayant cet identificateur est déjà existant !");
-             return;
-         }
-         tache_composite->setTitre(ui->titre->toPlainText());
-         try{
-         PrecedenceManager& PrM = PrecedenceManager::getInstance();
-         vector<Precedence*> Precedences = tache_composite->getPrecedences();
-         for(vector<Precedence*>::iterator it = Precedences.begin(); it != Precedences.end(); ++it)
-             PrM.deleteItem(*it);
-         for(int i = 0; i < ui->pred->count(); i++){
-             if(!ui->pred->item(i)->text().isEmpty())
-                 PrM.ajouterPrecedence(*TM.getItem(ui->pred->item(i)->text()), *tache_composite);
-         }
-
-         }catch(const char* s){ ouvrirWarning(s);}
-         ouvrirInformation("Tache Composite modifiée avec succès!\n");
-        close();
+            }
         }
+        else
+            ouvrirWarning("Des informations sont manquantes !","Erreur");
     }
-    else
-        ouvrirWarning("Des informations sont manquantes !","Erreur");
+    catch(const char* s){
+             ouvrirWarning(QString(s));
+             erreur = true;
+    }
 }
 
 void ajouterTacheComposite::on_projet_currentIndexChanged(const QString &projet)
