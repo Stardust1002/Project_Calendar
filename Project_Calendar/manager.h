@@ -35,7 +35,7 @@ protected:
     void addItem(T& t){tab.push_back(&t);}
 
     Manager(){}
-    ~Manager();
+    virtual ~Manager()=0;
 public:
     class iterator : public vector<T*>::iterator{
     public:
