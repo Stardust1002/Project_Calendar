@@ -1,5 +1,4 @@
 #include "import-export.h"
-#include "manager.h"
 
 XML::Handler XML::handler;
 Memento::Handler Memento::handler;
@@ -40,6 +39,81 @@ void Memento::saveProject(const QString& id)const{
         saveProject(**it);
 }
 
+void Format::save()const{
+    ///Défini la structure du comportement de sauvegarde de l'ensemble des informations du calendrier en laissant aux classes filles la définition du comportement de la sauvegarde de chaque élément:
+    ///- Projets: en appellant saveProjet(), méthodes virtuelles pures redéfinies dans la classe fille
+    ///- Tâches: en appellant saveTache(), méthodes virtuelles pures redéfinies dans la classe fille
+    ///- Activités: en appellant saveActivite(), méthodes virtuelles pures redéfinies dans la classe fille
+    ///- Précédences: en appellant savePrecedence(), méthodes virtuelles pures redéfinies dans la classe fille
+    ///- Programmations: en appellant saveProgrammation(), méthodes virtuelles pures redéfinies dans la classe fille
+    ///
+    ///Pour sauvegarder chaque item, la méthode save() parcourt les différents manager à l'aide d'un iterator.
+    QXmlStreamWriter stream;
+    QFile file(pathname);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+      throw "Error : Impossible d'ouvrir le fichier";
+    }
+    else
+    {
+        ProgrammationManager& progM = ProgrammationManager::getInstance();
+        PrecedenceManager& precM = PrecedenceManager::getInstance();
+        ActiviteManager& actM = ActiviteManager::getInstance();
+        ProjetManager& projM = ProjetManager::getInstance();
+        TacheManager& tacheM = TacheManager::getInstance();
+
+        stream.setAutoFormatting(true);
+        stream.setDevice(&file);
+
+        stream.writeStartDocument();
+        stream.writeStartElement("root");
+
+        //   ****************************************
+        //   *** Sauvegarde des projets et tâches ***
+        //   ****************************************
+        stream.writeStartElement("Projets");
+        for(ProjetManager::iterator it = projM.begin() ; it != projM.end() ; it++)
+            saveProjet(stream,**it);
+        stream.writeEndElement();
+
+        stream.writeStartElement("TacheNonDefini");
+        for(TacheManager::iterator it = tacheM.begin() ; it != tacheM.end() ; it++){
+            if(!(*it)->getProjet() && !(*it)->getComposite())
+                saveTache(stream,**it);
+        }
+        stream.writeEndElement();
+
+
+        //   ********************************
+        //   *** Sauvegarde des activites ***
+        //   ********************************
+        stream.writeStartElement("Activites");
+        for(ActiviteManager::iterator it = actM.begin() ; it != actM.end() ; it++)
+            saveActivite(stream,**it);
+        stream.writeEndElement();
+
+
+        //   **********************************
+        //   *** Sauvegarde des precedences ***
+        //   **********************************
+        stream.writeStartElement("Precedences");
+        for(PrecedenceManager::iterator it = precM.begin() ; it != precM.end() ; it++)
+            savePrecedence(stream,**it);
+        stream.writeEndElement();
+
+
+        //   *************************************
+        //   *** Sauvegarde des programmations ***
+        //   *************************************
+        stream.writeStartElement("Programmations");
+        for(ProgrammationManager::iterator it = progM.begin() ; it != progM.end() ; it++)
+            saveProgrammation(stream,**it);
+        stream.writeEndElement();
+
+        stream.writeEndElement();
+        stream.writeEndDocument();
+    }
+}
 
 void XML::saveProjet(QXmlStreamWriter& stream, const Projet& proj)const{
     ///Sauvegarde le projet dans le stream QXmlStreamWriter, tous deux passés en paramètre.
@@ -146,81 +220,7 @@ void XML::savePrecedence(QXmlStreamWriter& stream, const Precedence& prec)const{
 }
 
 
-void XML::save()const{
-    ///Effectue la sauvegarde totale de l'ensemble des informations du calendrier au sein d'un fichier XML:
-    ///- Projets: en appellant saveProjet()
-    ///- Tâches: en appellant saveTache()
-    ///- Activités: en appellant saveActivite()
-    ///- Précédences: en appellant savePrecedence()
-    ///- Programmations: en appellant saveProgrammation()
-    ///
-    ///Pour sauvegarder chaque item, la méthode save() parcourt les différents manager à l'aide d'un iterator.
-    QXmlStreamWriter stream;
-    QFile file(pathname);
-    if (!file.open(QIODevice::WriteOnly))
-    {
-      throw "Error : Impossible d'ouvrir le fichier";
-    }
-    else
-    {
-        ProgrammationManager& progM = ProgrammationManager::getInstance();
-        PrecedenceManager& precM = PrecedenceManager::getInstance();
-        ActiviteManager& actM = ActiviteManager::getInstance();
-        ProjetManager& projM = ProjetManager::getInstance();
-        TacheManager& tacheM = TacheManager::getInstance();
 
-        stream.setAutoFormatting(true);
-        stream.setDevice(&file);
-
-        stream.writeStartDocument();
-        stream.writeStartElement("root");
-
-        //   ****************************************
-        //   *** Sauvegarde des projets et tâches ***
-        //   ****************************************
-        stream.writeStartElement("Projets");
-        for(ProjetManager::iterator it = projM.begin() ; it != projM.end() ; it++)
-            saveProjet(stream,**it);
-        stream.writeEndElement();
-
-        stream.writeStartElement("TacheNonDefini");
-        for(TacheManager::iterator it = tacheM.begin() ; it != tacheM.end() ; it++){
-            if(!(*it)->getProjet() && !(*it)->getComposite())
-                saveTache(stream,**it);
-        }
-        stream.writeEndElement();
-
-
-        //   ********************************
-        //   *** Sauvegarde des activites ***
-        //   ********************************
-        stream.writeStartElement("Activites");
-        for(ActiviteManager::iterator it = actM.begin() ; it != actM.end() ; it++)
-            saveActivite(stream,**it);
-        stream.writeEndElement();
-
-
-        //   **********************************
-        //   *** Sauvegarde des precedences ***
-        //   **********************************
-        stream.writeStartElement("Precedences");
-        for(PrecedenceManager::iterator it = precM.begin() ; it != precM.end() ; it++)
-            savePrecedence(stream,**it);
-        stream.writeEndElement();
-
-
-        //   *************************************
-        //   *** Sauvegarde des programmations ***
-        //   *************************************
-        stream.writeStartElement("Programmations");
-        for(ProgrammationManager::iterator it = progM.begin() ; it != progM.end() ; it++)
-            saveProgrammation(stream,**it);
-        stream.writeEndElement();
-
-        stream.writeEndElement();
-        stream.writeEndDocument();
-    }
-}
 
 void XML::saveWeek(int week, int year)const{
     ///Effectue la sauvegarde de l'ensemble des programmations pour une semaine donnée en ajoutant les informations de l'evenement : nom, description, durée
@@ -282,6 +282,65 @@ void XML::saveProjet(const Projet& proj)const{
 
 }
 
+void Format::load()const{
+    ///Défini la structure du comportement du chargement de l'ensemble des informations du calendrier stockés dans un fichier. Le comportement de l'importation est défini dans les points d'extensions suivants
+    ///- Projets
+    ///- Tâches
+    ///- Activités
+    ///- Précédences
+    ///- Programmations
+
+    QXmlStreamReader stream;
+    QFile file(pathname);
+
+    if (!file.open(QIODevice::ReadOnly))
+    {
+      throw "Error : Impossible d'ouvrir le fichier";
+    }
+    else
+    {
+        stream.setDevice(&file);
+
+        if((stream.readNext())!=QXmlStreamReader::StartDocument)
+            throw "Error : Fichier XML corrompu";
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "root"))
+            throw "Error : Fichier XML corrompu";
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Projets"))
+            throw "Error : Fichier XML corrompu";
+        while(stream.readNextStartElement())
+            loadProjet(stream);
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "TacheNonDefini"))
+            throw "Error : Fichier XML corrompu";
+        while(stream.readNextStartElement())
+            loadTache(stream);
+
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Activites"))
+            throw "Error : Fichier XML corrompu";
+        while(stream.readNextStartElement())
+            loadActivite(stream);
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Precedences"))
+            throw "Error : Fichier XML corrompu";
+        while(stream.readNextStartElement())
+            loadPrecedence(stream);
+
+        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Programmations"))
+            throw "Error : Fichier XML corrompu";
+        while(stream.readNextStartElement()){
+            loadProgrammation(stream);
+        }
+        stream.skipCurrentElement();
+        if(!(stream.name().toString() == "root"))
+            throw "Error : Fichier XML corrompu";
+        file.close();
+
+    }
+
+}
 
 
 void XML::loadProjet(QXmlStreamReader& stream)const{
@@ -379,70 +438,5 @@ void XML::loadProgrammation(QXmlStreamReader& stream)const{
     stream.readNext();
 }
 
-void XML::load()const{
-    ///Effectue le chargement total de l'ensemble des informations du calendrier stockés dans un fichier XML.
-    ///- Projets
-    ///- Tâches
-    ///- Activités
-    ///- Précédences
-    ///- Programmations
 
-    QXmlStreamReader stream;
-    QFile file(pathname);
-
-    ProgrammationManager::freeInstance();
-    PrecedenceManager::freeInstance();
-    TacheManager::freeInstance();
-    ActiviteManager::freeInstance();
-    ProjetManager::freeInstance();
-
-
-    if (!file.open(QIODevice::ReadOnly))
-    {
-      throw "Error : Impossible d'ouvrir le fichier";
-    }
-    else
-    {
-        stream.setDevice(&file);
-
-        if((stream.readNext())!=QXmlStreamReader::StartDocument)
-            throw "Error : Fichier XML corrompu";
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "root"))
-            throw "Error : Fichier XML corrompu";
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Projets"))
-            throw "Error : Fichier XML corrompu";
-        while(stream.readNextStartElement())
-            loadProjet(stream);
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "TacheNonDefini"))
-            throw "Error : Fichier XML corrompu";
-        while(stream.readNextStartElement())
-            loadTache(stream);
-
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Activites"))
-            throw "Error : Fichier XML corrompu";
-        while(stream.readNextStartElement())
-            loadActivite(stream);
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Precedences"))
-            throw "Error : Fichier XML corrompu";
-        while(stream.readNextStartElement())
-            loadPrecedence(stream);
-
-        if(!(stream.readNextStartElement()) || !(stream.name().toString() == "Programmations"))
-            throw "Error : Fichier XML corrompu";
-        while(stream.readNextStartElement()){
-            loadProgrammation(stream);
-        }
-        stream.skipCurrentElement();
-        if(!(stream.name().toString() == "root"))
-            throw "Error : Fichier XML corrompu";
-        file.close();
-
-    }
-
-}
 
